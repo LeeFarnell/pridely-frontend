@@ -6,23 +6,26 @@
   --CottonCandy: #f2b5d4;
 }
 
-.button {
+.search-bar {
   flex-wrap: wrap;
+  justify-content: center;
   background-color: var(--MintCream);
   padding: 5px;
-  margin: 2px;
-  margin-right: 0px;
+  margin-left: 0px;
   border-radius: 5px;
-  color: var(--CottonCandy);
+  color: black;
   font-family: "Poppins", sans-serif;
-  font-weight: bold;
+  font-weight: normal;
   font-size: medium;
-  width: 7vw;
+  width: 30vw;
   border: var(--PiggyPink) 2px solid;
 }
 
-.button:hover {
-  background-color: var(--CottonCandy);
-  color: var(--MintCream);
-  text-shadow: black 0.5px 0.5px 0.5px;
+.search-bar:focus {
+  outline: none;
+  border: var(--CottonCandy) 2px solid;
+}
+
+::placeholder {
+  opacity: 50%;
 }
