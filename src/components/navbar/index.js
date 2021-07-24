@@ -1,7 +1,9 @@
 import React from "react";
 
+import "./index.css";
+
 const Navbar = (props) => {
-  return <div>{props.name}</div>;
+  return <div className="navbar">{props.name}</div>;
 };
 
 export default Navbar;

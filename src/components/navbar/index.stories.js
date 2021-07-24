@@ -10,5 +10,5 @@ export default {
 export const NavbarWithProps = (args) => <Navbar {...args} />;
 
 NavbarWithProps.args = {
-  name: "Mike",
+  name: "Pridely",
 };
