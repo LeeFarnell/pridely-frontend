@@ -1,0 +1,21 @@
+:root {
+  --SkyBlue: #7bdff2;
+  --Celeste: #b2f7ef;
+  --MintCream: #eff7f6;
+  --PiggyPink: #f7d6e0;
+  --CottonCandy: #f2b5d4;
+}
+
+.news-feed-comments {
+  padding: 0.5vw;
+  background-color: var(--MintCream);
+}
+
+.username {
+  border-bottom: var(--PiggyPink) 2px solid;
+  padding-top: 0.5vw;
+}
+
+.comment {
+  padding-top: 0.5vw;
+}
