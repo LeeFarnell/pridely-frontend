@@ -1,0 +1,12 @@
+:root {
+  --SkyBlue: #7bdff2;
+  --Celeste: #b2f7ef;
+  --MintCream: #eff7f6;
+  --PiggyPink: #f7d6e0;
+  --CottonCandy: #f2b5d4;
+}
+
+.avatar-img {
+  border-radius: 50%;
+  border: solid 5px var(--CottonCandy);
+}
