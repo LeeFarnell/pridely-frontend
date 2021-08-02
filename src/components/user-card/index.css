@@ -1,0 +1,26 @@
+:root {
+  --SkyBlue: #7bdff2;
+  --Celeste: #b2f7ef;
+  --MintCream: #eff7f6;
+  --PiggyPink: #f7d6e0;
+  --CottonCandy: #f2b5d4;
+}
+
+.user-card-container {
+  background-color: var(--MintCream);
+  padding: 0.5vw;
+  border: 2px solid var(--SkyBlue);
+  border-radius: 10px;
+  width: 10vw;
+  display: block;
+  text-align: center;
+}
+
+.user-card-info {
+  padding: 0.5vw;
+  border-bottom: 2px solid var(--CottonCandy);
+}
+
+.user-card-bottom {
+  padding: 0.5vw;
+}
