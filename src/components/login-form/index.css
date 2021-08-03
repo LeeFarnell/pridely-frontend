@@ -1,0 +1,26 @@
+:root {
+  --SkyBlue: #7bdff2;
+  --Celeste: #b2f7ef;
+  --MintCream: #eff7f6;
+  --PiggyPink: #f7d6e0;
+  --CottonCandy: #f2b5d4;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2vw;
+  margin: 0px;
+}
+
+.login-input {
+  width: 50vw;
+  margin: 0.5vw;
+  height: 3vw;
+  border: 0px;
+  border-bottom: 2px solid var(--CottonCandy);
+  color: black;
+  text-align: center;
+}
