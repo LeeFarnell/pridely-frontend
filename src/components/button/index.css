@@ -26,3 +26,9 @@
   color: var(--MintCream);
   text-shadow: black 0.5px 0.5px 0.5px;
 }
+
+@media screen and (max-width: 812px) {
+  .button {
+    width: 23vw;
+  }
+}
