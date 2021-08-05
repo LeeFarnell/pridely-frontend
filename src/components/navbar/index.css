@@ -11,7 +11,8 @@
   margin: 0;
   background-color: var(--SkyBlue);
   width: 100vw;
-  padding: 1vw;
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
   justify-content: space-between;
   align-items: center;
 }

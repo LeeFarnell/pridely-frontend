@@ -8,7 +8,7 @@ import "./index.css";
 const Navbar = (props) => {
   return (
     <div className="navbar">
-      <div class="title">{props.name}</div>
+      <div className="title">{props.name}</div>
       <div>
         <SearchBar />
       </div>
