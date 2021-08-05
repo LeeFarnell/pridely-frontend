@@ -9,9 +9,6 @@ import UserProfile from "./pages/user";
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/">
-        <Homepage />
-      </Route>
       <Route exact path="/login">
         <Login />
       </Route>
@@ -23,6 +20,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/user-profile">
         <UserProfile />
+      </Route>
+      <Route exact path="/">
+        <Homepage />
       </Route>
     </Switch>
   );
