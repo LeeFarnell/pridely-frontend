@@ -1,0 +1,23 @@
+:root {
+  --SkyBlue: #7bdff2;
+  --Celeste: #b2f7ef;
+  --MintCream: #eff7f6;
+  --PiggyPink: #f7d6e0;
+  --CottonCandy: #f2b5d4;
+}
+
+.review-card-container {
+  border: 2px solid var(--Celeste);
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 15vw;
+}
+
+.review-card-rating {
+  background-color: var(--Celeste);
+  border-bottom: var(--PiggyPink) 1px solid;
+  padding: 0.5vw;
+  text-align: center;
+}

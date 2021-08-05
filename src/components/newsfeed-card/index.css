@@ -1,0 +1,31 @@
+:root {
+  --SkyBlue: #7bdff2;
+  --Celeste: #b2f7ef;
+  --MintCream: #eff7f6;
+  --PiggyPink: #f7d6e0;
+  --CottonCandy: #f2b5d4;
+}
+
+.news-feed-card {
+  background-color: white;
+  border: 2px solid var(--Celeste);
+  border-radius: 10px;
+}
+
+.news-feed-title {
+  background-color: var(--Celeste);
+  border-bottom: var(--PiggyPink) 1px solid;
+  padding: 0.5vw;
+}
+
+.news-feed-body {
+  padding: 0.5vw;
+  border-bottom: var(--PiggyPink) 1px solid;
+}
+
+.news-feed-like {
+  padding: 0.5vw;
+  border-bottom: var(--PiggyPink) 1px solid;
+  background-color: var(--Celeste);
+  text-align: center;
+}

@@ -1,0 +1,24 @@
+:root {
+  --SkyBlue: #7bdff2;
+  --Celeste: #b2f7ef;
+  --MintCream: #eff7f6;
+  --PiggyPink: #f7d6e0;
+  --CottonCandy: #f2b5d4;
+}
+
+.swiper-container {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}

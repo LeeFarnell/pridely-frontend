@@ -1,0 +1,25 @@
+:root {
+  --SkyBlue: #7bdff2;
+  --Celeste: #b2f7ef;
+  --MintCream: #eff7f6;
+  --PiggyPink: #f7d6e0;
+  --CottonCandy: #f2b5d4;
+}
+
+.navbar {
+  display: flex;
+  margin: 0;
+  background-color: var(--SkyBlue);
+  width: 100vw;
+  padding: 1vw;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: var(--MintCream);
+  font-family: "Poppins", sans-serif;
+  text-shadow: var(--CottonCandy) 1px 1px 1px;
+  font-weight: bolder;
+  font-size: 3vw;
+}

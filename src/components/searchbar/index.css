@@ -1,0 +1,31 @@
+:root {
+  --SkyBlue: #7bdff2;
+  --Celeste: #b2f7ef;
+  --MintCream: #eff7f6;
+  --PiggyPink: #f7d6e0;
+  --CottonCandy: #f2b5d4;
+}
+
+.search-bar {
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--MintCream);
+  padding: 5px;
+  margin-left: 0px;
+  border-radius: 5px;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: medium;
+  width: 30vw;
+  border: var(--PiggyPink) 2px solid;
+}
+
+.search-bar:focus {
+  outline: none;
+  border: var(--CottonCandy) 2px solid;
+}
+
+::placeholder {
+  opacity: 50%;
+}
