@@ -1,13 +1,14 @@
+import React from "react";
+
 import Button from "../button";
 import SearchBar from "../searchbar";
-import React from "react";
 
 import "./index.css";
 
 const Navbar = (props) => {
   return (
     <div className="navbar">
-      <div class="title">{props.name}</div>
+      <div className="title">{props.name}</div>
       <div>
         <SearchBar />
       </div>

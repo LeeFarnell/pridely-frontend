@@ -10,8 +10,8 @@
   display: flex;
   margin: 0;
   background-color: var(--SkyBlue);
-  width: 100vw;
-  padding: 1vw;
+  width: 98vw;
+  padding: 0.5vw 1vw;
   justify-content: space-between;
   align-items: center;
 }
