@@ -1,17 +1,20 @@
-.navbar {
+.footer {
   display: flex;
   margin: 0;
   background-color: var(--SkyBlue);
   width: 98vw;
   padding: 0.5vw 1vw;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
 }
 
-.title {
+.footer-title {
   color: var(--MintCream);
   font-family: "Poppins", sans-serif;
   text-shadow: var(--CottonCandy) 1px 1px 1px;
-  font-weight: bolder;
-  font-size: 3vw;
+  font-weight: lighter;
+  font-size: 1vw;
 }
