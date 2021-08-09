@@ -10,7 +10,6 @@ const SIGNUP = gql`
         username
         type
         email
-        password
         city
         country
         businessName
@@ -28,4 +27,31 @@ const SIGNUP = gql`
   }
 `;
 
-export { SIGNUP };
+const LOGIN = gql`
+  mutation Mutation($loginInput: LoginInput) {
+    login(input: $loginInput) {
+      token
+      user {
+        id
+        name
+        username
+        type
+        email
+        city
+        country
+        businessName
+        businessType
+        businessDescription
+        rating
+        ratings
+        createdAt
+        age
+        identifyAs
+        gender
+        pronouns
+      }
+    }
+  }
+`;
+
+export { SIGNUP, LOGIN };
