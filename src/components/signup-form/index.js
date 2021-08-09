@@ -1,13 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 
 import Button from "../button";
 import { SIGNUP } from "../../mutations";
+import Auth from "../../utils/auth";
 
 import "./index.css";
-import { useMutation } from "@apollo/client";
 
 const SignUpForm = (props) => {
+  let history = useHistory();
+
   const {
     register,
     handleSubmit,
@@ -16,19 +20,35 @@ const SignUpForm = (props) => {
 
   const [signup, { data, loading, error }] = useMutation(SIGNUP, {
     onCompleted: () => {
-      console.log(data);
+      history.push("/login");
     },
-    onError: () => {
-      console.log("error");
+    onerror: () => {
+      throw new Error("something went wrong!");
     },
   });
 
   const onSubmit = async (formData) => {
-    await signup({
-      variables: {
-        signupInput: formData,
-      },
-    });
+    try {
+      console.log(formData);
+      await signup({
+        variables: {
+          signupInput: formData,
+          // TODO: parse value coming from age field, add code to get the "type" field value
+          // works with hardcoded data
+          // {
+          //   signupInput: {
+          //     name: "Alice Greene",
+          //     username: "agreene",
+          //     type: "standard",
+          //     email: "test.tewst@email.com",
+          //     password: "p123",
+          //   },
+          // },
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -51,14 +71,14 @@ const SignUpForm = (props) => {
           <input
             className="signup-input"
             placeholder="Full Name*"
-            required
+            {...register("name", { required: true })}
           ></input>
         </div>
         <div>
           <input
             className="signup-input"
             placeholder="Username*"
-            required
+            {...register("username", { required: true })}
           ></input>
         </div>
         <div>
@@ -66,7 +86,7 @@ const SignUpForm = (props) => {
             className="signup-input"
             type="email"
             placeholder="Email Address*"
-            required
+            {...register("email", { required: true })}
           ></input>
         </div>
         <div>
@@ -74,14 +94,21 @@ const SignUpForm = (props) => {
             className="signup-input"
             type="password"
             placeholder="Password*"
-            required
+            {...register("password", { required: true })}
           ></input>
         </div>
         <div>
           <input
             className="signup-input"
-            placeholder="Location*"
-            required
+            placeholder="Country*"
+            {...register("country", { required: true })}
+          ></input>
+        </div>
+        <div>
+          <input
+            className="signup-input"
+            placeholder="City*"
+            {...register("city", { required: true })}
           ></input>
         </div>
         <div>
@@ -89,7 +116,6 @@ const SignUpForm = (props) => {
             className="signup-input"
             type="url"
             placeholder="Profile Picture URL*"
-            required
           ></input>
         </div>
         <div>
@@ -97,16 +123,29 @@ const SignUpForm = (props) => {
             className="signup-input"
             type="number"
             placeholder="Age"
+            {...register("age", { required: false })}
           ></input>
         </div>
         <div>
-          <input className="signup-input" placeholder="Gender"></input>
+          <input
+            className="signup-input"
+            placeholder="Gender"
+            {...register("gender", { required: true })}
+          ></input>
         </div>
         <div>
-          <input className="signup-input" placeholder="Identify As"></input>
+          <input
+            className="signup-input"
+            placeholder="Identify As"
+            {...register("identifyAs", { required: true })}
+          ></input>
         </div>
         <div>
-          <input className="signup-input" placeholder="Pronouns"></input>
+          <input
+            className="signup-input"
+            placeholder="Pronouns"
+            {...register("pronouns", { required: true })}
+          ></input>
         </div>
         <Button name="Sign Up" type="submit" />
       </div>

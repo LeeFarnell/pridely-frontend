@@ -1,14 +1,19 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 
 import Button from "../button";
-import { useMutation } from "@apollo/client";
-
 import { LOGIN } from "../../mutations";
+import { useUserContext } from "../../contexts/UserProvider";
+import Auth from "../../utils/auth";
 
 import "./index.css";
 
 const LoginForm = (props) => {
+  const { dispatch } = useUserContext();
+  let history = useHistory();
+
   const {
     register,
     handleSubmit,
@@ -16,20 +21,44 @@ const LoginForm = (props) => {
   } = useForm();
 
   const [login, { data, loading, error }] = useMutation(LOGIN, {
-    onCompleted: () => {
-      console.log(data);
+    onCompleted: (data) => {
+      const payload = {
+        token: data.login.token,
+        email: data.login.user.email,
+        firstName: data.login.user.firstName,
+        lastName: data.login.user.lastName,
+        id: data.login.user.id,
+      };
+
+      localStorage.setItem("user", JSON.stringify(payload));
+
+      dispatch({
+        type: "LOGIN",
+        payload,
+      });
+
+      history.push("/");
+
+      const { token, user } = data.login;
+      console.log(user);
+      Auth.login(token);
     },
-    onError: () => {
-      console.log("error");
+    onerror: (error) => {
+      console.log(error.message);
+      throw new Error("something went wrong!");
     },
   });
 
   const onSubmit = async (formData) => {
-    await login({
-      variables: {
-        loginInput: formData,
-      },
-    });
+    try {
+      await login({
+        variables: {
+          loginInput: formData,
+        },
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   return (
