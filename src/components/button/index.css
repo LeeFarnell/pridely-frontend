@@ -29,6 +29,8 @@
 
 @media screen and (max-width: 812px) {
   .button {
-    width: 23vw;
+    width: 26vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
   }
 }
