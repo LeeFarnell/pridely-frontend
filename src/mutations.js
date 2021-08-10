@@ -10,6 +10,7 @@ const SIGNUP = gql`
         username
         type
         email
+        profilePicture
         city
         country
         businessName

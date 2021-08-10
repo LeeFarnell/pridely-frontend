@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
@@ -11,6 +11,11 @@ import "./index.css";
 
 const SignUpForm = (props) => {
   let history = useHistory();
+  const [currentType, setCurrentType] = useState("standard");
+
+  const changeType = (newType) => {
+    setCurrentType(newType);
+  };
 
   const {
     register,
@@ -62,7 +67,12 @@ const SignUpForm = (props) => {
         </p>
         <div className="user-type">
           Please select your user type:
-          <select className="signup-input">
+          <select
+            className="signup-input"
+            value={currentType}
+            onChange={(event) => changeType(event.target.value)}
+            {...register("type", { required: true })}
+          >
             <option value="Standard">Standard</option>
             <option value="Business">Business</option>
           </select>
@@ -97,25 +107,33 @@ const SignUpForm = (props) => {
             {...register("password", { required: true })}
           ></input>
         </div>
+        {/*
+        TODO: get the id for the country and city and store in data base.
+              sort user type selection 
+              get cities and countries from database and populate dropdown with them.
+        */}
+        {/*
         <div>
           <input
             className="signup-input"
             placeholder="Country*"
-            {...register("country", { required: true })}
+            {...register("country", { required: false })}
           ></input>
         </div>
         <div>
           <input
             className="signup-input"
             placeholder="City*"
-            {...register("city", { required: true })}
+            {...register("city", { required: false })}
           ></input>
         </div>
+        */}
         <div>
           <input
             className="signup-input"
             type="url"
             placeholder="Profile Picture URL*"
+            {...register("profilePicture", { required: true })}
           ></input>
         </div>
         <div>
@@ -123,7 +141,7 @@ const SignUpForm = (props) => {
             className="signup-input"
             type="number"
             placeholder="Age"
-            {...register("age", { required: false })}
+            {...register("age", { required: false, valueAsNumber: true })}
           ></input>
         </div>
         <div>
