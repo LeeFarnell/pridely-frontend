@@ -10,7 +10,7 @@
   background-size: cover;
 }
 
-h1 {
+.home-container h1 {
   margin: 0;
   font-size: 7vw;
   padding: 2vw;
@@ -21,7 +21,7 @@ h1 {
   text-shadow: black 2px 2px 2px;
 }
 
-p {
+.home-container p {
   align-items: baseline;
   justify-content: center;
   width: 45vw;
@@ -43,12 +43,12 @@ p {
   .home-content {
     text-align: center;
   }
-  h1 {
+  .home-container h1 {
     width: 100vw;
     font-size: 15vw;
     padding: 0;
   }
-  p {
+  .home-container p {
     width: 100vw;
     margin: 0;
   }
