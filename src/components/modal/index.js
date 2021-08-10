@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SimpleModal = () => {
+const SimpleModal = (props) => {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -55,7 +55,7 @@ const SimpleModal = () => {
 
   return (
     <div>
-      <Button type="button" onClick={handleOpen} name="Open Modal" />
+      <Button type="button" onClick={handleOpen} name={props.name} />
 
       <Modal
         open={open}
