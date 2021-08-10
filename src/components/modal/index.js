@@ -49,13 +49,13 @@ const SimpleModal = (props) => {
       <p id="simple-modal-description">
         Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
       </p>
-      <SimpleModal />
+      <Button onClick={handleClose} name="Close" />
     </div>
   );
 
   return (
     <div>
-      <Button type="button" onClick={handleOpen} name={props.name} />
+      <Button onClick={handleOpen} name={props.name} />
 
       <Modal
         open={open}

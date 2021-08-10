@@ -1,5 +1,6 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 
+import Dashboard from "./pages/dashboard";
 import Homepage from "./pages/homepage";
 import Login from "./pages/login";
 import Search from "./pages/search";
@@ -20,6 +21,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/user-profile">
         <UserProfile />
+      </Route>
+      <Route exact path="/dashboard">
+        <Dashboard />
       </Route>
       <Route exact path="/">
         <Homepage />
