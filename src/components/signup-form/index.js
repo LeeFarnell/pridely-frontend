@@ -13,10 +13,6 @@ const SignUpForm = (props) => {
   let history = useHistory();
   const [currentType, setCurrentType] = useState("standard");
 
-  const changeType = (newType) => {
-    setCurrentType(newType);
-  };
-
   const {
     register,
     handleSubmit,
@@ -38,17 +34,6 @@ const SignUpForm = (props) => {
       await signup({
         variables: {
           signupInput: formData,
-          // TODO: parse value coming from age field, add code to get the "type" field value
-          // works with hardcoded data
-          // {
-          //   signupInput: {
-          //     name: "Alice Greene",
-          //     username: "agreene",
-          //     type: "standard",
-          //     email: "test.tewst@email.com",
-          //     password: "p123",
-          //   },
-          // },
         },
       });
     } catch (error) {
@@ -69,8 +54,8 @@ const SignUpForm = (props) => {
           Please select your user type:
           <select
             className="signup-input"
-            value={currentType}
-            onChange={(event) => changeType(event.target.value)}
+            defaultValue={currentType}
+            onChange={setCurrentType}
             {...register("type", { required: true })}
           >
             <option value="Standard">Standard</option>
@@ -109,7 +94,6 @@ const SignUpForm = (props) => {
         </div>
         {/*
         TODO: get the id for the country and city and store in data base.
-              sort user type selection 
               get cities and countries from database and populate dropdown with them.
         */}
         {/*
