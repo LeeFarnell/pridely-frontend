@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
+import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 import Button from "../button";
 import { SIGNUP } from "../../mutations";
@@ -10,9 +11,11 @@ import Auth from "../../utils/auth";
 import "./index.css";
 
 const SignUpForm = (props) => {
+  // hooks
   let history = useHistory();
   const [currentType, setCurrentType] = useState("standard");
-
+  const [country, selectCountry] = useState("United Kingdom");
+  const [region, selectRegion] = useState("West Midlands");
   const {
     register,
     handleSubmit,
@@ -28,14 +31,25 @@ const SignUpForm = (props) => {
     },
   });
 
+  const handleCountryChange = (country) => {
+    selectCountry(country);
+    console.log(country);
+  };
+
+  const handleRegionChange = (region) => {
+    selectRegion(region);
+    console.log(region);
+  };
+
   const onSubmit = async (formData) => {
     try {
-      console.log(formData);
       await signup({
         variables: {
           signupInput: formData,
         },
       });
+      console.log(formData);
+      console.log("hit");
     } catch (error) {
       console.error(error);
     }
@@ -96,22 +110,20 @@ const SignUpForm = (props) => {
         TODO: get the id for the country and city and store in data base.
               get cities and countries from database and populate dropdown with them.
         */}
-        {/*
-        <div>
-          <input
-            className="signup-input"
-            placeholder="Country*"
-            {...register("country", { required: false })}
-          ></input>
-        </div>
-        <div>
-          <input
-            className="signup-input"
-            placeholder="City*"
-            {...register("city", { required: false })}
-          ></input>
-        </div>
-        */}
+
+        <CountryDropdown
+          className="signup-input"
+          value={country}
+          onChange={handleCountryChange}
+          // {...register("country", { required: true })}
+        />
+        <RegionDropdown
+          className="signup-input"
+          country={country}
+          value={region}
+          onChange={handleRegionChange}
+          // {...register("city", { required: true })}
+        />
         <div>
           <input
             className="signup-input"
