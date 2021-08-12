@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Button from "../button";
+import Followers from "../followers";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -43,15 +44,29 @@ const SimpleModal = (props) => {
     setOpen(false);
   };
 
-  const body = (
-    <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Text in a modal</h2>
-      <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-      </p>
-      <Button onClick={handleClose} name="Close" />
-    </div>
-  );
+  const renderBody = () => {
+    if (props.name === "Followers") {
+      return (
+        <div style={modalStyle} className={classes.paper}>
+          <h2 id="simple-modal-title">Text in a modal</h2>
+          <div id="simple-modal-description">
+            <Followers />
+          </div>
+          <Button onClick={handleClose} name="Close" />
+        </div>
+      );
+    } else {
+      return (
+        <div style={modalStyle} className={classes.paper}>
+          <h2 id="simple-modal-title">Text in a modal</h2>
+          <div id="simple-modal-description">
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </div>
+          <Button onClick={handleClose} name="Close" />
+        </div>
+      );
+    }
+  };
 
   return (
     <div>
@@ -63,7 +78,7 @@ const SimpleModal = (props) => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        {body}
+        {renderBody()}
       </Modal>
     </div>
   );
