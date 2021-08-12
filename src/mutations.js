@@ -11,12 +11,11 @@ const SIGNUP = gql`
         type
         email
         profilePicture
-        city
+        region
         country
         businessName
         businessType
         businessDescription
-        rating
         ratings
         createdAt
         age
@@ -38,12 +37,11 @@ const LOGIN = gql`
         username
         type
         email
-        city
+        region
         country
         businessName
         businessType
         businessDescription
-        rating
         ratings
         createdAt
         age

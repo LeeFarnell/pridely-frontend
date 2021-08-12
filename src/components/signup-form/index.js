@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 import Button from "../button";
 import { SIGNUP } from "../../mutations";
+
 import Auth from "../../utils/auth";
 
 import "./index.css";
@@ -14,33 +15,25 @@ const SignUpForm = (props) => {
   // hooks
   let history = useHistory();
   const [currentType, setCurrentType] = useState("standard");
-  const [country, selectCountry] = useState("United Kingdom");
-  const [region, selectRegion] = useState("West Midlands");
+  const [country, setCountry] = useState("United Kingdom");
+  const [region, setRegion] = useState("West Midlands");
   const {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm();
 
   const [signup, { data, loading, error }] = useMutation(SIGNUP, {
     onCompleted: () => {
-      history.push("/login");
+      history.push("/signup");
     },
     onerror: () => {
       throw new Error("something went wrong!");
     },
   });
 
-  const handleCountryChange = (country) => {
-    selectCountry(country);
-    console.log(country);
-  };
-
-  const handleRegionChange = (region) => {
-    selectRegion(region);
-    console.log(region);
-  };
-
+  // function to be run on submission of the form
   const onSubmit = async (formData) => {
     try {
       await signup({
@@ -48,10 +41,8 @@ const SignUpForm = (props) => {
           signupInput: formData,
         },
       });
-      console.log(formData);
-      console.log("hit");
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
     }
   };
 
@@ -106,30 +97,41 @@ const SignUpForm = (props) => {
             {...register("password", { required: true })}
           ></input>
         </div>
-        {/*
-        TODO: get the id for the country and city and store in data base.
-              get cities and countries from database and populate dropdown with them.
-        */}
-
-        <CountryDropdown
-          className="signup-input"
-          value={country}
-          onChange={handleCountryChange}
-          // {...register("country", { required: true })}
+        <Controller
+          control={control}
+          name="country"
+          render={({ field: { onChange, onBlur, value, name, ref } }) => (
+            <CountryDropdown
+              className="signup-input"
+              value={country}
+              onChange={(data) => {
+                onChange(data);
+                setCountry(data);
+              }}
+            />
+          )}
         />
-        <RegionDropdown
-          className="signup-input"
-          country={country}
-          value={region}
-          onChange={handleRegionChange}
-          // {...register("city", { required: true })}
+        <Controller
+          control={control}
+          name="region"
+          render={({ field: { onChange, onBlur, value, name, ref } }) => (
+            <RegionDropdown
+              className="signup-input"
+              country={country}
+              value={region}
+              onChange={(data) => {
+                onChange(data);
+                setRegion(data);
+              }}
+            />
+          )}
         />
         <div>
           <input
             className="signup-input"
             type="url"
             placeholder="Profile Picture URL*"
-            {...register("profilePicture", { required: true })}
+            {...register("profilePicture", { required: false })}
           ></input>
         </div>
         <div>
@@ -144,21 +146,21 @@ const SignUpForm = (props) => {
           <input
             className="signup-input"
             placeholder="Gender"
-            {...register("gender", { required: true })}
+            {...register("gender", { required: false })}
           ></input>
         </div>
         <div>
           <input
             className="signup-input"
             placeholder="Identify As"
-            {...register("identifyAs", { required: true })}
+            {...register("identifyAs", { required: false })}
           ></input>
         </div>
         <div>
           <input
             className="signup-input"
             placeholder="Pronouns"
-            {...register("pronouns", { required: true })}
+            {...register("pronouns", { required: false })}
           ></input>
         </div>
         <Button name="Sign Up" type="submit" />
