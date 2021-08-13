@@ -48,9 +48,9 @@ const SimpleModal = (props) => {
     if (props.name === "Followers") {
       return (
         <div style={modalStyle} className={classes.paper}>
-          <h2 id="simple-modal-title">Text in a modal</h2>
+          <h2 id="simple-modal-title">Followers</h2>
           <div id="simple-modal-description">
-            <Followers />
+            <Followers username="bobSmith123" />
           </div>
           <Button onClick={handleClose} name="Close" />
         </div>
