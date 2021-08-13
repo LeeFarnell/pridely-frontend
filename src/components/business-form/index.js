@@ -1,21 +1,32 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
 
 import Button from "../button";
+import { EDIT_BUSINESS_USER } from "../../mutations";
 
 import "./index.css";
 
 const BusinessForm = (props) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    control,
-  } = useForm();
+  // hooks
+  const { register, handleSubmit } = useForm();
 
-  const onSubmit = (formData) => {
+  // destructure input from mutation. if error throws new error
+  const [editBusinessUser] = useMutation(EDIT_BUSINESS_USER, {
+    onCompleted: () => {},
+    onerror: () => {
+      throw new Error("something went wrong!");
+    },
+  });
+
+  // this will be run at the submit of the form
+  const onSubmit = async (formData) => {
     try {
-      console.log(formData);
+      await editBusinessUser({
+        variables: {
+          editBusinessUserInput: formData,
+        },
+      });
     } catch (error) {
       console.error(error.message);
     }
