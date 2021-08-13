@@ -1,12 +1,28 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 
 import Button from "../button";
 
 import "./index.css";
 
 const BusinessForm = (props) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm();
+
+  const onSubmit = (formData) => {
+    try {
+      console.log(formData);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="signup-form">
         <p>
           Thanks for selecting to be a Business User! Please enter the details
@@ -16,7 +32,10 @@ const BusinessForm = (props) => {
         </p>
         <div className="business-type">
           Please select your user type:
-          <select className="signup-input">
+          <select
+            className="signup-input"
+            {...register("businessType", { required: true })}
+          >
             <option value="Photo">Photography</option>
             <option value="Art">Art</option>
             <option value="Music">Music</option>
@@ -28,6 +47,7 @@ const BusinessForm = (props) => {
             className="business-input"
             placeholder="Business Name*"
             required
+            {...register("businessName", { required: true })}
           ></input>
         </div>
         <div>
@@ -35,6 +55,7 @@ const BusinessForm = (props) => {
             className="business-input"
             placeholder="Enter some information about your business*"
             required
+            {...register("businessDescription", { required: true })}
           ></textarea>
         </div>
         <div>
@@ -43,6 +64,7 @@ const BusinessForm = (props) => {
             type="url"
             placeholder="Add any Social Media URL*"
             required
+            {...register("socialMedia", { required: true })}
           ></input>
         </div>
         <Button name="Submit" type="submit" />
