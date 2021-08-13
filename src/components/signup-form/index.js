@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import { Redirect, useHistory } from "react-router-dom";
+import { Switch, Redirect, useHistory } from "react-router-dom";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 import Button from "../button";
@@ -41,18 +41,9 @@ const SignUpForm = (props) => {
           signupInput: formData,
         },
       });
-      // TODO: successfully redirect to business form upon selecting "Business" as the account type
-
-      // this should redirect on form submission, not working
+      //if user type is business, the user will be prompted with a form to add his business details
       if (formData.type === "Business") {
-        return (
-          <Redirect
-            push
-            to={{
-              pathname: "/business-signup",
-            }}
-          />
-        );
+        window.location.replace("/business-signup");
       }
     } catch (error) {
       console.error(error.message);
