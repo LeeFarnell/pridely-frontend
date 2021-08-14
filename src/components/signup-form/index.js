@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import { useHistory } from "react-router-dom";
+import { Switch, Redirect, useHistory } from "react-router-dom";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 import Button from "../button";
@@ -41,6 +41,10 @@ const SignUpForm = (props) => {
           signupInput: formData,
         },
       });
+      //if user type is business, the user will be prompted with a form to add his business details
+      if (formData.type === "Business") {
+        window.location.replace("/business-signup");
+      }
     } catch (error) {
       console.error(error.message);
     }

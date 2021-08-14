@@ -1,12 +1,39 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
 
 import Button from "../button";
+import { EDIT_BUSINESS_USER } from "../../mutations";
 
 import "./index.css";
 
 const BusinessForm = (props) => {
+  // hooks
+  const { register, handleSubmit } = useForm();
+
+  // destructure input from mutation. if error throws new error
+  const [editBusinessUser] = useMutation(EDIT_BUSINESS_USER, {
+    onCompleted: () => {},
+    onerror: () => {
+      throw new Error("something went wrong!");
+    },
+  });
+
+  // this will be run at the submit of the form
+  const onSubmit = async (formData) => {
+    try {
+      await editBusinessUser({
+        variables: {
+          editBusinessUserInput: formData,
+        },
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="signup-form">
         <p>
           Thanks for selecting to be a Business User! Please enter the details
@@ -16,7 +43,10 @@ const BusinessForm = (props) => {
         </p>
         <div className="business-type">
           Please select your user type:
-          <select className="signup-input">
+          <select
+            className="signup-input"
+            {...register("businessType", { required: true })}
+          >
             <option value="Photo">Photography</option>
             <option value="Art">Art</option>
             <option value="Music">Music</option>
@@ -28,6 +58,7 @@ const BusinessForm = (props) => {
             className="business-input"
             placeholder="Business Name*"
             required
+            {...register("businessName", { required: true })}
           ></input>
         </div>
         <div>
@@ -35,6 +66,7 @@ const BusinessForm = (props) => {
             className="business-input"
             placeholder="Enter some information about your business*"
             required
+            {...register("businessDescription", { required: true })}
           ></textarea>
         </div>
         <div>
@@ -43,6 +75,7 @@ const BusinessForm = (props) => {
             type="url"
             placeholder="Add any Social Media URL*"
             required
+            {...register("socialMedia", { required: true })}
           ></input>
         </div>
         <Button name="Submit" type="submit" />

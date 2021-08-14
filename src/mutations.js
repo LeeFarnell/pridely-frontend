@@ -53,4 +53,18 @@ const LOGIN = gql`
   }
 `;
 
-export { SIGNUP, LOGIN };
+const EDIT_BUSINESS_USER = gql`
+  mutation Mutation($editBusinessUserInput: editBusinessUserInput) {
+    editBusinessUser(input: $editBusinessUserInput) {
+      user {
+        id
+        username
+        businessName
+        createdAt
+        pronouns
+      }
+    }
+  }
+`;
+
+export { SIGNUP, LOGIN, EDIT_BUSINESS_USER };
