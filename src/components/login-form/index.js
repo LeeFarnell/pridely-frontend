@@ -37,8 +37,6 @@ const LoginForm = (props) => {
         payload,
       });
 
-      history.push("/");
-
       const { token, user } = data.login;
       console.log(user);
       Auth.login(token);
@@ -56,6 +54,7 @@ const LoginForm = (props) => {
           loginInput: formData,
         },
       });
+      window.location.replace("/dashboard");
     } catch (error) {
       console.error(error.message);
     }
