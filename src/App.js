@@ -12,6 +12,7 @@ import Navbar from "./components/navbar";
 import UserProvider from "./contexts/UserProvider";
 
 import "./App.css";
+import Footer from "./components/footer";
 
 const httpLink = createHttpLink({
   uri: process.env.GRAPHQL_URL || "http://localhost:4000/",

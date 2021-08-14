@@ -9,10 +9,9 @@
 .review-card-container {
   border: 2px solid var(--Celeste);
   border-radius: 10px;
-  display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
   width: 15vw;
+  margin: 0;
 }
 
 .review-card-rating {

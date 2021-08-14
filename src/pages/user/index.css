@@ -1,0 +1,20 @@
+.profile-container {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  padding: 1vw;
+}
+.profile-card {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 2vw;
+}
+.profile-left {
+  margin: 1vw;
+}
+
+.profile-left-all {
+  text-align: center;
+}

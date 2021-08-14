@@ -9,7 +9,7 @@
 .avatar-img {
   border-radius: 50%;
   border: solid 5px var(--CottonCandy);
-  width: 7vw;
-  height: 7vw;
+  width: 20vw;
+  height: 20vw;
   object-fit: cover;
 }

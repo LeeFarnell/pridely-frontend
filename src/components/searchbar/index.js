@@ -5,7 +5,7 @@ import "./index.css";
 
 const SearchBar = (props) => {
   return (
-    <div>
+    <div className="search-bar-container">
       <form>
         <input
           type="text"

@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Button from "../button";
+import Followers from "../followers";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SimpleModal = () => {
+const SimpleModal = (props) => {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -43,19 +44,33 @@ const SimpleModal = () => {
     setOpen(false);
   };
 
-  const body = (
-    <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Text in a modal</h2>
-      <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-      </p>
-      <SimpleModal />
-    </div>
-  );
+  const renderBody = () => {
+    if (props.name === "Followers") {
+      return (
+        <div style={modalStyle} className={classes.paper}>
+          <h2 id="simple-modal-title">Followers</h2>
+          <div id="simple-modal-description">
+            <Followers username="bobSmith123" />
+          </div>
+          <Button onClick={handleClose} name="Close" />
+        </div>
+      );
+    } else {
+      return (
+        <div style={modalStyle} className={classes.paper}>
+          <h2 id="simple-modal-title">Text in a modal</h2>
+          <div id="simple-modal-description">
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </div>
+          <Button onClick={handleClose} name="Close" />
+        </div>
+      );
+    }
+  };
 
   return (
     <div>
-      <Button type="button" onClick={handleOpen} name="Open Modal" />
+      <Button onClick={handleOpen} name={props.name} />
 
       <Modal
         open={open}
@@ -63,7 +78,7 @@ const SimpleModal = () => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        {body}
+        {renderBody()}
       </Modal>
     </div>
   );
