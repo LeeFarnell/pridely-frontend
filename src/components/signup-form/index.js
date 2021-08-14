@@ -24,9 +24,10 @@ const SignUpForm = (props) => {
     control,
   } = useForm();
 
-  const [signup, { data, loading, error }] = useMutation(SIGNUP, {
-    onCompleted: () => {
-      history.push("/signup");
+  const [signup] = useMutation(SIGNUP, {
+    onCompleted: (data) => {
+      const { token, user } = data.signup;
+      Auth.login(token);
     },
     onerror: () => {
       throw new Error("something went wrong!");
