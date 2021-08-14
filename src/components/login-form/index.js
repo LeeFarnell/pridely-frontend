@@ -20,7 +20,7 @@ const LoginForm = (props) => {
     formState: { errors },
   } = useForm();
 
-  const [login, { data, loading, error }] = useMutation(LOGIN, {
+  const [login] = useMutation(LOGIN, {
     onCompleted: (data) => {
       const payload = {
         token: data.login.token,
