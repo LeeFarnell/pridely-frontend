@@ -61,6 +61,8 @@ const SignUpForm = (props) => {
       //if user type is business, the user will be prompted with a form to add his business details
       if (formData.type === "Business") {
         window.location.replace("/business-signup");
+      } else {
+        window.location.replace("/dashboard");
       }
     } catch (error) {
       console.error(error.message);
