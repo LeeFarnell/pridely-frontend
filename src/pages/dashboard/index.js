@@ -1,12 +1,25 @@
+import { useQuery } from "@apollo/client";
 import Carousel from "../../components/carousel";
 import NewsFeedCard from "../../components/newsfeed-card";
+import { ME } from "../../queries";
 import "./index.css";
 
 const Dashboard = () => {
+  const { data, error, loading } = useQuery(ME);
+
+  if (loading) {
+    return <div>loading</div>;
+  }
+
+  if (error) {
+    return <div>error</div>;
+  }
+
+  const userData = data.user;
   return (
     <div className="dashboard-container">
       <div>
-        <h1>Welcome username here!</h1>
+        <h1>Welcome {userData.username}</h1>
       </div>
       <Carousel />
       <div>
