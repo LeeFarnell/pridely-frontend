@@ -23,9 +23,24 @@ const Navbar = (props) => {
             <SearchBar />
           </div>
           <div>
-            <Button name="Home" />
-            <Button name="Log In" />
-            <Button name="Sign Up" />
+            <Button
+              name="Home"
+              onClick={() => {
+                window.location.replace("/");
+              }}
+            />
+            <Button
+              name="Log In"
+              onClick={() => {
+                window.location.replace("/login");
+              }}
+            />
+            <Button
+              name="Sign Up"
+              onClick={() => {
+                window.location.replace("/signup");
+              }}
+            />
           </div>
         </div>
       )}
@@ -36,8 +51,18 @@ const Navbar = (props) => {
             <SearchBar />
           </div>
           <div>
-            <Button name="Dashboard" />
-            <Button name="Profile" />
+            <Button
+              name="Dashboard"
+              onClick={() => {
+                window.location.replace("/dashboard");
+              }}
+            />
+            <Button
+              name="Profile"
+              onClick={() => {
+                window.location.replace("/user-profile");
+              }}
+            />
             <Button name="Log Out" onClick={handleLogout} />
           </div>
         </div>
