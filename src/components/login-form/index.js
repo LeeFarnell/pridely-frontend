@@ -20,7 +20,7 @@ const LoginForm = (props) => {
     formState: { errors },
   } = useForm();
 
-  const [login, { data, loading, error }] = useMutation(LOGIN, {
+  const [login] = useMutation(LOGIN, {
     onCompleted: (data) => {
       const payload = {
         token: data.login.token,
@@ -36,8 +36,6 @@ const LoginForm = (props) => {
         type: "LOGIN",
         payload,
       });
-
-      history.push("/");
 
       const { token, user } = data.login;
       console.log(user);
@@ -56,6 +54,7 @@ const LoginForm = (props) => {
           loginInput: formData,
         },
       });
+      window.location.replace("/dashboard");
     } catch (error) {
       console.error(error.message);
     }

@@ -4,9 +4,9 @@ import { useMutation } from "@apollo/client";
 import { Switch, Redirect, useHistory } from "react-router-dom";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
+import { useUserContext } from "../../contexts/UserProvider";
 import Button from "../button";
 import { SIGNUP } from "../../mutations";
-
 import Auth from "../../utils/auth";
 
 import "./index.css";
@@ -17,6 +17,7 @@ const SignUpForm = (props) => {
   const [currentType, setCurrentType] = useState("standard");
   const [country, setCountry] = useState("United Kingdom");
   const [region, setRegion] = useState("West Midlands");
+  const { dispatch } = useUserContext();
   const {
     register,
     handleSubmit,
@@ -24,9 +25,25 @@ const SignUpForm = (props) => {
     control,
   } = useForm();
 
-  const [signup, { data, loading, error }] = useMutation(SIGNUP, {
-    onCompleted: () => {
-      history.push("/signup");
+  const [signup] = useMutation(SIGNUP, {
+    onCompleted: (data) => {
+      const payload = {
+        token: data.signup.token,
+        email: data.signup.user.email,
+        firstName: data.signup.user.firstName,
+        lastName: data.signup.user.lastName,
+        id: data.signup.user.id,
+      };
+
+      localStorage.setItem("user", JSON.stringify(payload));
+
+      dispatch({
+        type: "LOGIN",
+        payload,
+      });
+
+      const { token, user } = data.signup;
+      Auth.login(token);
     },
     onerror: () => {
       throw new Error("something went wrong!");
@@ -44,6 +61,8 @@ const SignUpForm = (props) => {
       //if user type is business, the user will be prompted with a form to add his business details
       if (formData.type === "Business") {
         window.location.replace("/business-signup");
+      } else {
+        window.location.replace("/dashboard");
       }
     } catch (error) {
       console.error(error.message);
