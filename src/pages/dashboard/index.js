@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/client";
 import Carousel from "../../components/carousel";
 import NewsFeedCard from "../../components/newsfeed-card";
-import { ME } from "../../queries";
+import { DASHBOARD_ME } from "../../queries";
 import "./index.css";
 
 const Dashboard = () => {
-  const { data, error, loading } = useQuery(ME);
+  const { data, error, loading } = useQuery(DASHBOARD_ME);
 
   if (loading) {
     return <div>loading</div>;
