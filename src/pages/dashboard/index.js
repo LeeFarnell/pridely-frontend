@@ -16,12 +16,14 @@ const Dashboard = () => {
   }
 
   const userData = data.user;
+  const userFollowers = data.allFollowers;
+
   return (
     <div className="dashboard-container">
       <div>
         <h1>Welcome {userData.username}</h1>
       </div>
-      <Carousel />
+      <Carousel followers={userFollowers} />
       <div>
         <h3>Recent post from people you follow</h3>
         <NewsFeedCard

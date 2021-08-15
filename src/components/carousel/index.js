@@ -1,6 +1,8 @@
 import React from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useQuery } from "@apollo/client";
+import { DASHBOARD_FOLLOWERS_PROFILE } from "../../queries";
+import Slide from "../slide";
 
 import SwiperCore, {
   Autoplay,
@@ -16,18 +18,17 @@ import "./index.css";
 SwiperCore.use([Autoplay, Navigation, Pagination, EffectCoverflow]);
 
 const Carousel = (props) => {
-  const slides = [];
+  const { followers } = props;
 
-  for (let i = 0; i < 5; i += 1) {
-    slides.push(
-      <SwiperSlide key={`slide-${i}`}>
-        <img
-          src={`https://picsum.photos/id/${i + 1}/500/300`}
-          alt={`Slide ${i}`}
-        />
+  console.log(followers);
+
+  const followMap = followers.map(() => {
+    return (
+      <SwiperSlide>
+        <Slide myFollowers={followers} />
       </SwiperSlide>
     );
-  }
+  });
 
   return (
     <React.Fragment>
@@ -55,7 +56,7 @@ const Carousel = (props) => {
           slideShadows: true,
         }}
       >
-        {slides}
+        {followMap}
       </Swiper>
     </React.Fragment>
   );
