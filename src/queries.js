@@ -19,13 +19,14 @@ const DASHBOARD_ME = gql`
 `;
 
 const DASHBOARD_FOLLOWERS_PROFILE = gql`
-  query Query {
-    user {
+  query Query($followerDataFollowerId: String) {
+    followerData(followerId: $followerDataFollowerId) {
       id
       name
       username
-      type
+      email
       profilePicture
+      createdAt
     }
   }
 `;

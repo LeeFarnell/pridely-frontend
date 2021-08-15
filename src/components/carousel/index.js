@@ -1,7 +1,5 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useQuery } from "@apollo/client";
-import { DASHBOARD_FOLLOWERS_PROFILE } from "../../queries";
 import Slide from "../slide";
 
 import SwiperCore, {
@@ -18,14 +16,14 @@ import "./index.css";
 SwiperCore.use([Autoplay, Navigation, Pagination, EffectCoverflow]);
 
 const Carousel = (props) => {
+  // destructuring followers array from props
   const { followers } = props;
 
-  console.log(followers);
-
-  const followMap = followers.map(() => {
+  // map through followers array and render a component
+  const followMap = followers.map((i) => {
     return (
       <SwiperSlide>
-        <Slide myFollowers={followers} />
+        <Slide key={i} myFollowers={i.businessId} />
       </SwiperSlide>
     );
   });

@@ -5,25 +5,31 @@ import { DASHBOARD_ME } from "../../queries";
 import "./index.css";
 
 const Dashboard = () => {
+  // query data for current user
   const { data, error, loading } = useQuery(DASHBOARD_ME);
 
+  // if data is loading render this
   if (loading) {
     return <div>loading</div>;
   }
 
+  // if theres an error render this
   if (error) {
     return <div>error</div>;
   }
 
+  // current user data
   const userData = data.user;
-  const userFollowers = data.allFollowers;
+
+  // current user followers
+  const followerData = data.allFollowers;
 
   return (
     <div className="dashboard-container">
       <div>
         <h1>Welcome {userData.username}</h1>
       </div>
-      <Carousel followers={userFollowers} />
+      <Carousel followers={followerData} />
       <div>
         <h3>Recent post from people you follow</h3>
         <NewsFeedCard
