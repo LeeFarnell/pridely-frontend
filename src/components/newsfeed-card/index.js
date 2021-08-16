@@ -1,15 +1,16 @@
 import NewsFeedComment from "../newsfeed-comments";
+import PostCard from "../post-card";
 import "./index.css";
 
 const NewsFeedCard = (props) => {
-  return (
-    <div className="news-feed-card">
-      <div className="news-feed-title">{props.title}</div>
-      <div className="news-feed-body">{props.body}</div>
-      <div className="news-feed-like">Likes: {props.likes}</div>
-      <NewsFeedComment username="bobsmith101" comment="This looks great!" />
-    </div>
-  );
+  // destructuring followers array from props
+  const { followers } = props;
+
+  const postMap = followers.map((i) => {
+    return <PostCard key={i} myFollowers={i.businessId} />;
+  });
+
+  return <div className="news-feed-card">{postMap}</div>;
 };
 
 export default NewsFeedCard;

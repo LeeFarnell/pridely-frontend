@@ -31,8 +31,25 @@ const DASHBOARD_FOLLOWERS_PROFILE = gql`
   }
 `;
 
+const USER_POSTS = gql`
+  query Query($allPostsUserId: String!) {
+    allPosts(userId: $allPostsUserId) {
+      _id
+      postedBy
+      title
+      subtitle
+      mainText
+      badges
+      image
+      url
+      createdAt
+      likes
+    }
+  }
+`;
+
 //socialMedia
 // TODO: Query to get all Followers for current User.
 // TODO: Query to get user profile and their posts, based on ID.
 
-export { DASHBOARD_ME, DASHBOARD_FOLLOWERS_PROFILE };
+export { DASHBOARD_ME, DASHBOARD_FOLLOWERS_PROFILE, USER_POSTS };

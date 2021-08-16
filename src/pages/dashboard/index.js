@@ -32,11 +32,7 @@ const Dashboard = () => {
       <Carousel followers={followerData} />
       <div>
         <h3>Recent post from people you follow</h3>
-        <NewsFeedCard
-          title="Hello"
-          body="Welcome to my first post!"
-          likes="5"
-        />
+        <NewsFeedCard followers={followerData} />
       </div>
     </div>
   );
