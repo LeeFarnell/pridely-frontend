@@ -1,6 +1,11 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
+
+import Avatar from "../avatar";
+import Button from "../button";
 import { DASHBOARD_FOLLOWERS_PROFILE } from "../../queries";
+
+import "./index.css";
 
 const Slide = (props) => {
   // destructure follower id from props
@@ -18,21 +23,22 @@ const Slide = (props) => {
 
   // if error render this
   if (error) {
-    return <div>error</div>;
+    return <div>peter</div>;
   }
 
   const userData = data.followerData;
+  // const userData = null;
+
   return (
-    <div>
+    <div className="user-card-container">
       <div>
-        Name: <span>{userData.name}</span>
+        <Avatar URL="https://filmschoolrejects.com/wp-content/uploads/2018/10/avatar-last-airbender-episodes-ranked.jpg" />
       </div>
-      <div>
-        Username: <span>{userData.username}</span>
-      </div>
-      <div>
-        Email: <span>{userData.email}</span>
-      </div>
+      <div className="user-card-info">{userData.name}</div>
+      <div className="user-card-info">{userData.username}</div>
+      <div className="user-card-info">{userData.email}</div>
+      <div className="user-card-bottom">Rating: {userData.email}</div>
+      <Button name="View Profile" />
     </div>
   );
 };
