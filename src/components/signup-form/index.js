@@ -15,8 +15,8 @@ const SignUpForm = (props) => {
   // hooks
   let history = useHistory();
   const [currentType, setCurrentType] = useState("standard");
-  const [country, setCountry] = useState("United Kingdom");
-  const [region, setRegion] = useState("West Midlands");
+  const [country, setCountry] = useState();
+  const [region, setRegion] = useState();
   const { dispatch } = useUserContext();
   const {
     register,

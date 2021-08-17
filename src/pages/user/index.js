@@ -26,11 +26,11 @@ const UserProfile = () => {
         </div>
       </div>
       <div className="profile-card">
-        <NewsFeedCard
+        {/* <NewsFeedCard
           title="Hello"
           body="Welcome to my first post!"
           likes="5"
-        />
+        /> */}
       </div>
     </>
   );
