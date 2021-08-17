@@ -1,12 +1,12 @@
 import { useQuery } from "@apollo/client";
 import Carousel from "../../components/carousel";
 import NewsFeedCard from "../../components/newsfeed-card";
-import { DASHBOARD_ME } from "../../queries";
+import { DASHBOARD } from "../../queries";
 import "./index.css";
 
 const Dashboard = () => {
   // query data for current user
-  const { data, error, loading } = useQuery(DASHBOARD_ME);
+  const { data, error, loading } = useQuery(DASHBOARD);
 
   // if data is loading render this
   if (loading) {
@@ -19,15 +19,15 @@ const Dashboard = () => {
   }
 
   // current user data
-  const userData = data.user;
+  const userData = data.dashboard;
+  console.log(userData);
 
-  // current user followers
-  const followerData = data.allFollowers;
+  const followerData = userData.followers;
 
   return (
     <div className="dashboard-container">
       <div>
-        <h1>Welcome {userData.username}</h1>
+        <h1>Welcome {userData.currentUser.username}</h1>
       </div>
       <Carousel followers={followerData} />
       <div>

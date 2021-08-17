@@ -1,6 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Slide from "../slide";
+import Avatar from "../avatar";
+import Button from "../button";
 
 import SwiperCore, {
   Autoplay,
@@ -20,10 +21,19 @@ const Carousel = (props) => {
   const { followers } = props;
 
   // map through followers array and render a component
-  const followMap = followers.map((i) => {
+  const followMap = followers.map((follower) => {
     return (
       <SwiperSlide>
-        <Slide key={i} myFollowers={i.businessId} />
+        <div className="user-card-container" key={follower.id}>
+          <div>
+            <Avatar URL="https://filmschoolrejects.com/wp-content/uploads/2018/10/avatar-last-airbender-episodes-ranked.jpg" />
+          </div>
+          <div className="user-card-info">{follower.name}</div>
+          <div className="user-card-info">{follower.username}</div>
+          <div className="user-card-info">{follower.email}</div>
+          <div className="user-card-bottom">Rating: {follower.email}</div>
+          <Button name="View Profile" />
+        </div>
       </SwiperSlide>
     );
   });
