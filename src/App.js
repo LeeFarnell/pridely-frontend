@@ -10,9 +10,9 @@ import { setContext } from "@apollo/client/link/context";
 import Routes from "./Routes";
 import Navbar from "./components/navbar";
 import UserProvider from "./contexts/UserProvider";
+import Footer from "./components/footer";
 
 import "./App.css";
-import Footer from "./components/footer";
 
 const httpLink = createHttpLink({
   uri: process.env.GRAPHQL_URL || "http://localhost:4000/",
@@ -41,6 +41,7 @@ const App = () => {
         <Router>
           <Navbar name="Pridely" />
           <Routes />
+          <Footer name="Pridely" />
         </Router>
       </UserProvider>
     </ApolloProvider>
