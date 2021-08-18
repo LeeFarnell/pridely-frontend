@@ -31,4 +31,41 @@ const DASHBOARD = gql`
   }
 `;
 
-export { DASHBOARD };
+const PROFILE = gql `
+query Query($profileUserId: String) {
+  profile(userId: $profileUserId) {
+    user {
+      id
+      name
+      username
+      type
+      email
+      profilePicture
+      region
+      country
+      businessName
+      businessType
+      businessDescription
+      ratings
+      createdAt
+      age
+      gender
+      identifyAs
+      pronouns
+      posts {
+        _id
+        postedBy
+        title
+        subtitle
+        mainText
+        image
+        badges
+        url
+        likes
+        createdAt
+      }
+    }
+  }
+}`
+
+export { DASHBOARD, PROFILE };

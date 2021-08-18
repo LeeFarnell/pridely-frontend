@@ -1,9 +1,11 @@
+import { useQuery } from "@apollo/client";
 import Avatar from "../../components/avatar";
 import Calendly from "../../components/calendly";
 import SimpleModal from "../../components/modal";
 import NewsFeedCard from "../../components/newsfeed-card";
 import ReviewCard from "../../components/review-card";
 import { useParams } from "react-router-dom";
+import { PROFILE } from "../../queries";
 
 import "./index.css";
 
@@ -11,13 +13,32 @@ const UserProfile = () => {
   const { id } = useParams();
   console.log(id);
 
+  // query data for current user
+  const { data, error, loading } = useQuery(PROFILE, {
+    variables: { profileUserId: id },
+  });
+
+  // if data is loading render this
+  if (loading) {
+    return <div>loading</div>;
+  }
+
+  // if theres an error render this
+  if (error) {
+    return <div>error</div>;
+  }
+
+  // current user data
+  const userData = data.profile.user;
+  console.log(userData);
+
   return (
     <>
       <div className="profile-container">
         <div className="profile-left-all">
-          <h1 className="profile-left">Username/business name</h1>
+          <h1 className="profile-left">{userData.name}</h1>
           <ReviewCard />
-          <div className="profile-left">about me!</div>
+          <div className="profile-left">{userData.pronouns}</div>
           <div className="profile-left">Business info</div>
           <SimpleModal name="Followers" />
         </div>
