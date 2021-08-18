@@ -16,7 +16,7 @@ const UserCard = (props) => {
       <div className="user-card-info">{props.businessType}</div>
       <div className="user-card-info">{props.location}</div>
       <div className="user-card-bottom">Rating: {props.ratings}</div>
-      <Button name="View Profile" />
+      <Button name="View Profile" onClick={console.log(props.businessName)} />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Avatar from "../avatar";
 import Button from "../button";
+import { Link } from "react-router-dom";
 
 import SwiperCore, {
   Autoplay,
@@ -32,7 +33,10 @@ const Carousel = (props) => {
           <div className="user-card-info">{follower.username}</div>
           <div className="user-card-info">{follower.email}</div>
           <div className="user-card-bottom">Rating: {follower.email}</div>
-          <Button name="View Profile" />
+          <Link to={`/user-profile/${follower.id}`}>
+            <Button name="View Profile" />
+          </Link>
+          ;
         </div>
       </SwiperSlide>
     );

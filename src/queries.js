@@ -9,6 +9,7 @@ const DASHBOARD = gql`
         profilePicture
       }
       followers {
+        id
         username
         posts {
           postedBy

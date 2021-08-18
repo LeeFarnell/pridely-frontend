@@ -8,12 +8,14 @@ import "./index.css";
 
 const Navbar = (props) => {
   const { state, dispatch } = useUserContext();
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("id_token");
     dispatch({ type: "LOGOUT" });
     window.location.replace("/");
   };
+
   return (
     <div>
       {!state.user && (
@@ -59,8 +61,9 @@ const Navbar = (props) => {
             />
             <Button
               name="Profile"
+              value={state.user.id}
               onClick={() => {
-                window.location.replace("/user-profile");
+                window.location.replace(`/user-profile/${state.user.id}`);
               }}
             />
             <Button name="Log Out" onClick={handleLogout} />

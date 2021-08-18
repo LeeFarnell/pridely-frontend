@@ -7,27 +7,31 @@ import Search from "./pages/search";
 import Signup from "./pages/signup";
 import BusinessForm from "./components/business-form";
 import UserProfile from "./pages/user";
+import { useUserContext } from "./contexts/UserProvider";
 
 const Routes = () => {
+  const { state } = useUserContext();
+
   return (
     <Switch>
       <Route exact path="/login">
-        <Login />
+        {!state.user ? <Login /> : <Redirect to="/" />}
       </Route>
       <Route exact path="/search">
         <Search />
       </Route>
       <Route exact path="/signup">
-        <Signup />
+        {!state.user ? <Signup /> : <Redirect to="/" />}
       </Route>
       <Route exact path="/business-signup">
         <BusinessForm />
       </Route>
-      <Route exact path="/user-profile">
+      <Route exact path={`/user-profile/:id`}>
         <UserProfile />
       </Route>
+
       <Route exact path="/dashboard">
-        <Dashboard />
+        {state.user ? <Dashboard /> : <Redirect to="/login" />}
       </Route>
       <Route exact path="/">
         <Homepage />

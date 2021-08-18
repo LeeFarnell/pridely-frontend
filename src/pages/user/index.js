@@ -3,10 +3,14 @@ import Calendly from "../../components/calendly";
 import SimpleModal from "../../components/modal";
 import NewsFeedCard from "../../components/newsfeed-card";
 import ReviewCard from "../../components/review-card";
+import { useParams } from "react-router-dom";
 
 import "./index.css";
 
 const UserProfile = () => {
+  const { id } = useParams();
+  console.log(id);
+
   return (
     <>
       <div className="profile-container">
