@@ -1,4 +1,5 @@
 const reducer = (state, action) => {
+  console.log("here!");
   if (action.type === "LOGIN") {
     return {
       ...state,
@@ -10,6 +11,13 @@ const reducer = (state, action) => {
     return {
       ...state,
       user: null,
+    };
+  }
+
+  if (action.type === "SEARCH") {
+    return {
+      ...state,
+      search: action.payload,
     };
   }
 

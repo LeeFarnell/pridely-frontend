@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useUserContext } from "../../contexts/UserProvider";
 
 import Button from "../button";
@@ -25,24 +26,15 @@ const Navbar = (props) => {
             <SearchBar />
           </div>
           <div>
-            <Button
-              name="Home"
-              onClick={() => {
-                window.location.replace("/");
-              }}
-            />
-            <Button
-              name="Log In"
-              onClick={() => {
-                window.location.replace("/login");
-              }}
-            />
-            <Button
-              name="Sign Up"
-              onClick={() => {
-                window.location.replace("/signup");
-              }}
-            />
+            <Link to="/">
+              <Button name="Home" />
+            </Link>
+            <Link to="/login">
+              <Button name="Log In" />
+            </Link>
+            <Link to="/signup">
+              <Button name="Sign Up" />
+            </Link>
           </div>
         </div>
       )}
@@ -53,19 +45,12 @@ const Navbar = (props) => {
             <SearchBar />
           </div>
           <div>
-            <Button
-              name="Dashboard"
-              onClick={() => {
-                window.location.replace("/dashboard");
-              }}
-            />
-            <Button
-              name="Profile"
-              value={state.user.id}
-              onClick={() => {
-                window.location.replace(`/user-profile/${state.user.id}`);
-              }}
-            />
+            <Link to="/dashboard">
+              <Button name="Dashboard" />
+            </Link>
+            <Link to={`/user-profile/${state.user.id}`}>
+              <Button name="Profile" value={state.user.id} />
+            </Link>
             <Button name="Log Out" onClick={handleLogout} />
           </div>
         </div>
