@@ -41,6 +41,7 @@ const SearchBar = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <select
+            className="searchbar-input"
             defaultValue={currentType}
             onChange={setCurrentType}
             {...register("type", { required: true })}
@@ -63,37 +64,39 @@ const SearchBar = (props) => {
             <option value="Writing">Writing</option>
             <option value="Other">Other</option>
           </select>
+
+          <Controller
+            control={control}
+            name="country"
+            render={({ field: { onChange, onBlur, value, name, ref } }) => (
+              <CountryDropdown
+                className="searchbar-input"
+                value={country}
+                onChange={(data) => {
+                  onChange(data);
+                  setCountry(data);
+                }}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name="region"
+            render={({ field: { onChange, onBlur, value, name, ref } }) => (
+              <RegionDropdown
+                className="searchbar-input"
+                country={country}
+                value={region}
+                onChange={(data) => {
+                  onChange(data);
+                  setRegion(data);
+                }}
+              />
+            )}
+          />
+          <Button name="Search" type="submit" />
         </div>
-        <Controller
-          control={control}
-          name="country"
-          render={({ field: { onChange, onBlur, value, name, ref } }) => (
-            <CountryDropdown
-              className="signup-input"
-              value={country}
-              onChange={(data) => {
-                onChange(data);
-                setCountry(data);
-              }}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="region"
-          render={({ field: { onChange, onBlur, value, name, ref } }) => (
-            <RegionDropdown
-              className="signup-input"
-              country={country}
-              value={region}
-              onChange={(data) => {
-                onChange(data);
-                setRegion(data);
-              }}
-            />
-          )}
-        />
-        <Button name="Search" type="submit" />
       </form>
     </div>
   );

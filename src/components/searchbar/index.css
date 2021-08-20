@@ -26,6 +26,17 @@
   border: var(--CottonCandy) 2px solid;
 }
 
+.searchbar-input {
+  width: 25%;
+  margin: 0.5vw;
+  height: 3vw;
+  border: 0px;
+  border-bottom: 2px solid var(--CottonCandy);
+  border-radius: 5px;
+  color: black;
+  text-align: center;
+}
+
 ::placeholder {
   opacity: 50%;
 }
@@ -41,5 +52,16 @@
     width: 100vw;
     align-items: center;
     padding: 0;
+  }
+
+  .searchbar-input {
+    width: 80%;
+    margin: 0.5vw;
+    height: 60%;
+    border: 0px;
+    border-bottom: 2px solid var(--CottonCandy);
+    border-radius: 5px;
+    color: black;
+    text-align: center;
   }
 }
