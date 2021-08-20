@@ -1,5 +1,4 @@
 const reducer = (state, action) => {
-  console.log("here!");
   if (action.type === "LOGIN") {
     return {
       ...state,

@@ -12,13 +12,14 @@ import "./index.css";
 
 const LoginForm = (props) => {
   const { dispatch } = useUserContext();
-  let history = useHistory();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const history = useHistory();
 
   const [login] = useMutation(LOGIN, {
     onCompleted: (data) => {
@@ -37,6 +38,9 @@ const LoginForm = (props) => {
         payload,
       });
 
+      // TODO: should redirect to dashboard. works but immediately after redirecting to dashboard, redirects back to "/".
+      history.push("/dashboard");
+
       const { token, user } = data.login;
       console.log(user);
       Auth.login(token);
@@ -54,7 +58,6 @@ const LoginForm = (props) => {
           loginInput: formData,
         },
       });
-      window.location.replace("/dashboard");
     } catch (error) {
       console.error(error.message);
     }

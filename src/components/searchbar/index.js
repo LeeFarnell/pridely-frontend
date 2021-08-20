@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import Button from "../button";
 

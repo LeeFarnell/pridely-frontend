@@ -1,10 +1,11 @@
 import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
+
 import Avatar from "../../components/avatar";
 import Calendly from "../../components/calendly";
 import SimpleModal from "../../components/modal";
 import NewsFeedCard from "../../components/newsfeed-card";
 import ReviewCard from "../../components/review-card";
-import { useParams } from "react-router-dom";
 import { PROFILE } from "../../queries";
 
 import "./index.css";
