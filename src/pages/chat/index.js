@@ -1,13 +1,21 @@
 import { useQuery, useMutation } from "@apollo/client";
+import { useParams } from "react-router-dom";
 import Button from "../../components/button";
 import { SEND_MESSAGE } from "../../mutations";
 import { GET_CHAT } from "../../queries";
+import { useUserContext } from "../../contexts/UserProvider";
 
 const Chat = () => {
-  const { loading, error, data } = useQuery(GET_CHAT, {
+  const { state } = useUserContext();
+  console.log(state.user.id);
+
+  // TODO: get second user dynamically
+
+  const { loading, error, data, startPolling } = useQuery(GET_CHAT, {
     variables: {
-      chatToUserId: "611eae8ed1c5f00b7435476e",
-      chatFromUserId: "611eae8ed1c5f00b7435476d",
+      chatFromUserId: state.user.id,
+      // 612010453e86042ec0b99bc0
+      chatToUserId: "612010453e86042ec0b99bc2",
     },
     pollInterval: 500,
   });
@@ -21,11 +29,12 @@ const Chat = () => {
     try {
       await createMessage({
         variables: {
-          createMessageFromUser: "611eae8ed1c5f00b7435476e",
-          createMessageToUser: "611eae8ed1c5f00b7435476d",
+          createMessageFromUser: state.user.id,
+          createMessageToUser: "612010453e86042ec0b99bc0",
           createMessageMessage: "sadssadsadasalkfdlskdl keybord smash",
         },
       });
+      startPolling();
     } catch (error) {
       console.error(error.message);
     }
@@ -38,10 +47,16 @@ const Chat = () => {
   if (error) {
     return <div>Error</div>;
   }
+
   console.log(data.chat);
 
   return (
     <div>
+      <div>
+        {data.chat.map((message) => {
+          return <div>messaaaage</div>;
+        })}
+      </div>
       <Button
         name="Send"
         onClick={() => {
