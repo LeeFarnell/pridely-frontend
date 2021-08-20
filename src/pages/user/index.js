@@ -12,7 +12,6 @@ import "./index.css";
 
 const UserProfile = () => {
   const { id } = useParams();
-  console.log(id);
 
   // query data for current user
   const { data, error, loading } = useQuery(PROFILE, {
@@ -31,7 +30,6 @@ const UserProfile = () => {
 
   // current user data
   const userData = data.profile.user;
-  console.log(userData);
 
   return (
     <>

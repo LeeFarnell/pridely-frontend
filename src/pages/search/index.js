@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import UserCard from "../../components/user-card";
 
 import { useUserContext } from "../../contexts/UserProvider";
 import { BUSINESS_SEARCH } from "../../queries";
@@ -29,19 +30,7 @@ const Search = (props) => {
   return (
     <div>
       {searchResults.map((result) => {
-        return (
-          <div key={result.id}>
-            <div>{result.name}</div>
-            <div>{result.username}</div>
-            <div>{result.businessName}</div>
-            <div>{result.email}</div>
-            <div>{result.country}</div>
-            <div>{result.region}</div>
-            <div>{result.businessType}</div>
-
-            <hr />
-          </div>
-        );
+        return <UserCard result={result} key={result.id} />;
       })}
     </div>
   );

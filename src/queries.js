@@ -81,14 +81,12 @@ const BUSINESS_SEARCH = gql`
       region: $businessSearchRegion
     ) {
       id
-      name
-      username
-      email
       profilePicture
       region
       country
       businessName
       businessType
+      businessDescription
       ratings
     }
   }
