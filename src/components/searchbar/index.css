@@ -6,19 +6,16 @@
   --CottonCandy: #f2b5d4;
 }
 
-.search-bar {
+.search-bar-container {
   flex-wrap: wrap;
   justify-content: center;
-  background-color: var(--MintCream);
   padding: 5px;
   margin-left: 0px;
-  border-radius: 5px;
   color: black;
   font-family: "Poppins", sans-serif;
   font-weight: normal;
   font-size: medium;
-  width: 30vw;
-  border: var(--PiggyPink) 2px solid;
+  width: 50vw;
 }
 
 .search-bar:focus {
@@ -29,7 +26,7 @@
 .searchbar-input {
   width: 25%;
   margin: 0.5vw;
-  height: 3vw;
+  height: 3vh;
   border: 0px;
   border-bottom: 2px solid var(--CottonCandy);
   border-radius: 5px;
