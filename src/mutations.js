@@ -67,4 +67,37 @@ const EDIT_BUSINESS_USER = gql`
   }
 `;
 
-export { SIGNUP, LOGIN, EDIT_BUSINESS_USER };
+const SEND_MESSAGE = gql`
+  mutation Mutation(
+    $createMessageFromUser: ID!
+    $createMessageToUser: ID!
+    $createMessageMessage: String!
+  ) {
+    createMessage(
+      fromUser: $createMessageFromUser
+      toUser: $createMessageToUser
+      message: $createMessageMessage
+    ) {
+      message
+      id
+      fromUser {
+        id
+        username
+        type
+        profilePicture
+        businessName
+        pronouns
+      }
+      toUser {
+        id
+        username
+        type
+        profilePicture
+        businessName
+        pronouns
+      }
+    }
+  }
+`;
+
+export { SIGNUP, LOGIN, EDIT_BUSINESS_USER, SEND_MESSAGE };
