@@ -92,4 +92,20 @@ const BUSINESS_SEARCH = gql`
   }
 `;
 
-export { DASHBOARD, PROFILE, BUSINESS_SEARCH };
+const GET_CHAT = gql`
+  query Query($chatFromUserId: ID!, $chatToUserId: ID) {
+    chat(fromUserId: $chatFromUserId, toUserId: $chatToUserId) {
+      id
+      fromUser {
+        id
+        username
+        type
+        profilePicture
+        businessName
+        pronouns
+      }
+    }
+  }
+`;
+
+export { DASHBOARD, PROFILE, BUSINESS_SEARCH, GET_CHAT };
