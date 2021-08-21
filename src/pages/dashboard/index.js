@@ -29,6 +29,9 @@ const Dashboard = () => {
       <div>
         <h1>Welcome {userData.currentUser.username}</h1>
       </div>
+      <div>
+        <h2>People you follow:</h2>
+      </div>
       <Carousel followers={followerData} />
       <div>
         <h3>Recent post from people you follow</h3>
