@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import Carousel from "../../components/carousel";
 import NewsFeedCard from "../../components/newsfeed-card";
 import { DASHBOARD } from "../../queries";
+
 import "./index.css";
 
 const Dashboard = () => {
@@ -29,7 +30,7 @@ const Dashboard = () => {
       <div>
         <h1>Welcome {userData.currentUser.username}</h1>
       </div>
-      <Carousel followers={followerData} />
+      {followerData.length && <Carousel followers={followerData} />}
       <div>
         <h3>Recent post from people you follow</h3>
         <NewsFeedCard followers={followerData} />

@@ -8,16 +8,22 @@ import { useUserContext } from "../../contexts/UserProvider";
 import Button from "../button";
 import { SIGNUP } from "../../mutations";
 import Auth from "../../utils/auth";
+import ImageUpload from "../image-upload";
 
 import "./index.css";
 
 const SignUpForm = (props) => {
   // hooks
+
   let history = useHistory();
   const [currentType, setCurrentType] = useState("standard");
   const [country, setCountry] = useState();
   const [region, setRegion] = useState();
+  const [images, setImages] = useState([]);
+  const [imageUrl, setImageUrl] = useState();
+
   const { dispatch } = useUserContext();
+
   const {
     register,
     handleSubmit,
@@ -53,9 +59,10 @@ const SignUpForm = (props) => {
   // function to be run on submission of the form
   const onSubmit = async (formData) => {
     try {
+      console.log(imageUrl);
       await signup({
         variables: {
-          signupInput: formData,
+          signupInput: { ...formData, profilePicture: imageUrl },
         },
       });
       //if user type is business, the user will be prompted with a form to add his business details
@@ -149,13 +156,13 @@ const SignUpForm = (props) => {
             />
           )}
         />
-        <div>
-          <input
-            className="signup-input"
-            type="url"
-            placeholder="Profile Picture URL*"
-            {...register("profilePicture", { required: false })}
-          ></input>
+        <div className="signup-input">
+          <ImageUpload
+            images={images}
+            imageUrl={imageUrl}
+            setImageUrl={setImageUrl}
+            setImages={setImages}
+          />
         </div>
         <div>
           <input
