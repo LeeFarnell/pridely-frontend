@@ -39,17 +39,11 @@
 .swiper-slide img {
   display: block;
   width: 100%;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 .avatar-carousel {
-  width: 50%;
-  height: 50%;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  width: 45%;
+  height: 45%;
 }
 
 @media screen and (max-width: 800px) {
@@ -57,7 +51,7 @@
     width: 30vw;
   }
   .avatar-carousel {
-    width: 25vw;
+    width: 20vw;
   }
 }
 @media screen and (max-width: 500px) {
@@ -66,6 +60,6 @@
   }
 
   .avatar-carousel {
-    width: 90vw;
+    width: 85vw;
   }
 }
