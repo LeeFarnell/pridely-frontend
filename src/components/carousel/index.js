@@ -25,7 +25,7 @@ const Carousel = (props) => {
   const followMap = followers.map((follower) => {
     return (
       <SwiperSlide>
-        <div className="" key={follower.id}>
+        <div className="slide-containter" key={follower.id}>
           <div className="avatar-carousel">
             <Avatar URL="https://filmschoolrejects.com/wp-content/uploads/2018/10/avatar-last-airbender-episodes-ranked.jpg" />
           </div>
