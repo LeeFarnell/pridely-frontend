@@ -6,19 +6,19 @@ import { GET_CHAT } from "../../queries";
 import { useUserContext } from "../../contexts/UserProvider";
 
 const Chat = () => {
+  const { id } = useParams();
   const { state } = useUserContext();
-  console.log(state.user.id);
 
-  // TODO: get second user dynamically
-
-  const { loading, error, data, startPolling } = useQuery(GET_CHAT, {
+  const { loading, error, data } = useQuery(GET_CHAT, {
     variables: {
       chatFromUserId: state.user.id,
-      // 612010453e86042ec0b99bc0
-      chatToUserId: "612010453e86042ec0b99bc2",
+      chatToUserId: id,
     },
     pollInterval: 500,
   });
+
+  console.log(state.user.id, "from user");
+  console.log(id, "to user");
 
   const [createMessage] = useMutation(SEND_MESSAGE, {
     onCompleted: () => {},
@@ -30,11 +30,10 @@ const Chat = () => {
       await createMessage({
         variables: {
           createMessageFromUser: state.user.id,
-          createMessageToUser: "612010453e86042ec0b99bc0",
+          createMessageToUser: id,
           createMessageMessage: "sadssadsadasalkfdlskdl keybord smash",
         },
       });
-      startPolling();
     } catch (error) {
       console.error(error.message);
     }
@@ -54,7 +53,7 @@ const Chat = () => {
     <div>
       <div>
         {data.chat.map((message) => {
-          return <div>messaaaage</div>;
+          return <div>{message.message}</div>;
         })}
       </div>
       <Button

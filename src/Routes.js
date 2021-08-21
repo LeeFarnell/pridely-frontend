@@ -33,7 +33,7 @@ const Routes = () => {
       <Route exact path="/dashboard">
         {state.user ? <Dashboard /> : <Redirect to="/login" />}
       </Route>
-      <Route exact path="/chat">
+      <Route exact path="/chat/:id">
         {state.user ? <Chat /> : <Redirect to="/login" />}
       </Route>
       <Route exact path="/">

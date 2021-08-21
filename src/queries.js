@@ -95,8 +95,17 @@ const BUSINESS_SEARCH = gql`
 const GET_CHAT = gql`
   query Query($chatFromUserId: ID!, $chatToUserId: ID) {
     chat(fromUserId: $chatFromUserId, toUserId: $chatToUserId) {
+      message
       id
       fromUser {
+        id
+        username
+        type
+        profilePicture
+        businessName
+        pronouns
+      }
+      toUser {
         id
         username
         type
