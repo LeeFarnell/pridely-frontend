@@ -9,7 +9,20 @@
 .avatar-img {
   border-radius: 50%;
   border: solid 5px var(--CottonCandy);
-  width: 15vw;
-  height: 15vw;
+  width: 10vw;
+  height: 10vw;
   object-fit: cover;
+}
+
+@media screen and (max-width: 800px) {
+  .avatar-img {
+    width: 25vw;
+    height: 25vh;
+  }
+}
+@media screen and (max-width: 500px) {
+  .avatar-img {
+    width: 45vw;
+    height: 45vh;
+  }
 }

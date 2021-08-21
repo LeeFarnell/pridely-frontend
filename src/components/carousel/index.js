@@ -25,18 +25,21 @@ const Carousel = (props) => {
   const followMap = followers.map((follower) => {
     return (
       <SwiperSlide>
-        <div className="user-card-container" key={follower.id}>
-          <div>
+        <div className="" key={follower.id}>
+          <div className="avatar-carousel">
             <Avatar URL="https://filmschoolrejects.com/wp-content/uploads/2018/10/avatar-last-airbender-episodes-ranked.jpg" />
           </div>
           <div className="user-card-info">{follower.name}</div>
-          <div className="user-card-info">{follower.username}</div>
-          <div className="user-card-info">{follower.email}</div>
-          <div className="user-card-bottom">Rating: {follower.email}</div>
-          <Link to={`/user-profile/${follower.id}`}>
-            <Button name="View Profile" />
-          </Link>
-          ;
+          <div className="user-card-info">
+            Category: {follower.businessType}
+          </div>
+          <div className="user-card-info">{follower.businessDescription}</div>
+          <div className="user-card-bottom">Rating: {follower.ratings}</div>
+          <div className="carousel-btn">
+            <Link to={`/user-profile/${follower.id}`}>
+              <Button name="View Profile" class="carousel-btn" />
+            </Link>
+          </div>
         </div>
       </SwiperSlide>
     );
@@ -45,21 +48,15 @@ const Carousel = (props) => {
   return (
     <React.Fragment>
       <Swiper
-        tag="section"
-        wrapperTag="ul"
-        navigation
-        pagination
-        id="main"
-        spaceBetween={1}
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={"auto"}
         autoplay={{
           delay: 3500,
           disableOnInteraction: false,
         }}
         loop={true}
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={"auto"}
         coverflowEffect={{
           rotate: 50,
           stretch: 0,
@@ -67,6 +64,8 @@ const Carousel = (props) => {
           modifier: 1,
           slideShadows: true,
         }}
+        pagination={true}
+        className="mySwiper"
       >
         {followMap}
       </Swiper>
