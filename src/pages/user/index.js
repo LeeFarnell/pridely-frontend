@@ -48,6 +48,14 @@ const UserProfile = () => {
               <Button name="Chat" />
             </Link>
           )}
+          {/* {state.user.id !== userData.id && (
+            <Link to={`/leave-a-review/${userData.id}`}>
+              <Button name="Leave a Review" />
+            </Link>
+          )} */}
+
+          {state.user.id !== userData.id && <SimpleModal name="Leave Review" />}
+
           {state.user.id === userData.id && (
             <Link to={`/create-post/${state.user.id}`}>
               <Button name="Create Post!" />

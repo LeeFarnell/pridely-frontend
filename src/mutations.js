@@ -113,4 +113,24 @@ const CREATE_POST = gql`
   }
 `;
 
-export { SIGNUP, LOGIN, EDIT_BUSINESS_USER, SEND_MESSAGE, CREATE_POST };
+const LEAVE_REVIEW = gql`
+  mutation Mutation($createReviewInput: CreateReviewInput) {
+    createReview(input: $createReviewInput) {
+      commentBox
+      serviceUsed
+      rating
+      writtenBy
+      writtenFor
+      createdAt
+    }
+  }
+`;
+
+export {
+  SIGNUP,
+  LOGIN,
+  EDIT_BUSINESS_USER,
+  SEND_MESSAGE,
+  CREATE_POST,
+  LEAVE_REVIEW,
+};
