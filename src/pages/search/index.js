@@ -6,6 +6,8 @@ import UserCard from "../../components/user-card";
 import { useUserContext } from "../../contexts/UserProvider";
 import { BUSINESS_SEARCH } from "../../queries";
 
+import "./index.css";
+
 const Search = (props) => {
   const { state, dispatch } = useUserContext();
 
@@ -28,7 +30,7 @@ const Search = (props) => {
   const searchResults = data.businessSearch;
 
   return (
-    <div>
+    <div className="search-card-container">
       {searchResults.map((result) => {
         return <UserCard result={result} key={result.id} />;
       })}

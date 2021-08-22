@@ -7,15 +7,33 @@
 }
 
 .swiper-container {
-  width: 100%;
-  padding-top: 50px;
+  width: 100vw;
+  padding-top: 10px;
   padding-bottom: 50px;
+  align-items: center;
+}
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  border-radius: 10px;
 }
 
 .swiper-slide {
   background-position: center;
   background-size: cover;
-  width: 300px;
+  width: 20vw;
+  height: auto;
+  background-color: var(--MintCream);
+  padding: 0.5vw;
+  border: 2px solid var(--SkyBlue);
+  border-radius: 10px;
+}
+
+.slide-containter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .swiper-slide img {
@@ -23,21 +41,25 @@
   width: 100%;
 }
 
-.user-card-container {
-  background-color: var(--MintCream);
-  padding: 0.5vw;
-  border: 2px solid var(--SkyBlue);
-  border-radius: 10px;
-  width: 100%;
-  display: block;
-  text-align: center;
+.avatar-carousel {
+  width: 45%;
+  height: 45%;
 }
 
-.user-card-info {
-  padding: 0.5vw;
-  border-bottom: 2px solid var(--CottonCandy);
+@media screen and (max-width: 800px) {
+  .swiper-slide {
+    width: 30vw;
+  }
+  .avatar-carousel {
+    width: 20vw;
+  }
 }
+@media screen and (max-width: 500px) {
+  .swiper-slide {
+    width: 95vw;
+  }
 
-.user-card-bottom {
-  padding: 0.5vw;
+  .avatar-carousel {
+    width: 85vw;
+  }
 }

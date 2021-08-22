@@ -11,9 +11,10 @@
   padding: 0.5vw;
   border: 2px solid var(--SkyBlue);
   border-radius: 10px;
-  width: 40%;
+  width: 23vw;
   display: block;
   text-align: center;
+  margin: 1vw;
 }
 
 .user-card-info {
@@ -23,4 +24,15 @@
 
 .user-card-bottom {
   padding: 0.5vw;
+}
+
+@media screen and (max-width: 800px) {
+  .user-card-container {
+    width: 45vw;
+  }
+}
+@media screen and (max-width: 500px) {
+  .user-card-container {
+    width: 95vw;
+  }
 }
