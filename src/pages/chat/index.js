@@ -4,10 +4,17 @@ import Button from "../../components/button";
 import { SEND_MESSAGE } from "../../mutations";
 import { GET_CHAT } from "../../queries";
 import { useUserContext } from "../../contexts/UserProvider";
+import { useForm } from "react-hook-form";
 
 const Chat = () => {
   const { id } = useParams();
   const { state } = useUserContext();
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
 
   const { loading, error, data } = useQuery(GET_CHAT, {
     variables: {
@@ -26,13 +33,14 @@ const Chat = () => {
     onError: () => {},
   });
 
-  const onSubmit = async () => {
+  const onSubmit = async (formData) => {
+    console.log(formData);
     try {
       await createMessage({
         variables: {
           createMessageFromUser: state.user.id,
           createMessageToUser: id,
-          createMessageMessage: "sadssadsadasalkfdlskdl keybord smash",
+          createMessageMessage: formData.message,
         },
       });
     } catch (error) {
@@ -50,42 +58,37 @@ const Chat = () => {
 
   console.log(data.chat);
 
-  const chatTitle = () => {
-    if (data.chat[0].toUser.username) {
-      return `Your message to ${data.chat[0].toUser.username}`;
-    } else {
-      return `Start a conversation`;
-    }
-  };
-
   return (
     <div>
       <div>
-        <h2>{chatTitle()}</h2>
+        {data.chat && (
+          <h2>Your conversation with {data.chat[0].toUser.username}</h2>
+        )}
+        {!data.chat && <h2>Start a conversation!</h2>}
       </div>
-      <div>
-        {data.chat.map((message) => {
-          return (
-            <div>
-              <div></div>
-              <div>{message.message}</div>
-            </div>
-          );
-        })}
-      </div>
-      <div>
-        <textarea
-          className="chat-input"
-          placeholder="Enter your message here"
-          required
-        ></textarea>
-      </div>
-      <Button
-        name="Send"
-        onClick={() => {
-          onSubmit();
-        }}
-      />
+      {data.chat && (
+        <div>
+          {data.chat.map((message) => {
+            return (
+              <div className="chat-message">
+                <div>{message.fromUser.username}: </div>
+                <div>{message.message}</div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      <form className="chatForm" onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <textarea
+            className="chat-input"
+            placeholder="Enter your message here"
+            required
+            {...register("message", { required: true })}
+          ></textarea>
+        </div>
+        <Button name="Send" type="submit" />
+      </form>
     </div>
   );
 };
