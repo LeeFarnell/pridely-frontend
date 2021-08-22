@@ -48,6 +48,11 @@ const UserProfile = () => {
               <Button name="Chat" />
             </Link>
           )}
+          {state.user.id === userData.id && (
+            <Link to={`/create-post/${state.user.id}`}>
+              <Button name="Create Post!" />
+            </Link>
+          )}
         </div>
         <div>
           <Avatar URL="https://pbs.twimg.com/profile_images/1290710495465541633/BhrDfujl_400x400.jpg" />

@@ -100,4 +100,17 @@ const SEND_MESSAGE = gql`
   }
 `;
 
-export { SIGNUP, LOGIN, EDIT_BUSINESS_USER, SEND_MESSAGE };
+const CREATE_POST = gql`
+  mutation Mutation($createNewPostInput: CreatePostInput) {
+    createNewPost(input: $createNewPostInput) {
+      postedBy
+      title
+      subtitle
+      mainText
+      image
+      url
+    }
+  }
+`;
+
+export { SIGNUP, LOGIN, EDIT_BUSINESS_USER, SEND_MESSAGE, CREATE_POST };

@@ -9,6 +9,7 @@ import BusinessForm from "./components/business-form";
 import UserProfile from "./pages/user";
 import Chat from "./pages/chat";
 import { useUserContext } from "./contexts/UserProvider";
+import CreatePost from "./pages/create-post";
 
 const Routes = () => {
   const { state } = useUserContext();
@@ -35,6 +36,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/chat/:id">
         {state.user ? <Chat /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path={`/create-post/:id`}>
+        <CreatePost />
       </Route>
       <Route exact path="/">
         <Homepage />

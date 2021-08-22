@@ -51,7 +51,7 @@ const SignUpForm = (props) => {
       const { token, user } = data.signup;
       Auth.login(token);
     },
-    onerror: () => {
+    onError: () => {
       throw new Error("something went wrong!");
     },
   });
