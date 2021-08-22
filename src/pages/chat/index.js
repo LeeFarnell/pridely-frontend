@@ -6,6 +6,8 @@ import { GET_CHAT } from "../../queries";
 import { useUserContext } from "../../contexts/UserProvider";
 import { useForm } from "react-hook-form";
 
+import "./index.css";
+
 const Chat = () => {
   const { id } = useParams();
   const { state } = useUserContext();
@@ -56,7 +58,7 @@ const Chat = () => {
   }
 
   return (
-    <div>
+    <div className="chat-container">
       <div>
         {!data.chat[0] ? (
           <h2>Start a conversation!</h2>
@@ -68,9 +70,34 @@ const Chat = () => {
         <div>
           {data.chat.map((message) => {
             return (
-              <div className="chat-message">
-                <div>{message.fromUser.username}: </div>
-                <div>{message.message}</div>
+              <div>
+                {state.user.id === message.fromUser.id ? (
+                  <div className="chat-message">
+                    <div className="chat-user">
+                      <img
+                        src={message.fromUser.profilePicture}
+                        className="chat-image"
+                        alt={message.fromUser.username}
+                      />
+                      <h3>{message.fromUser.username}</h3>
+                    </div>
+                    <hr />
+                    <div>{message.message}</div>
+                  </div>
+                ) : (
+                  <div className="other-chat-message">
+                    <div className="other-chat-user">
+                      <img
+                        src={message.fromUser.profilePicture}
+                        className="chat-image"
+                        alt={message.fromUser.username}
+                      />
+                      <h3>{message.fromUser.username}</h3>
+                    </div>
+                    <hr />
+                    <div>{message.message}</div>
+                  </div>
+                )}
               </div>
             );
           })}
