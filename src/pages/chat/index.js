@@ -34,7 +34,6 @@ const Chat = () => {
   });
 
   const onSubmit = async (formData) => {
-    console.log(formData);
     try {
       await createMessage({
         variables: {
@@ -56,15 +55,14 @@ const Chat = () => {
     return <div>Error</div>;
   }
 
-  console.log(data.chat);
-
   return (
     <div>
       <div>
-        {data.chat && (
+        {!data.chat[0] ? (
+          <h2>Start a conversation!</h2>
+        ) : (
           <h2>Your conversation with {data.chat[0].toUser.username}</h2>
         )}
-        {!data.chat && <h2>Start a conversation!</h2>}
       </div>
       {data.chat && (
         <div>
