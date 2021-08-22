@@ -10,6 +10,7 @@ import UserProfile from "./pages/user";
 import Chat from "./pages/chat";
 import { useUserContext } from "./contexts/UserProvider";
 import CreatePost from "./pages/create-post";
+import ViewReviews from "./pages/view-reviews";
 
 const Routes = () => {
   const { state } = useUserContext();
@@ -38,7 +39,10 @@ const Routes = () => {
         {state.user ? <Chat /> : <Redirect to="/login" />}
       </Route>
       <Route exact path={`/create-post/:id`}>
-        <CreatePost />
+        {state.user ? <CreatePost /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path={`/reviews/:id`}>
+        {state.user ? <ViewReviews /> : <Redirect to="/login" />}
       </Route>
       <Route exact path="/">
         <Homepage />

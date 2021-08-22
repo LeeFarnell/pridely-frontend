@@ -125,4 +125,22 @@ const GET_CHAT = gql`
   }
 `;
 
-export { DASHBOARD, PROFILE, BUSINESS_SEARCH, GET_CHAT };
+const GET_REVIEWS = gql`
+  query Query($getReviewsUserId: String!) {
+    getReviews(userId: $getReviewsUserId) {
+      commentBox
+      serviceUsed
+      rating
+      writtenBy
+      writtenFor
+      createdAt
+      username {
+        name
+        username
+        type
+      }
+    }
+  }
+`;
+
+export { DASHBOARD, PROFILE, BUSINESS_SEARCH, GET_CHAT, GET_REVIEWS };
