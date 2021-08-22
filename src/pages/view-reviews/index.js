@@ -22,7 +22,6 @@ const ViewReviews = () => {
   return (
     <div>
       {data.getReviews.map((review) => {
-        console.log(review);
         return (
           <ReviewCard
             comment={review.commentBox}
