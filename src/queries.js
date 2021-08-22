@@ -97,6 +97,7 @@ const GET_CHAT = gql`
     chat(fromUserId: $chatFromUserId, toUserId: $chatToUserId) {
       message
       id
+
       fromUser {
         id
         username

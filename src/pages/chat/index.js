@@ -16,6 +16,7 @@ const Chat = () => {
     },
     pollInterval: 500,
   });
+  console.log(data);
 
   console.log(state.user.id, "from user");
   console.log(id, "to user");
@@ -49,12 +50,35 @@ const Chat = () => {
 
   console.log(data.chat);
 
+  const chatTitle = () => {
+    if (data.chat[0].toUser.username) {
+      return `Your message to ${data.chat[0].toUser.username}`;
+    } else {
+      return `Start a conversation`;
+    }
+  };
+
   return (
     <div>
       <div>
+        <h2>{chatTitle()}</h2>
+      </div>
+      <div>
         {data.chat.map((message) => {
-          return <div>{message.message}</div>;
+          return (
+            <div>
+              <div></div>
+              <div>{message.message}</div>
+            </div>
+          );
         })}
+      </div>
+      <div>
+        <textarea
+          className="chat-input"
+          placeholder="Enter your message here"
+          required
+        ></textarea>
       </div>
       <Button
         name="Send"
