@@ -1,8 +1,10 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router-dom";
+
 import Avatar from "../avatar";
 import Button from "../button";
-import { Link } from "react-router-dom";
+import { average } from "../../utils/utilitaries";
 
 import SwiperCore, {
   Autoplay,
@@ -16,13 +18,13 @@ import "swiper/swiper-bundle.css";
 import "./index.css";
 
 SwiperCore.use([Autoplay, Navigation, Pagination, EffectCoverflow]);
-
 const Carousel = (props) => {
   // destructuring followers array from props
   const { followers } = props;
 
   // map through followers array and render a component
   const followMap = followers.map((follower) => {
+    console.log(average(follower.ratings));
     return (
       <SwiperSlide>
         <div className="slide-containter" key={follower.id}>
@@ -34,7 +36,13 @@ const Carousel = (props) => {
             Category: {follower.businessType}
           </div>
           <div className="user-card-info">{follower.businessDescription}</div>
-          <div className="user-card-bottom">Rating: {follower.ratings}</div>
+          {isNaN(follower.ratings) ? (
+            <div className="user-card-bottom">
+              Rating: {average(follower.ratings).toFixed(1)}
+            </div>
+          ) : (
+            <div>No rating to display</div>
+          )}
           <div className="carousel-btn">
             <Link to={`/user-profile/${follower.id}`}>
               <Button name="View Profile" class="carousel-btn" />
