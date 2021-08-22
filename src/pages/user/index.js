@@ -4,11 +4,11 @@ import { useParams, Link } from "react-router-dom";
 import Avatar from "../../components/avatar";
 import Calendly from "../../components/calendly";
 import SimpleModal from "../../components/modal";
-import NewsFeedCard from "../../components/newsfeed-card";
 import ReviewCard from "../../components/review-card";
 import { PROFILE } from "../../queries";
 import { useUserContext } from "../../contexts/UserProvider";
 import Button from "../../components/button";
+import NewsFeedCard from "../../components/newsfeed-card";
 
 import "./index.css";
 
@@ -63,6 +63,16 @@ const UserProfile = () => {
           body="Welcome to my first post!"
           likes="5"
         /> */}
+        {userData.posts.map((post) => {
+          return (
+            <NewsFeedCard
+              title={post.title}
+              body={post.mainText}
+              likes={post.likes}
+              postedBy={userData.username}
+            />
+          );
+        })}
       </div>
     </>
   );

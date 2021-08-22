@@ -1,27 +1,22 @@
 import NewsFeedComment from "../newsfeed-comments";
 import "./index.css";
 
-const NewsFeedCard = (props) => {
+const NewsFeedCard = ({ title, body, likes, postedBy }) => {
   // destructuring followers array from props
-  const { followers } = props;
 
-  const followMap = followers.map((follower) => {
-    const { posts } = follower;
-
-    const postsMap = posts.map((post) => {
-      return (
-        <div key={post.id}>
-          <div className="news-feed-title">{post.title}</div>
-          <div className="news-feed-body">{post.mainText}</div>
-          <div className="news-feed-like">Likes:{post.likes}</div>
-          {/* <NewsFeedComment username="bobsmith101" comment="This looks great!" /> */}
+  return (
+    <div>
+      <div className="news-feed-title">
+        <div>{title}</div>
+        <div>
+          <small>Posted by </small> {postedBy}
         </div>
-      );
-    });
-    return postsMap;
-  });
-
-  return <div className="news-feed-card">{followMap}</div>;
+      </div>
+      <div className="news-feed-body">{body}</div>
+      <div className="news-feed-like">Likes:{likes}</div>
+      {/* <NewsFeedComment username="bobsmith101" comment="This looks great!" /> */}
+    </div>
+  );
 };
 
 export default NewsFeedCard;

@@ -65,6 +65,13 @@ const PROFILE = gql`
           createdAt
         }
       }
+      comments {
+        _id
+        commentPostedBy
+        postId
+        commentText
+        createdAt
+      }
     }
   }
 `;
