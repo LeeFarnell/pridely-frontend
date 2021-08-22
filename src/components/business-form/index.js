@@ -62,6 +62,7 @@ const BusinessForm = (props) => {
             {...register("businessName", { required: true })}
           ></input>
         </div>
+        <div></div>
         <div>
           <textarea
             className="business-input"
