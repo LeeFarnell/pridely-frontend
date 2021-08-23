@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useParams, Link } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 import Avatar from "../../components/avatar";
 import Calendly from "../../components/calendly";
@@ -9,6 +10,8 @@ import { PROFILE } from "../../queries";
 import { useUserContext } from "../../contexts/UserProvider";
 import Button from "../../components/button";
 import NewsFeedCard from "../../components/newsfeed-card";
+import ReviewCardComment from "../../components/review-card-comments";
+import { average } from "../../utils/utilities";
 
 import "./index.css";
 
@@ -34,12 +37,31 @@ const UserProfile = () => {
   // current user data
   const userData = data.profile.user;
 
+  const averageRating = average(
+    userData.ratings,
+    userData.ratings.length
+  ).toFixed(1);
+
   return (
     <>
       <div className="profile-container">
         <div className="profile-left-all">
           <h1 className="profile-left">{userData.name}</h1>
-          <ReviewCard />
+          <div className="review-card-container">
+            <div className="review-card-rating">
+              <h3>Rating:{averageRating}/5</h3>
+              <div>
+                <ReactStars
+                  count={5}
+                  edit={false}
+                  value={averageRating}
+                  size={25}
+                  activeColor="#f2b5d4"
+                  isHalf={true}
+                />
+              </div>
+            </div>
+          </div>
           <div className="profile-left">{userData.pronouns}</div>
           <div className="profile-left">Business info</div>
           <SimpleModal name="Followers" />

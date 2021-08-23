@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import Avatar from "../avatar";
 import Button from "../button";
-import { average } from "../../utils/utilitaries";
+import { average } from "../../utils/utilities";
 
 import SwiperCore, {
   Autoplay,
