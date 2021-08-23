@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { useUserContext } from "../../contexts/UserProvider";
 
 import Carousel from "../../components/carousel";
 import NewsFeedCard from "../../components/newsfeed-card";
@@ -9,6 +10,7 @@ import "./index.css";
 const Dashboard = () => {
   // query data for current user
   const { data, error, loading } = useQuery(DASHBOARD);
+  const { state } = useUserContext();
 
   // if data is loading render this
   if (loading) {
@@ -22,6 +24,8 @@ const Dashboard = () => {
 
   // current user data
   const userData = data.dashboard;
+
+  // console.log(userData.followers[0].posts[0].likes);
 
   const followerData = userData.followers;
 
@@ -39,6 +43,9 @@ const Dashboard = () => {
             const postBody = post.mainText;
             const postLikes = post.likes.length;
             const postPostedBy = follower.username;
+            const isLiked = post.likes.includes(state.user.id);
+
+            console.log(isLiked);
 
             return (
               <NewsFeedCard
