@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import Button from "../button";
 import { LEAVE_REVIEW } from "../../mutations";
 
+import "./index.css";
+
 const ReviewForm = () => {
   // hooks
   const { register, handleSubmit } = useForm();
@@ -40,9 +42,9 @@ const ReviewForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="signup-form">
+      <div className="review-form">
         <select
-          className="signup-input"
+          className="review-input"
           {...register("serviceUsed", { required: true })}
         >
           <option value="Service One">Service One</option>
@@ -50,7 +52,7 @@ const ReviewForm = () => {
           <option value="Service Three">Service Three</option>
         </select>
         <select
-          className="signup-input"
+          className="review-input"
           {...register("rating", { required: true })}
         >
           <option value="1">1</option>
@@ -61,7 +63,7 @@ const ReviewForm = () => {
         </select>
         <div>
           <textarea
-            className="business-input"
+            className="review-input"
             placeholder="Pleas type in your comment!"
             required
             {...register("commentBox", { required: true })}
