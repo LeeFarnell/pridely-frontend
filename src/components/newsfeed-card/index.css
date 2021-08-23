@@ -11,6 +11,7 @@
   border: 2px solid var(--Celeste);
   border-radius: 10px;
   width: 95vw;
+  margin-top: 10px;
 }
 
 .news-feed-title {

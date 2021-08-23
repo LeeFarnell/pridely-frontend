@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+
 import Carousel from "../../components/carousel";
 import NewsFeedCard from "../../components/newsfeed-card";
 import { DASHBOARD } from "../../queries";
@@ -21,7 +22,6 @@ const Dashboard = () => {
 
   // current user data
   const userData = data.dashboard;
-  console.log(userData);
 
   const followerData = userData.followers;
 
@@ -33,7 +33,23 @@ const Dashboard = () => {
       {followerData.length && <Carousel followers={followerData} />}
       <div>
         <h3>Recent post from people you follow</h3>
-        <NewsFeedCard followers={followerData} />
+        {followerData.map((follower) => {
+          return follower.posts.map((post) => {
+            const postTitle = post.title;
+            const postBody = post.mainText;
+            const postLikes = post.likes;
+            const postPostedBy = follower.username;
+
+            return (
+              <NewsFeedCard
+                title={postTitle}
+                body={postBody}
+                likes={postLikes}
+                postedBy={postPostedBy}
+              />
+            );
+          });
+        })}
       </div>
     </div>
   );
