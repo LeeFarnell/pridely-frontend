@@ -5,12 +5,10 @@ import ReactStars from "react-rating-stars-component";
 import Avatar from "../../components/avatar";
 import Calendly from "../../components/calendly";
 import SimpleModal from "../../components/modal";
-import ReviewCard from "../../components/review-card";
 import { PROFILE } from "../../queries";
 import { useUserContext } from "../../contexts/UserProvider";
 import Button from "../../components/button";
 import NewsFeedCard from "../../components/newsfeed-card";
-import ReviewCardComment from "../../components/review-card-comments";
 import { average } from "../../utils/utilities";
 
 import "./index.css";
@@ -99,12 +97,17 @@ const UserProfile = () => {
           likes="5"
         /> */}
         {userData.posts.map((post) => {
+          const isLiked = post.likes.findIndex(
+            (like) => like._id === state.user._id
+          );
           return (
             <NewsFeedCard
+              postId={post._id}
               title={post.title}
               body={post.mainText}
               likes={post.likes.length}
               postedBy={userData.username}
+              isLiked={isLiked}
             />
           );
         })}

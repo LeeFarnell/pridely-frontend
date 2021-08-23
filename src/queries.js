@@ -12,6 +12,7 @@ const DASHBOARD = gql`
         id
         username
         posts {
+          id
           postedBy
           title
           subtitle

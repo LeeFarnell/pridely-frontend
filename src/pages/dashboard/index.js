@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
-import { useUserContext } from "../../contexts/UserProvider";
 
 import Carousel from "../../components/carousel";
 import NewsFeedCard from "../../components/newsfeed-card";
+import { useUserContext } from "../../contexts/UserProvider";
 import { DASHBOARD } from "../../queries";
 
 import "./index.css";
@@ -41,18 +41,23 @@ const Dashboard = () => {
           return follower.posts.map((post) => {
             const postTitle = post.title;
             const postBody = post.mainText;
-            const postLikes = post.likes.length;
+            const postLikes = post.likes;
             const postPostedBy = follower.username;
-            const isLiked = post.likes.includes(state.user.id);
 
-            console.log(isLiked);
+            console.log(post.likes);
+
+            const isLiked = post.likes.findIndex(
+              (like) => like._id === state.user._id
+            );
 
             return (
               <NewsFeedCard
+                postId={post._id}
                 title={postTitle}
                 body={postBody}
-                likes={postLikes}
+                likes={postLikes.length}
                 postedBy={postPostedBy}
+                isLiked={isLiked}
               />
             );
           });

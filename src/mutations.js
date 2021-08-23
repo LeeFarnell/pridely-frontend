@@ -126,6 +126,26 @@ const LEAVE_REVIEW = gql`
   }
 `;
 
+const LIKE_POST = gql`
+  mutation Mutation($likeAPostPostId: ID!) {
+    likeAPost(postId: $likeAPostPostId) {
+      _id
+      postedBy
+      title
+      likes {
+        id
+        name
+        username
+        posts {
+          _id
+          postedBy
+          title
+        }
+      }
+    }
+  }
+`;
+
 export {
   SIGNUP,
   LOGIN,
@@ -133,4 +153,5 @@ export {
   SEND_MESSAGE,
   CREATE_POST,
   LEAVE_REVIEW,
+  LIKE_POST,
 };
