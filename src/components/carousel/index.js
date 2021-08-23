@@ -24,31 +24,33 @@ const Carousel = (props) => {
 
   // map through followers array and render a component
   const followMap = followers.map((follower) => {
-    console.log(average(follower.ratings));
+    // console.log(average(follower.ratings));
     return (
-      <SwiperSlide>
-        <div className="slide-containter" key={follower.id}>
-          <div className="avatar-carousel">
-            <Avatar URL="https://filmschoolrejects.com/wp-content/uploads/2018/10/avatar-last-airbender-episodes-ranked.jpg" />
-          </div>
-          <div className="user-card-info">{follower.name}</div>
-          <div className="user-card-info">
-            Category: {follower.businessType}
-          </div>
-          <div className="user-card-info">{follower.businessDescription}</div>
-          {isNaN(follower.ratings) ? (
-            <div className="user-card-bottom">
-              Rating: {average(follower.ratings).toFixed(1)}
+      <SwiperSlide key={follower.id}>
+        {follower && (
+          <div className="slide-containter" key={follower.id}>
+            <div className="avatar-carousel">
+              <Avatar URL="https://filmschoolrejects.com/wp-content/uploads/2018/10/avatar-last-airbender-episodes-ranked.jpg" />
             </div>
-          ) : (
-            <div>No rating to display</div>
-          )}
-          <div className="carousel-btn">
-            <Link to={`/user-profile/${follower.id}`}>
-              <Button name="View Profile" class="carousel-btn" />
-            </Link>
+            <div className="user-card-info">{follower.name}</div>
+            <div className="user-card-info">
+              Category: {follower.businessType}
+            </div>
+            <div className="user-card-info">{follower.businessDescription}</div>
+            {isNaN(follower.ratings) ? (
+              <div className="user-card-bottom">
+                Rating: {average(follower.ratings).toFixed(1)}
+              </div>
+            ) : (
+              <div>No rating to display</div>
+            )}
+            <div className="carousel-btn">
+              <Link to={`/user-profile/${follower.id}`}>
+                <Button name="View Profile" class="carousel-btn" />
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
       </SwiperSlide>
     );
   });
