@@ -1,0 +1,14 @@
+.review-page-cards {
+  display: flex;
+  margin: 1vw;
+  justify-content: left;
+  width: 95vw;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 500px) {
+  .review-page-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}

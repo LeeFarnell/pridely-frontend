@@ -7,11 +7,11 @@
 }
 
 .review-card-container {
+  margin: 1vw;
   border: 2px solid var(--Celeste);
   border-radius: 10px;
-  flex-direction: column;
-  width: 15vw;
-  margin: 0;
+  width: 20vw;
+  background-color: var(--MintCream);
 }
 
 .review-card-rating {
@@ -19,4 +19,16 @@
   border-bottom: var(--PiggyPink) 1px solid;
   padding: 0.5vw;
   text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .review-card-container {
+    width: 30vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .review-card-container {
+    width: 90vw;
+  }
 }

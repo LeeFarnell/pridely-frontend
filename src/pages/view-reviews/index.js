@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import ReviewCard from "../../components/review-card";
 import { GET_REVIEWS } from "../../queries";
 
+import "./index.css";
+
 const ViewReviews = () => {
   const { id } = useParams();
 
@@ -20,7 +22,7 @@ const ViewReviews = () => {
   }
 
   return (
-    <div>
+    <div className="review-page-cards">
       {data.getReviews.map((review) => {
         return (
           <ReviewCard
