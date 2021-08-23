@@ -9,14 +9,11 @@ import Typography from "@material-ui/core/Typography";
 import ImageUploading from "react-images-uploading";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
+// import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 320,
-  },
   media: {
-    height: 241,
+    height: 250,
   },
   title: {
     textAlign: "center",
@@ -98,7 +95,7 @@ const ImageUpload = ({ images, imageUrl, setImages, setImageUrl }) => {
                   )}
                 </CardContent>
               </CardActionArea>
-              <CardActions>
+              <CardActions className="upload-card-container">
                 {imageList.length === 0 && (
                   <IconButton
                     color="primary"
@@ -106,7 +103,9 @@ const ImageUpload = ({ images, imageUrl, setImages, setImageUrl }) => {
                     component="span"
                     onClick={onImageUpload}
                   >
-                    <PhotoCamera />
+                    <Button variant="outlined" color="primary" component="span">
+                      Upload A Profile Picture!
+                    </Button>
                   </IconButton>
                 )}
                 {imageList.length !== 0 && (

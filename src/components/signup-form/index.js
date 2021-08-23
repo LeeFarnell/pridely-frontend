@@ -79,12 +79,11 @@ const SignUpForm = (props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="signup-form">
-        <p>
-          Thanks for choosing to sign up! Please enter the details below and we
-          will create your profile!
-          <br />
-          (* - Required Field)
-        </p>
+        <h1>Thanks for choosing to sign up! </h1>
+        <h3>
+          Please enter the details below and we will create your profile!{" "}
+        </h3>
+        (* - Required Field)
         <div className="user-type">
           Please select your user type:
           <select
@@ -127,6 +126,14 @@ const SignUpForm = (props) => {
             {...register("password", { required: true })}
           ></input>
         </div>
+        <div>
+          <input
+            className="signup-input"
+            type="password"
+            placeholder="Confirm Password*"
+            {...register("confirm-password", { required: true })}
+          ></input>
+        </div>
         <Controller
           control={control}
           name="country"
@@ -156,14 +163,6 @@ const SignUpForm = (props) => {
             />
           )}
         />
-        <div className="signup-input">
-          <ImageUpload
-            images={images}
-            imageUrl={imageUrl}
-            setImageUrl={setImageUrl}
-            setImages={setImages}
-          />
-        </div>
         <div>
           <input
             className="signup-input"
@@ -192,6 +191,14 @@ const SignUpForm = (props) => {
             placeholder="Pronouns"
             {...register("pronouns", { required: false })}
           ></input>
+        </div>
+        <div>
+          <ImageUpload
+            images={images}
+            imageUrl={imageUrl}
+            setImageUrl={setImageUrl}
+            setImages={setImages}
+          />
         </div>
         <Button name="Sign Up" type="submit" />
       </div>

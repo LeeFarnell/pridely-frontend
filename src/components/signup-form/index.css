@@ -30,3 +30,34 @@
   flex-direction: column;
   margin: 2vw;
 }
+
+.MuiCardContent-root {
+  width: 47vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  box-shadow: none;
+  height: 5vh;
+}
+
+.upload-card-container {
+  display: flex;
+  justify-content: center;
+  box-shadow: none;
+  border-bottom: 2px solid var(--CottonCandy);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.upload-image-btn {
+  background-color: var(--CottonCandy);
+}
+
+@media screen and (max-width: 500px) {
+  .signup-input {
+    width: 98vw;
+    height: 5vh;
+  }
+}
