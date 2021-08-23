@@ -9,6 +9,7 @@
 .post-form {
   display: flex;
   justify-content: center;
+  padding: 2vw;
 }
 
 .business-post {
@@ -20,15 +21,27 @@
   margin: 0px;
   border: 2px solid var(--Celeste);
   background-color: var(--MintCream);
-  width: 50vw;
+  width: 80vw;
   border-radius: 10px;
   align-content: space-between;
 }
 
 .post-input {
-  width: 50vw;
+  width: 80vw;
   margin: 0.5vw;
   height: 3vw;
+  border: 0px;
+  border-bottom: 2px solid var(--CottonCandy);
+  color: black;
+  text-align: center;
+  resize: none;
+  border-radius: 10px;
+}
+
+.post-input-text {
+  width: 80vw;
+  margin: 0.5vw;
+  height: 20vw;
   border: 0px;
   border-bottom: 2px solid var(--CottonCandy);
   color: black;
@@ -41,4 +54,21 @@
   color: var(--CottonCandy);
   text-shadow: black 1px 1px 1px;
   font-size: larger;
+}
+
+@media screen and (max-width: 500px) {
+  .business-post {
+    width: 95vw;
+    height: 50vh;
+  }
+
+  .post-input {
+    width: 93vw;
+    height: 5vh;
+  }
+
+  .post-input-text {
+    width: 93vw;
+    height: 15vh;
+  }
 }

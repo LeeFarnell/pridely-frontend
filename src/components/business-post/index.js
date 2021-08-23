@@ -66,7 +66,7 @@ const BusinessPost = (props) => {
 
         <div>
           <textarea
-            className="post-input"
+            className="post-input-text"
             placeholder="Write your post*"
             {...register("mainText", { required: true })}
           ></textarea>

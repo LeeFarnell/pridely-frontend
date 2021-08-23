@@ -41,7 +41,6 @@ const App = () => {
         <Router>
           <Navbar name="Pridely" />
           <Routes />
-          <Footer name="Pridely" />
         </Router>
       </UserProvider>
     </ApolloProvider>
