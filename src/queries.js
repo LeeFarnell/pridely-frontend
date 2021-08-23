@@ -19,9 +19,13 @@ const DASHBOARD = gql`
           image
           badges
           url
-          likes
           createdAt
           _id
+          likes {
+            id
+            name
+            username
+          }
         }
         profilePicture
         businessType
@@ -61,8 +65,12 @@ const PROFILE = gql`
           image
           badges
           url
-          likes
           createdAt
+          likes {
+            id
+            name
+            username
+          }
         }
       }
       comments {

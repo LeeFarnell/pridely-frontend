@@ -13,7 +13,7 @@ const NewsFeedCard = ({ title, body, likes, postedBy }) => {
         </div>
       </div>
       <div className="news-feed-body">{body}</div>
-      <div className="news-feed-like">Likes:{likes}</div>
+      <div className="news-feed-like">Likes: {likes}</div>
       {/* <NewsFeedComment username="bobsmith101" comment="This looks great!" /> */}
     </div>
   );

@@ -81,7 +81,7 @@ const UserProfile = () => {
             <NewsFeedCard
               title={post.title}
               body={post.mainText}
-              likes={post.likes}
+              likes={post.likes.length}
               postedBy={userData.username}
             />
           );

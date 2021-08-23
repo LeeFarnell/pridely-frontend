@@ -37,7 +37,7 @@ const Dashboard = () => {
           return follower.posts.map((post) => {
             const postTitle = post.title;
             const postBody = post.mainText;
-            const postLikes = post.likes;
+            const postLikes = post.likes.length;
             const postPostedBy = follower.username;
 
             return (
