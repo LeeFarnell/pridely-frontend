@@ -45,7 +45,28 @@ const UserProfile = () => {
     <>
       <div className="profile-container">
         <div className="profile-left-all">
-          <h1 className="profile-left">{userData.name}</h1>
+          <h1 className="profile-left">
+            {userData.name} - {userData.pronouns}
+          </h1>
+
+          <div className="profile-left">
+            <Avatar URL={userData.profilePicture} />
+            <div className="profile-review">
+              {state.user.id !== userData.id && (
+                <Link to={`/chat/${userData.id}`}>
+                  <Button name="Chat" />
+                </Link>
+              )}
+              <SimpleModal
+                name="Followers"
+                followersData={data.profile.myFollowers}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="profile-middle">
+          <h1>{userData.businessName}</h1>
+          <div className="profile-left">{userData.businessDescription}</div>
           <div className="review-card-container">
             <div className="review-card-rating">
               <h3>Rating:{averageRating}/5</h3>
@@ -61,40 +82,28 @@ const UserProfile = () => {
               </div>
             </div>
           </div>
-          <div className="profile-left">{userData.pronouns}</div>
-          <div className="profile-left">Business info</div>
-          <SimpleModal
-            name="Followers"
-            followersData={data.profile.myFollowers}
-          />
-          {state.user.id !== userData.id && (
-            <Link to={`/chat/${userData.id}`}>
-              <Button name="Chat" />
-            </Link>
-          )}
-          {state.user.id !== userData.id && (
-            <Link to={`/reviews/${userData.id}`}>
-              <Button name="View Reviews" />
-            </Link>
-          )}
+          <div className="profile-review">
+            {state.user.id !== userData.id && (
+              <Link to={`/reviews/${userData.id}`}>
+                <Button name="View Reviews" />
+              </Link>
+            )}
 
-          {state.user.id !== userData.id && <SimpleModal name="Leave Review" />}
-
-          {state.user.id === userData.id && (
-            <Link to={`/create-post/${state.user.id}`}>
-              <Button name="Create Post!" />
-            </Link>
-          )}
+            {state.user.id !== userData.id && (
+              <SimpleModal name="Leave Review" />
+            )}
+            {state.user.id === userData.id && (
+              <Link to={`/create-post/${state.user.id}`}>
+                <Button name="Create Post!" />
+              </Link>
+            )}
+          </div>
         </div>
-        <div>
-          <Avatar URL="https://pbs.twimg.com/profile_images/1290710495465541633/BhrDfujl_400x400.jpg" />
-          <SimpleModal name="Contact Me" />
-        </div>
-        <div>
+        <div className="profile-calendly">
           <Calendly />
         </div>
       </div>
-      <div className="profile-card">
+      <div className="profile-post">
         {/* <NewsFeedCard
           title="Hello"
           body="Welcome to my first post!"

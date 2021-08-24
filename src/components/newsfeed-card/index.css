@@ -7,6 +7,9 @@
 }
 
 .news-feed-card {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   border: 2px solid var(--Celeste);
   border-radius: 10px;
