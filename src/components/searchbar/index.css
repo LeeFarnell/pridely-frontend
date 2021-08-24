@@ -6,19 +6,16 @@
   --CottonCandy: #f2b5d4;
 }
 
-.search-bar {
+.search-bar-container {
   flex-wrap: wrap;
   justify-content: center;
-  background-color: var(--MintCream);
   padding: 5px;
   margin-left: 0px;
-  border-radius: 5px;
   color: black;
   font-family: "Poppins", sans-serif;
   font-weight: normal;
   font-size: medium;
-  width: 30vw;
-  border: var(--PiggyPink) 2px solid;
+  width: 50vw;
 }
 
 .search-bar:focus {
@@ -26,20 +23,60 @@
   border: var(--CottonCandy) 2px solid;
 }
 
+.searchbar-input {
+  width: 25%;
+  margin: 0.5vw;
+  height: 3vh;
+  border: 0px;
+  border-bottom: 2px solid var(--CottonCandy);
+  border-radius: 5px;
+  color: black;
+  text-align: center;
+}
+
 ::placeholder {
   opacity: 50%;
 }
 
-@media screen and (max-width: 500px) {
-  .search-bar {
-    width: 54vw;
-    margin-bottom: 3vw;
-    margin-left: 2vw;
-    margin-right: 3.5vw;
-  }
+@media screen and (max-width: 800px) {
   .search-bar-container {
-    width: 100vw;
     align-items: center;
     padding: 0;
+  }
+
+  .searchbar-input {
+    display: flex;
+    width: 45vw;
+    margin: 0.5vw;
+    margin-left: 5vw;
+    height: 60%;
+    border: 0px;
+    border-bottom: 2px solid var(--CottonCandy);
+    border-radius: 5px;
+    color: black;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .search-bar-container {
+    width: 98vw;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .searchbar-input {
+    align-items: center;
+    width: 97vw;
+    margin: 0.5vw;
+    margin-bottom: 1vh;
+    height: 60%;
+    border: 0px;
+    border-bottom: 2px solid var(--CottonCandy);
+    border-radius: 5px;
+    color: black;
+    text-align: center;
   }
 }

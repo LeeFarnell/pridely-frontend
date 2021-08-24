@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Avatar from "../avatar";
 
@@ -6,17 +7,32 @@ import Button from "../button";
 
 import "./index.css";
 
-const UserCard = (props) => {
+const UserCard = ({ result }) => {
+  const truncateString = (str, num) => {
+    if (str.length > num) {
+      return str.slice(0, num) + "...";
+    } else {
+      return str;
+    }
+  };
+
   return (
     <div className="user-card-container">
       <div>
-        <Avatar URL="https://filmschoolrejects.com/wp-content/uploads/2018/10/avatar-last-airbender-episodes-ranked.jpg" />
+        <Avatar URL={`${result.profilePicture}`} />
       </div>
-      <div className="user-card-info">{props.businessName}</div>
-      <div className="user-card-info">{props.businessType}</div>
-      <div className="user-card-info">{props.location}</div>
-      <div className="user-card-bottom">Rating: {props.ratings}</div>
-      <Button name="View Profile" />
+      <div className="user-card-info">{result.businessName}</div>
+      <div className="user-card-info">Category: {result.businessType}</div>
+      <div className="user-card-info">
+        {truncateString(result.businessDescription, 100)}
+      </div>
+      <div className="user-card-info">
+        {result.region}, {result.country}
+      </div>
+      <div className="user-card-bottom">Rating: {result.ratings}</div>
+      <Link to={`/user-profile/${result.id}`}>
+        <Button name="View Profile" />
+      </Link>
     </div>
   );
 };

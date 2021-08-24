@@ -1,0 +1,12 @@
+.search-card-container {
+  display: flex;
+  margin: 1vw;
+  justify-content: center;
+  width: 95vw;
+}
+
+@media screen and (max-width: 500px) {
+  .search-card-container {
+    flex-direction: column;
+  }
+}

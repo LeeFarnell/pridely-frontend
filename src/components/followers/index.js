@@ -8,7 +8,7 @@ const Followers = (props) => {
   return (
     <div className="followers-container">
       <div className="follower">
-        <Avatar URL="https://filmschoolrejects.com/wp-content/uploads/2018/10/avatar-last-airbender-episodes-ranked.jpg" />
+        <Avatar URL={props.profilePicture} />
         <div>{props.username}</div>
       </div>
     </div>

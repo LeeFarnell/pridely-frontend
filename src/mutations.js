@@ -67,4 +67,91 @@ const EDIT_BUSINESS_USER = gql`
   }
 `;
 
-export { SIGNUP, LOGIN, EDIT_BUSINESS_USER };
+const SEND_MESSAGE = gql`
+  mutation Mutation(
+    $createMessageFromUser: ID!
+    $createMessageToUser: ID!
+    $createMessageMessage: String!
+  ) {
+    createMessage(
+      fromUser: $createMessageFromUser
+      toUser: $createMessageToUser
+      message: $createMessageMessage
+    ) {
+      message
+      id
+      fromUser {
+        id
+        username
+        type
+        profilePicture
+        businessName
+        pronouns
+      }
+      toUser {
+        id
+        username
+        type
+        profilePicture
+        businessName
+        pronouns
+      }
+    }
+  }
+`;
+
+const CREATE_POST = gql`
+  mutation Mutation($createNewPostInput: CreatePostInput) {
+    createNewPost(input: $createNewPostInput) {
+      postedBy
+      title
+      subtitle
+      mainText
+      image
+      url
+    }
+  }
+`;
+
+const LEAVE_REVIEW = gql`
+  mutation Mutation($createReviewInput: CreateReviewInput) {
+    createReview(input: $createReviewInput) {
+      commentBox
+      serviceUsed
+      rating
+      writtenBy
+      writtenFor
+      createdAt
+    }
+  }
+`;
+
+const LIKE_POST = gql`
+  mutation Mutation($likeAPostPostId: ID!) {
+    likeAPost(postId: $likeAPostPostId) {
+      _id
+      postedBy
+      title
+      likes {
+        id
+        name
+        username
+        posts {
+          _id
+          postedBy
+          title
+        }
+      }
+    }
+  }
+`;
+
+export {
+  SIGNUP,
+  LOGIN,
+  EDIT_BUSINESS_USER,
+  SEND_MESSAGE,
+  CREATE_POST,
+  LEAVE_REVIEW,
+  LIKE_POST,
+};

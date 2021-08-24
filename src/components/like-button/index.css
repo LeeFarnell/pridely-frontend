@@ -6,7 +6,7 @@
   --CottonCandy: #f2b5d4;
 }
 
-.button {
+.like-button {
   flex-wrap: wrap;
   background-color: var(--MintCream);
   padding: 5px;
@@ -21,14 +21,14 @@
   border: var(--PiggyPink) 2px solid;
 }
 
-.button:hover {
+.like-button:hover {
   background-color: var(--CottonCandy);
   color: var(--MintCream);
   text-shadow: black 0.5px 0.5px 0.5px;
 }
 
 @media screen and (max-width: 812px) {
-  .button {
+  .like-button {
     width: 26vw;
     margin-left: 3vw;
     margin-right: 3vw;
@@ -36,7 +36,7 @@
   }
 }
 @media screen and (max-width: 500px) {
-  .button {
+  .like-button {
     width: 95vw;
     font-size: 3vw;
     margin-left: 0vw;

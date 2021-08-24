@@ -1,19 +1,162 @@
 import { gql } from "@apollo/client";
 
-const DASHBOARD_ME = gql`
+const DASHBOARD = gql`
   query Query {
-    user {
-      id
-      name
-      username
-      type
-      profilePicture
-      createdAt
+    dashboard {
+      currentUser {
+        id
+        username
+        profilePicture
+      }
+      followers {
+        id
+        username
+        posts {
+          postedBy
+          title
+          subtitle
+          mainText
+          image
+          badges
+          url
+          createdAt
+          _id
+          likes {
+            id
+            name
+            username
+          }
+        }
+        profilePicture
+        businessType
+        ratings
+      }
     }
   }
 `;
-//socialMedia
-// TODO: Query to get all Followers for current User.
-// TODO: Query to get user profile and their posts, based on ID.
 
-export { DASHBOARD_ME };
+const PROFILE = gql`
+  query Query($profileUserId: String) {
+    profile(userId: $profileUserId) {
+      user {
+        id
+        name
+        username
+        type
+        email
+        profilePicture
+        region
+        country
+        businessName
+        businessType
+        businessDescription
+        ratings
+        createdAt
+        age
+        gender
+        identifyAs
+        pronouns
+        posts {
+          _id
+          postedBy
+          title
+          subtitle
+          mainText
+          image
+          badges
+          likes {
+            id
+            name
+            username
+          }
+          createdAt
+        }
+      }
+      myFollowers {
+        id
+        name
+        username
+        profilePicture
+        businessName
+        businessType
+        ratings
+      }
+      comments {
+        _id
+        postId
+        commentText
+        commentPostedBy
+        createdAt
+      }
+    }
+  }
+`;
+
+const BUSINESS_SEARCH = gql`
+  query Query(
+    $businessSearchBusinessType: String!
+    $businessSearchCountry: String
+    $businessSearchRegion: String
+  ) {
+    businessSearch(
+      businessType: $businessSearchBusinessType
+      country: $businessSearchCountry
+      region: $businessSearchRegion
+    ) {
+      id
+      profilePicture
+      region
+      country
+      businessName
+      businessType
+      businessDescription
+      ratings
+    }
+  }
+`;
+
+const GET_CHAT = gql`
+  query Query($chatFromUserId: ID!, $chatToUserId: ID) {
+    chat(fromUserId: $chatFromUserId, toUserId: $chatToUserId) {
+      message
+      id
+
+      fromUser {
+        id
+        username
+        type
+        profilePicture
+        businessName
+        pronouns
+      }
+      toUser {
+        id
+        username
+        type
+        profilePicture
+        businessName
+        pronouns
+      }
+    }
+  }
+`;
+
+const GET_REVIEWS = gql`
+  query Query($getReviewsUserId: String!) {
+    getReviews(userId: $getReviewsUserId) {
+      commentBox
+      serviceUsed
+      rating
+      writtenBy
+      writtenFor
+      createdAt
+      username {
+        name
+        username
+        type
+      }
+    }
+  }
+`;
+
+export { DASHBOARD, PROFILE, BUSINESS_SEARCH, GET_CHAT, GET_REVIEWS };

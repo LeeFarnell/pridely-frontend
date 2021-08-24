@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import { Switch, Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 import { useUserContext } from "../../contexts/UserProvider";
 import Button from "../button";
 import { SIGNUP } from "../../mutations";
 import Auth from "../../utils/auth";
+import ImageUpload from "../image-upload";
 
 import "./index.css";
 
@@ -15,9 +16,13 @@ const SignUpForm = (props) => {
   // hooks
   let history = useHistory();
   const [currentType, setCurrentType] = useState("standard");
-  const [country, setCountry] = useState("United Kingdom");
-  const [region, setRegion] = useState("West Midlands");
+  const [country, setCountry] = useState();
+  const [region, setRegion] = useState();
+  const [images, setImages] = useState([]);
+  const [imageUrl, setImageUrl] = useState();
+
   const { dispatch } = useUserContext();
+
   const {
     register,
     handleSubmit,
@@ -45,21 +50,22 @@ const SignUpForm = (props) => {
       const { token, user } = data.signup;
       Auth.login(token);
     },
-    onerror: () => {
+    onError: () => {
       throw new Error("something went wrong!");
     },
   });
 
   // function to be run on submission of the form
-  const onSubmit = async (formData) => {
+  const onSubmit = async ({ confirmPassword, ...rest }) => {
     try {
+      console.log(imageUrl);
       await signup({
         variables: {
-          signupInput: formData,
+          signupInput: { ...rest, profilePicture: imageUrl },
         },
       });
       //if user type is business, the user will be prompted with a form to add his business details
-      if (formData.type === "Business") {
+      if (rest.type === "Business") {
         window.location.replace("/business-signup");
       } else {
         window.location.replace("/dashboard");
@@ -72,12 +78,11 @@ const SignUpForm = (props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="signup-form">
-        <p>
-          Thanks for choosing to sign up! Please enter the details below and we
-          will create your profile!
-          <br />
-          (* - Required Field)
-        </p>
+        <h1>Thanks for choosing to sign up! </h1>
+        <h3>
+          Please enter the details below and we will create your profile!{" "}
+        </h3>
+        (* - Required Field)
         <div className="user-type">
           Please select your user type:
           <select
@@ -120,6 +125,14 @@ const SignUpForm = (props) => {
             {...register("password", { required: true })}
           ></input>
         </div>
+        <div>
+          <input
+            className="signup-input"
+            type="password"
+            placeholder="Confirm Password*"
+            {...register("confirmPassword", { required: true })}
+          ></input>
+        </div>
         <Controller
           control={control}
           name="country"
@@ -152,14 +165,6 @@ const SignUpForm = (props) => {
         <div>
           <input
             className="signup-input"
-            type="url"
-            placeholder="Profile Picture URL*"
-            {...register("profilePicture", { required: false })}
-          ></input>
-        </div>
-        <div>
-          <input
-            className="signup-input"
             type="number"
             placeholder="Age"
             {...register("age", { required: false, valueAsNumber: true })}
@@ -185,6 +190,14 @@ const SignUpForm = (props) => {
             placeholder="Pronouns"
             {...register("pronouns", { required: false })}
           ></input>
+        </div>
+        <div>
+          <ImageUpload
+            images={images}
+            imageUrl={imageUrl}
+            setImageUrl={setImageUrl}
+            setImages={setImages}
+          />
         </div>
         <Button name="Sign Up" type="submit" />
       </div>

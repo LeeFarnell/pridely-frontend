@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Button from "../button";
 import Followers from "../followers";
+import ReviewForm from "../review-form";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -44,14 +45,40 @@ const SimpleModal = (props) => {
     setOpen(false);
   };
 
+  const { followersData } = props;
+
+  console.log("here", followersData);
+
   const renderBody = () => {
     if (props.name === "Followers") {
-      return (
+      return followersData.length > 0 ? (
         <div style={modalStyle} className={classes.paper}>
           <h2 id="simple-modal-title">Followers</h2>
+          {followersData.map((follower) => {
+            return (
+              <Followers
+                username={follower.username}
+                profilePicture={follower.profilePicture}
+                key={follower._id}
+              />
+            );
+          })}
+          <div id="simple-modal-description"></div>
+          <Button onClick={handleClose} name="Close" />
+        </div>
+      ) : (
+        <div style={modalStyle} className={classes.paper}>
+          <div>No followers to display</div>
+        </div>
+      );
+    } else if (props.name === "Leave Review") {
+      return (
+        <div style={modalStyle} className={classes.paper}>
+          <h2 id="simple-modal-title">Leave A Review</h2>
           <div id="simple-modal-description">
-            <Followers username="bobSmith123" />
+            If you enjoyed our services, leave us a review!
           </div>
+          <ReviewForm />
           <Button onClick={handleClose} name="Close" />
         </div>
       );

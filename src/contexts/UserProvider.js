@@ -8,6 +8,7 @@ export const useUserContext = () => useContext(UserContext);
 
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")),
+  search: {},
 };
 
 const UserProvider = ({ children }) => {

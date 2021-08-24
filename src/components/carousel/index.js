@@ -1,6 +1,10 @@
 import React from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router-dom";
+
+import Avatar from "../avatar";
+import Button from "../button";
+import { average } from "../../utils/utilities";
 
 import SwiperCore, {
   Autoplay,
@@ -14,39 +18,55 @@ import "swiper/swiper-bundle.css";
 import "./index.css";
 
 SwiperCore.use([Autoplay, Navigation, Pagination, EffectCoverflow]);
-
 const Carousel = (props) => {
-  const slides = [];
+  // destructuring followers array from props
+  const { followers } = props;
 
-  for (let i = 0; i < 5; i += 1) {
-    slides.push(
-      <SwiperSlide key={`slide-${i}`}>
-        <img
-          src={`https://picsum.photos/id/${i + 1}/500/300`}
-          alt={`Slide ${i}`}
-        />
+  // map through followers array and render a component
+  const followMap = followers.map((follower) => {
+    // console.log(average(follower.ratings));
+    return (
+      <SwiperSlide key={follower.id}>
+        {follower && (
+          <div className="slide-containter" key={follower.id}>
+            <div className="avatar-carousel">
+              <Avatar URL="https://filmschoolrejects.com/wp-content/uploads/2018/10/avatar-last-airbender-episodes-ranked.jpg" />
+            </div>
+            <div className="user-card-info">{follower.name}</div>
+            <div className="user-card-info">
+              Category: {follower.businessType}
+            </div>
+            <div className="user-card-info">{follower.businessDescription}</div>
+            {isNaN(follower.ratings) ? (
+              <div className="user-card-bottom">
+                Rating: {average(follower.ratings).toFixed(1)}
+              </div>
+            ) : (
+              <div>No rating to display</div>
+            )}
+            <div className="carousel-btn">
+              <Link to={`/user-profile/${follower.id}`}>
+                <Button name="View Profile" class="carousel-btn" />
+              </Link>
+            </div>
+          </div>
+        )}
       </SwiperSlide>
     );
-  }
+  });
 
   return (
     <React.Fragment>
       <Swiper
-        tag="section"
-        wrapperTag="ul"
-        navigation
-        pagination
-        id="main"
-        spaceBetween={1}
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={"auto"}
         autoplay={{
           delay: 3500,
           disableOnInteraction: false,
         }}
         loop={true}
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={"auto"}
         coverflowEffect={{
           rotate: 50,
           stretch: 0,
@@ -54,8 +74,10 @@ const Carousel = (props) => {
           modifier: 1,
           slideShadows: true,
         }}
+        pagination={true}
+        className="mySwiper"
       >
-        {slides}
+        {followMap}
       </Swiper>
     </React.Fragment>
   );
