@@ -64,20 +64,28 @@ const PROFILE = gql`
           mainText
           image
           badges
-          url
-          createdAt
           likes {
             id
             name
             username
           }
+          createdAt
         }
+      }
+      myFollowers {
+        id
+        name
+        username
+        profilePicture
+        businessName
+        businessType
+        ratings
       }
       comments {
         _id
-        commentPostedBy
         postId
         commentText
+        commentPostedBy
         createdAt
       }
     }

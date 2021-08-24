@@ -34,6 +34,7 @@ const UserProfile = () => {
 
   // current user data
   const userData = data.profile.user;
+  console.log(data.profile.myFollowers);
 
   const averageRating = average(
     userData.ratings,
