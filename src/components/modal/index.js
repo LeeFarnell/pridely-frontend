@@ -45,15 +45,30 @@ const SimpleModal = (props) => {
     setOpen(false);
   };
 
+  const { followersData } = props;
+
+  console.log("here", followersData);
+
   const renderBody = () => {
     if (props.name === "Followers") {
-      return (
+      return followersData.length > 0 ? (
         <div style={modalStyle} className={classes.paper}>
           <h2 id="simple-modal-title">Followers</h2>
-          <div id="simple-modal-description">
-            <Followers username="bobSmith123" />
-          </div>
+          {followersData.map((follower) => {
+            return (
+              <Followers
+                username={follower.username}
+                profilePicture={follower.profilePicture}
+                key={follower._id}
+              />
+            );
+          })}
+          <div id="simple-modal-description"></div>
           <Button onClick={handleClose} name="Close" />
+        </div>
+      ) : (
+        <div style={modalStyle} className={classes.paper}>
+          <div>No followers to display</div>
         </div>
       );
     } else if (props.name === "Leave Review") {

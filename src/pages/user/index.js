@@ -53,7 +53,7 @@ const UserProfile = () => {
                 <ReactStars
                   count={5}
                   edit={false}
-                  value={averageRating}
+                  value={parseInt(averageRating, 8)}
                   size={25}
                   activeColor="#f2b5d4"
                   isHalf={true}
@@ -63,7 +63,10 @@ const UserProfile = () => {
           </div>
           <div className="profile-left">{userData.pronouns}</div>
           <div className="profile-left">Business info</div>
-          <SimpleModal name="Followers" />
+          <SimpleModal
+            name="Followers"
+            followersData={data.profile.myFollowers}
+          />
           {state.user.id !== userData.id && (
             <Link to={`/chat/${userData.id}`}>
               <Button name="Chat" />
@@ -109,6 +112,7 @@ const UserProfile = () => {
               likes={post.likes.length}
               postedBy={userData.username}
               isLiked={isLiked}
+              key={post._id}
             />
           );
         })}
