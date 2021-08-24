@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import { Switch, Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 import { useUserContext } from "../../contexts/UserProvider";
@@ -14,7 +14,6 @@ import "./index.css";
 
 const SignUpForm = (props) => {
   // hooks
-
   let history = useHistory();
   const [currentType, setCurrentType] = useState("standard");
   const [country, setCountry] = useState();
@@ -57,16 +56,16 @@ const SignUpForm = (props) => {
   });
 
   // function to be run on submission of the form
-  const onSubmit = async (formData) => {
+  const onSubmit = async ({ confirmPassword, ...rest }) => {
     try {
       console.log(imageUrl);
       await signup({
         variables: {
-          signupInput: { ...formData, profilePicture: imageUrl },
+          signupInput: { ...rest, profilePicture: imageUrl },
         },
       });
       //if user type is business, the user will be prompted with a form to add his business details
-      if (formData.type === "Business") {
+      if (rest.type === "Business") {
         window.location.replace("/business-signup");
       } else {
         window.location.replace("/dashboard");
@@ -131,7 +130,7 @@ const SignUpForm = (props) => {
             className="signup-input"
             type="password"
             placeholder="Confirm Password*"
-            {...register("confirm-password", { required: true })}
+            {...register("confirmPassword", { required: true })}
           ></input>
         </div>
         <Controller
