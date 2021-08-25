@@ -90,11 +90,9 @@ const UserProfile = () => {
               </div>
             </div>
             <div className="profile-review">
-              {state.user.id !== userData.id && (
-                <Link to={`/reviews/${userData.id}`}>
-                  <Button name="View Reviews" />
-                </Link>
-              )}
+              <Link to={`/reviews/${userData.id}`}>
+                <Button name="View Reviews" />
+              </Link>
 
               {state.user.id !== userData.id && (
                 <SimpleModal name="Leave Review" />
