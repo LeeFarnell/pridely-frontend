@@ -146,6 +146,16 @@ const LIKE_POST = gql`
   }
 `;
 
+const FOLLOW_USER = gql`
+  mutation Mutation($followUserUserId: ID!) {
+    followUser(userId: $followUserUserId) {
+      id
+      followerId
+      businessId
+    }
+  }
+`;
+
 export {
   SIGNUP,
   LOGIN,
@@ -154,4 +164,5 @@ export {
   CREATE_POST,
   LEAVE_REVIEW,
   LIKE_POST,
+  FOLLOW_USER,
 };
