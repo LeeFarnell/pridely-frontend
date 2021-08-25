@@ -8,7 +8,7 @@
 }
 
 .review-input {
-  width: 25vw;
+  width: 18vw;
   margin: 0.5vw;
   height: 3vw;
   border: 0px;
@@ -16,4 +16,24 @@
   color: black;
   text-align: center;
   resize: none;
+}
+
+@media screen and (max-width: 800px) {
+  .review-input {
+    width: 30vw;
+    height: 7vh;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .review-form {
+    align-items: flex-start;
+    padding: 0;
+    margin: 0px;
+  }
+
+  .review-input {
+    width: 250px;
+    height: 10vh;
+  }
 }

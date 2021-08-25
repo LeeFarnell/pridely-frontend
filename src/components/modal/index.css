@@ -1,0 +1,47 @@
+paper {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--MintCream);
+  width: 400;
+  border: "2px solid #000";
+  padding: 2px;
+}
+
+.modal-btn {
+  flex-wrap: wrap;
+  background-color: var(--MintCream);
+  padding: 5px;
+  margin: 2px;
+  margin-right: 0px;
+  border-radius: 5px;
+  color: var(--CottonCandy);
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 1vw;
+  width: 7vw;
+  border: var(--PiggyPink) 2px solid;
+}
+
+.modal-btn:hover {
+  background-color: var(--CottonCandy);
+  color: var(--MintCream);
+  text-shadow: black 0.5px 0.5px 0.5px;
+}
+
+@media screen and (max-width: 812px) {
+  .modal-btn {
+    width: 26vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    font-size: 2.5vw;
+  }
+}
+@media screen and (max-width: 500px) {
+  .modal-btn {
+    width: 250px;
+    font-size: 3vw;
+    margin-left: 0vw;
+    margin-right: 0vw;
+    margin-bottom: 1vh;
+  }
+}
