@@ -23,13 +23,15 @@
   text-shadow: black 2px 2px 2px;
 }
 
-.home-container p {
+.home-container p,
+h2 {
   align-items: baseline;
   justify-content: center;
   width: 45vw;
   font-size: x-large;
   color: var(--MintCream);
-  text-shadow: black 2px 2px 2px;
+  text-shadow: black 1px 1px 1px;
+  text-align: center;
 }
 
 .home-content {
