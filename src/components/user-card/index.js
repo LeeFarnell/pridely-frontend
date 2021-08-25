@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Avatar from "../avatar";
 
 import Button from "../button";
+import FollowButton from "../follow-button";
 
 import "./index.css";
 
@@ -33,6 +34,7 @@ const UserCard = ({ result }) => {
       <Link to={`/user-profile/${result.id}`}>
         <Button name="View Profile" />
       </Link>
+      <FollowButton name="Follow" userId={result.id}/>
     </div>
   );
 };
