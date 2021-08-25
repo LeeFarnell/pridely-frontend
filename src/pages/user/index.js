@@ -10,6 +10,7 @@ import { useUserContext } from "../../contexts/UserProvider";
 import Button from "../../components/button";
 import NewsFeedCard from "../../components/newsfeed-card";
 import { average } from "../../utils/utilities";
+import CircularIndeterminate from "../../components/loading";
 
 import "./index.css";
 
@@ -24,7 +25,11 @@ const UserProfile = () => {
 
   // if data is loading render this
   if (loading) {
-    return <div>loading</div>;
+    return (
+      <div className="dashboard-container">
+        <CircularIndeterminate />
+      </div>
+    );
   }
 
   // if theres an error render this

@@ -4,6 +4,7 @@ import Carousel from "../../components/carousel";
 import NewsFeedCard from "../../components/newsfeed-card";
 import { useUserContext } from "../../contexts/UserProvider";
 import { DASHBOARD } from "../../queries";
+import CircularIndeterminate from "../../components/loading";
 
 import "./index.css";
 
@@ -14,7 +15,11 @@ const Dashboard = () => {
 
   // if data is loading render this
   if (loading) {
-    return <div>loading</div>;
+    return (
+      <div className="dashboard-container">
+        <CircularIndeterminate />
+      </div>
+    );
   }
 
   // if theres an error render this

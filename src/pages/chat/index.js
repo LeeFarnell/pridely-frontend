@@ -7,6 +7,7 @@ import { useUserContext } from "../../contexts/UserProvider";
 import { useForm } from "react-hook-form";
 
 import "./index.css";
+import CircularIndeterminate from "../../components/loading";
 
 const Chat = () => {
   const { id } = useParams();
@@ -50,7 +51,9 @@ const Chat = () => {
   };
 
   if (loading) {
-    return <div>Loading</div>;
+    return  <div className="dashboard-container">
+    <CircularIndeterminate />
+  </div>;
   }
 
   if (error) {
