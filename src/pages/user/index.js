@@ -35,6 +35,7 @@ const UserProfile = () => {
   // current user data
   const userData = data.profile.user;
   console.log(data.profile.myFollowers);
+  console.log(userData);
 
   const averageRating = average(
     userData.ratings,
@@ -64,44 +65,63 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
-        <div className="profile-middle">
-          <h1>{userData.businessName}</h1>
-          <div className="profile-left">{userData.businessDescription}</div>
-          <div className="review-card-container">
-            <div className="review-card-rating">
-              <h3>Rating:{averageRating}/5</h3>
-              <div>
-                <ReactStars
-                  count={5}
-                  edit={false}
-                  value={parseInt(averageRating, 8)}
-                  size={25}
-                  activeColor="#f2b5d4"
-                  isHalf={true}
-                />
+        {userData.type === "Business" ? (
+          <div className="profile-middle">
+            <h1>{userData.businessName}</h1>
+            <div className="profile-left">{userData.businessDescription}</div>
+            <div className="review-card-container">
+              <div className="review-card-rating">
+                <h3>Rating:{averageRating}/5</h3>
+                <div>
+                  <ReactStars
+                    count={5}
+                    edit={false}
+                    value={parseInt(averageRating, 8)}
+                    size={25}
+                    activeColor="#f2b5d4"
+                    isHalf={true}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="profile-review">
-            {state.user.id !== userData.id && (
-              <Link to={`/reviews/${userData.id}`}>
-                <Button name="View Reviews" />
-              </Link>
-            )}
+            <div className="profile-review">
+              {state.user.id !== userData.id && (
+                <Link to={`/reviews/${userData.id}`}>
+                  <Button name="View Reviews" />
+                </Link>
+              )}
 
-            {state.user.id !== userData.id && (
-              <SimpleModal name="Leave Review" />
-            )}
-            {state.user.id === userData.id && (
-              <Link to={`/create-post/${state.user.id}`}>
-                <Button name="Create Post!" />
-              </Link>
-            )}
+              {state.user.id !== userData.id && (
+                <SimpleModal name="Leave Review" />
+              )}
+              {state.user.id === userData.id && (
+                <Link to={`/create-post/${state.user.id}`}>
+                  <Button name="Create Post!" />
+                </Link>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="profile-calendly">
-          <Calendly />
-        </div>
+        ) : (
+          <div className="profile-middle">
+            <h1> About Me!</h1>
+            <div className="profile-middle-standard">
+              Location: {userData.region}, {userData.country}
+            </div>
+            <div className="profile-middle-standard">
+              Gender: {userData.gender}
+            </div>
+            <div className="profile-middle-standard">
+              How I Identify: {userData.identifyAs}
+            </div>
+          </div>
+        )}
+        {userData.type === "Business" ? (
+          <div className="profile-calendly">
+            <Calendly />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       <div className="profile-post">
         {/* <NewsFeedCard
