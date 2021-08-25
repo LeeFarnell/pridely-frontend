@@ -31,8 +31,12 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <div>
+      <div className="dashboard-header">
         <h1>Welcome {userData.currentUser.username}</h1>
+        <img
+          src={userData.currentUser.profilePicture}
+          alt={userData.currentUser.username}
+        />
       </div>
       {followerData.length === 0 ? (
         <h3>
