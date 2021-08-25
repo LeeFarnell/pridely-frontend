@@ -1,0 +1,46 @@
+:root {
+  --SkyBlue: #7bdff2;
+  --Celeste: #b2f7ef;
+  --MintCream: #eff7f6;
+  --PiggyPink: #f7d6e0;
+  --CottonCandy: #f2b5d4;
+}
+
+.button {
+  flex-wrap: wrap;
+  background-color: var(--MintCream);
+  padding: 5px;
+  margin: 2px;
+  margin-right: 0px;
+  border-radius: 5px;
+  color: var(--CottonCandy);
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 1vw;
+  width: 7vw;
+  border: var(--PiggyPink) 2px solid;
+}
+
+.button:hover {
+  background-color: var(--CottonCandy);
+  color: var(--MintCream);
+  text-shadow: black 0.5px 0.5px 0.5px;
+}
+
+@media screen and (max-width: 812px) {
+  .button {
+    width: 26vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    font-size: 2.5vw;
+  }
+}
+@media screen and (max-width: 500px) {
+  .button {
+    width: 95vw;
+    font-size: 3vw;
+    margin-left: 0vw;
+    margin-right: 0vw;
+    margin-bottom: 1vh;
+  }
+}
