@@ -34,7 +34,15 @@ const Dashboard = () => {
       <div>
         <h1>Welcome {userData.currentUser.username}</h1>
       </div>
-      {followerData.length && <Carousel followers={followerData} />}
+      {followerData.length === 0 ? (
+        <h3>
+          Uh oh! Looks like you don't follow anyone! Do a search and follow some
+          businesses!
+        </h3>
+      ) : (
+        followerData.length && <Carousel followers={followerData} />
+      )}
+
       <div>
         <h3>Recent post from people you follow</h3>
         {followerData.map((follower) => {
