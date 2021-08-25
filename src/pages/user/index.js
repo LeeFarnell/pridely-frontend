@@ -113,6 +113,11 @@ const UserProfile = () => {
             <div className="profile-middle-standard">
               How I Identify: {userData.identifyAs}
             </div>
+            {state.user.id === userData.id && (
+              <Link to={`/create-post/${state.user.id}`}>
+                <Button name="Create Post!" />
+              </Link>
+            )}
           </div>
         )}
         {userData.type === "Business" ? (
