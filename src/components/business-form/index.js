@@ -75,7 +75,6 @@ const BusinessForm = (props) => {
             className="business-input"
             type="input"
             placeholder="Have a Calendly account? Enter your Calendly username!"
-            required
             {...register("calendlyUsername", { required: false })}
           ></input>
         </div>
@@ -84,8 +83,7 @@ const BusinessForm = (props) => {
             className="business-input"
             type="url"
             placeholder="Add any Social Media URL*"
-            required
-            {...register("socialMedia", { required: true })}
+            {...register("socialMedia", { required: false })}
           ></input>
         </div>
         <Button name="Submit" type="submit" />
