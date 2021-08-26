@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
+import CircularIndeterminate from "../../components/loading";
 
 import ReviewCard from "../../components/review-card";
 import { GET_REVIEWS } from "../../queries";
@@ -18,7 +19,11 @@ const ViewReviews = () => {
   }
 
   if (loading) {
-    return <div>loading</div>;
+    return (
+      <div className="dashboard-container">
+        <CircularIndeterminate />
+      </div>
+    );
   }
 
   return (

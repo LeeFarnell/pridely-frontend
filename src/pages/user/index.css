@@ -2,20 +2,84 @@
   display: flex;
   justify-content: space-around;
   text-align: center;
-  align-items: center;
   padding: 1vw;
 }
-.profile-card {
+
+.profile-container h1 {
+  margin: 0;
+}
+
+.profile-card,
+.profile-middle {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
-  margin-top: 2vw;
+  align-items: center;
 }
+
+.profile-middle-standard {
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
 .profile-left {
   margin: 1vw;
+  width: 20vw;
 }
 
 .profile-left-all {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+}
+
+.profile-review {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.profile-calendly {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 800px) {
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-left {
+    margin: 1vw;
+    margin-bottom: 5vw;
+    width: 95vw;
+  }
+  .profile-middle {
+    margin: 1vw;
+    margin-bottom: 5vw;
+    width: 95vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-review {
+    flex-direction: column;
+  }
+
+  .profile-calendly {
+    width: 95vw;
+  }
 }

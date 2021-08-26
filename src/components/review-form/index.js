@@ -69,8 +69,9 @@ const ReviewForm = () => {
             {...register("commentBox", { required: true })}
           ></textarea>
         </div>
-
-        <Button name="Submit" type="submit" />
+        <button className="modal-btn" type="submit">
+          Submit
+        </button>
       </div>
     </form>
   );

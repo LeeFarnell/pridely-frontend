@@ -4,6 +4,7 @@ import Carousel from "../../components/carousel";
 import NewsFeedCard from "../../components/newsfeed-card";
 import { useUserContext } from "../../contexts/UserProvider";
 import { DASHBOARD } from "../../queries";
+import CircularIndeterminate from "../../components/loading";
 
 import "./index.css";
 
@@ -14,7 +15,11 @@ const Dashboard = () => {
 
   // if data is loading render this
   if (loading) {
-    return <div>loading</div>;
+    return (
+      <div className="dashboard-container">
+        <CircularIndeterminate />
+      </div>
+    );
   }
 
   // if theres an error render this
@@ -31,10 +36,22 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <div>
+      <div className="dashboard-header">
         <h1>Welcome {userData.currentUser.username}</h1>
+        <img
+          src={userData.currentUser.profilePicture}
+          alt={userData.currentUser.username}
+        />
       </div>
-      {followerData.length && <Carousel followers={followerData} />}
+      {followerData.length === 0 ? (
+        <h3>
+          Uh oh! Looks like you don't follow anyone! Do a search and follow some
+          businesses!
+        </h3>
+      ) : (
+        followerData.length && <Carousel followers={followerData} />
+      )}
+
       <div>
         <h3>Recent post from people you follow</h3>
         {followerData.map((follower) => {

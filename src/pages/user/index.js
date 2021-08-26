@@ -10,6 +10,7 @@ import { useUserContext } from "../../contexts/UserProvider";
 import Button from "../../components/button";
 import NewsFeedCard from "../../components/newsfeed-card";
 import { average } from "../../utils/utilities";
+import CircularIndeterminate from "../../components/loading";
 
 import "./index.css";
 
@@ -24,7 +25,11 @@ const UserProfile = () => {
 
   // if data is loading render this
   if (loading) {
-    return <div>loading</div>;
+    return (
+      <div className="dashboard-container">
+        <CircularIndeterminate />
+      </div>
+    );
   }
 
   // if theres an error render this
@@ -35,6 +40,7 @@ const UserProfile = () => {
   // current user data
   const userData = data.profile.user;
   console.log(data.profile.myFollowers);
+  console.log(userData);
 
   const averageRating = average(
     userData.ratings,
@@ -45,56 +51,87 @@ const UserProfile = () => {
     <>
       <div className="profile-container">
         <div className="profile-left-all">
-          <h1 className="profile-left">{userData.name}</h1>
-          <div className="review-card-container">
-            <div className="review-card-rating">
-              <h3>Rating:{averageRating}/5</h3>
-              <div>
-                <ReactStars
-                  count={5}
-                  edit={false}
-                  value={parseInt(averageRating, 8)}
-                  size={25}
-                  activeColor="#f2b5d4"
-                  isHalf={true}
-                />
-              </div>
+          <h1 className="profile-left">
+            {userData.name} - {userData.pronouns}
+          </h1>
+
+          <div className="profile-left">
+            <Avatar URL={userData.profilePicture} />
+            <div className="profile-review">
+              {state.user.id !== userData.id && (
+                <Link to={`/chat/${userData.id}`}>
+                  <Button name="Chat" />
+                </Link>
+              )}
+              <SimpleModal
+                name="Followers"
+                followersData={data.profile.myFollowers}
+              />
             </div>
           </div>
-          <div className="profile-left">{userData.pronouns}</div>
-          <div className="profile-left">Business info</div>
-          <SimpleModal
-            name="Followers"
-            followersData={data.profile.myFollowers}
-          />
-          {state.user.id !== userData.id && (
-            <Link to={`/chat/${userData.id}`}>
-              <Button name="Chat" />
-            </Link>
-          )}
-          {state.user.id !== userData.id && (
-            <Link to={`/reviews/${userData.id}`}>
-              <Button name="View Reviews" />
-            </Link>
-          )}
+        </div>
+        {userData.type === "Business" ? (
+          <div className="profile-middle">
+            <h1>{userData.businessName}</h1>
+            <div className="profile-left">{userData.businessDescription}</div>
+            <div className="review-card-container">
+              <div className="review-card-rating">
+                <h3>Rating:{averageRating}/5</h3>
+                <div>
+                  <ReactStars
+                    count={5}
+                    edit={false}
+                    value={parseInt(averageRating, 8)}
+                    size={25}
+                    activeColor="#f2b5d4"
+                    isHalf={true}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="profile-review">
+              <Link to={`/reviews/${userData.id}`}>
+                <Button name="View Reviews" />
+              </Link>
 
-          {state.user.id !== userData.id && <SimpleModal name="Leave Review" />}
-
-          {state.user.id === userData.id && (
-            <Link to={`/create-post/${state.user.id}`}>
-              <Button name="Create Post!" />
-            </Link>
-          )}
-        </div>
-        <div>
-          <Avatar URL="https://pbs.twimg.com/profile_images/1290710495465541633/BhrDfujl_400x400.jpg" />
-          <SimpleModal name="Contact Me" />
-        </div>
-        <div>
-          <Calendly />
-        </div>
+              {state.user.id !== userData.id && (
+                <SimpleModal name="Leave Review" />
+              )}
+              {state.user.id === userData.id && (
+                <Link to={`/create-post/${state.user.id}`}>
+                  <Button name="Create Post!" />
+                </Link>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="profile-middle">
+            <h1> About Me!</h1>
+            <div className="profile-middle-standard">
+              Location: {userData.region}, {userData.country}
+            </div>
+            <div className="profile-middle-standard">
+              Gender: {userData.gender}
+            </div>
+            <div className="profile-middle-standard">
+              How I Identify: {userData.identifyAs}
+            </div>
+            {state.user.id === userData.id && (
+              <Link to={`/create-post/${state.user.id}`}>
+                <Button name="Create Post!" />
+              </Link>
+            )}
+          </div>
+        )}
+        {userData.type === "Business" ? (
+          <div className="profile-calendly">
+            <Calendly />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
-      <div className="profile-card">
+      <div className="profile-post">
         {/* <NewsFeedCard
           title="Hello"
           body="Welcome to my first post!"

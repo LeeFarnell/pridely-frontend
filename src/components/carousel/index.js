@@ -21,6 +21,7 @@ SwiperCore.use([Autoplay, Navigation, Pagination, EffectCoverflow]);
 const Carousel = (props) => {
   // destructuring followers array from props
   const { followers } = props;
+  console.log(followers);
 
   // map through followers array and render a component
   const followMap = followers.map((follower) => {
@@ -30,9 +31,9 @@ const Carousel = (props) => {
         {follower && (
           <div className="slide-containter" key={follower.id}>
             <div className="avatar-carousel">
-              <Avatar URL="https://filmschoolrejects.com/wp-content/uploads/2018/10/avatar-last-airbender-episodes-ranked.jpg" />
+              <Avatar URL={follower.profilePicture} />
             </div>
-            <div className="user-card-info">{follower.name}</div>
+            <div className="user-card-info">{follower.username}</div>
             <div className="user-card-info">
               Category: {follower.businessType}
             </div>

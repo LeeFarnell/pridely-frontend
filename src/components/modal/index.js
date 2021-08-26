@@ -5,13 +5,11 @@ import Button from "../button";
 import Followers from "../followers";
 import ReviewForm from "../review-form";
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
+import "./index.css";
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = 50;
+  const left = 50;
 
   return {
     top: `${top}%`,
@@ -23,7 +21,7 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
-    width: 400,
+    width: 250,
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
@@ -53,7 +51,7 @@ const SimpleModal = (props) => {
     if (props.name === "Followers") {
       return followersData.length > 0 ? (
         <div style={modalStyle} className={classes.paper}>
-          <h2 id="simple-modal-title">Followers</h2>
+          <h3 id="simple-modal-title">Followers</h3>
           {followersData.map((follower) => {
             return (
               <Followers
@@ -64,7 +62,10 @@ const SimpleModal = (props) => {
             );
           })}
           <div id="simple-modal-description"></div>
-          <Button onClick={handleClose} name="Close" />
+          <button onClick={handleClose} className="modal-btn">
+            {" "}
+            Close{" "}
+          </button>
         </div>
       ) : (
         <div style={modalStyle} className={classes.paper}>
@@ -74,22 +75,28 @@ const SimpleModal = (props) => {
     } else if (props.name === "Leave Review") {
       return (
         <div style={modalStyle} className={classes.paper}>
-          <h2 id="simple-modal-title">Leave A Review</h2>
+          <h3 id="simple-modal-title">Leave A Review</h3>
           <div id="simple-modal-description">
             If you enjoyed our services, leave us a review!
           </div>
           <ReviewForm />
-          <Button onClick={handleClose} name="Close" />
+          <button onClick={handleClose} className="modal-btn">
+            {" "}
+            Close{" "}
+          </button>
         </div>
       );
     } else {
       return (
         <div style={modalStyle} className={classes.paper}>
-          <h2 id="simple-modal-title">Text in a modal</h2>
+          <h3 id="simple-modal-title">Text in a modal</h3>
           <div id="simple-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </div>
-          <Button onClick={handleClose} name="Close" />
+          <button onClick={handleClose} className="modal-btn">
+            {" "}
+            Close{" "}
+          </button>
         </div>
       );
     }

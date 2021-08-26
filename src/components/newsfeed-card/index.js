@@ -18,7 +18,7 @@ const NewsFeedCard = ({ postId, title, body, likes, postedBy, isLiked }) => {
   console.log(isLiked);
 
   return (
-    <div>
+    <div className="news-feed-card">
       <div className="news-feed-title">
         <div>{title}</div>
         <div>
