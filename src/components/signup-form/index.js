@@ -30,8 +30,10 @@ const SignUpForm = (props) => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
     control,
   } = useForm();
+  console.log(errors);
 
   const [signup] = useMutation(SIGNUP, {
     onCompleted: (data) => {
@@ -61,17 +63,29 @@ const SignUpForm = (props) => {
   // function to be run on submission of the form
   const onSubmit = async ({ confirmPassword, ...rest }) => {
     try {
-      console.log(imageUrl);
-      await signup({
-        variables: {
-          signupInput: { ...rest, profilePicture: imageUrl },
-        },
-      });
-      //if user type is business, the user will be prompted with a form to add his business details
-      if (rest.type === "Business") {
-        window.location.replace("/business-signup");
+      if (!country) {
+        setError("country", {
+          type: "manual",
+          message: "Please select a country",
+        });
+      } else if (!imageUrl) {
+        setError("profilePicture", {
+          type: "manual",
+          message: "Please upload a profile picture",
+        });
       } else {
-        window.location.replace("/dashboard");
+        console.log(imageUrl);
+        await signup({
+          variables: {
+            signupInput: { ...rest, profilePicture: imageUrl },
+          },
+        });
+        //if user type is business, the user will be prompted with a form to add his business details
+        if (rest.type === "Business") {
+          window.location.replace("/business-signup");
+        } else {
+          window.location.replace("/dashboard");
+        }
       }
     } catch (error) {
       console.error(error.message);
@@ -104,6 +118,7 @@ const SignUpForm = (props) => {
             placeholder="Full Name*"
             {...register("name", { required: true })}
           ></input>
+          {errors?.name && <p>Name is Required!</p>}
         </div>
         <div>
           <input
@@ -111,6 +126,7 @@ const SignUpForm = (props) => {
             placeholder="Username*"
             {...register("username", { required: true })}
           ></input>
+          {errors?.username && <p>Username is Required!</p>}
         </div>
         <div>
           <input
@@ -119,6 +135,7 @@ const SignUpForm = (props) => {
             placeholder="Email Address*"
             {...register("email", { required: true })}
           ></input>
+          {errors?.email && <p>Email is Required!</p>}
         </div>
         <div>
           <input
@@ -127,6 +144,7 @@ const SignUpForm = (props) => {
             placeholder="Password*"
             {...register("password", { required: true })}
           ></input>
+          {errors?.password && <p>Password is Required!</p>}
         </div>
         <div>
           <input
@@ -135,6 +153,7 @@ const SignUpForm = (props) => {
             placeholder="Confirm Password*"
             {...register("confirmPassword", { required: true })}
           ></input>
+          {errors?.confirmPassword && <p>Please confirm your Password!</p>}
         </div>
         <Controller
           control={control}
@@ -150,6 +169,7 @@ const SignUpForm = (props) => {
             />
           )}
         />
+        {errors?.country && <p>Country is Required!</p>}
         <Controller
           control={control}
           name="region"
@@ -165,6 +185,7 @@ const SignUpForm = (props) => {
             />
           )}
         />
+        {errors?.region && <p>Region is Required!</p>}
         <div>
           <input
             className="signup-input"
@@ -231,6 +252,7 @@ const SignUpForm = (props) => {
             setImageUrl={setImageUrl}
             setImages={setImages}
           />
+          {errors?.profilePicture && <p>Profile Picture is Required!</p>}
         </div>
         <Button name="Sign Up" type="submit" />
       </div>

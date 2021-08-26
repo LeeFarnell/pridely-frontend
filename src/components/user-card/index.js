@@ -12,7 +12,6 @@ import "./index.css";
 const UserCard = ({ result }) => {
   const { state } = useUserContext();
 
-  console.log(state.user.id);
   return (
     <div className="user-card-container">
       <div>

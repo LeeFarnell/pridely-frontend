@@ -30,7 +30,8 @@ const SearchBar = (props) => {
         type: "SEARCH",
         payload,
       });
-      history.push("/search");
+
+      state.user ? history.push("/search") : history.push("/login");
     } catch (error) {
       console.error(error.message);
     }
@@ -79,13 +80,13 @@ const SearchBar = (props) => {
               />
             )}
           />
-
           <Controller
             control={control}
             name="region"
             render={({ field: { onChange, onBlur, value, name, ref } }) => (
               <RegionDropdown
                 className="searchbar-input"
+                disableWhenEmpty={true}
                 country={country}
                 value={region}
                 onChange={(data) => {

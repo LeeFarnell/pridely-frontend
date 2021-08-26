@@ -27,6 +27,7 @@ const BusinessForm = (props) => {
           editBusinessUserInput: formData,
         },
       });
+      console.log(formData);
       window.location.replace("/dashboard");
     } catch (error) {
       console.error(error.message);
@@ -48,10 +49,23 @@ const BusinessForm = (props) => {
             className="signup-input"
             {...register("businessType", { required: true })}
           >
-            <option value="Photo">Photography</option>
+            <option value="Animation">Animation</option>
             <option value="Art">Art</option>
-            <option value="Music">Music</option>
+            <option value="Crafts">Crafts</option>
             <option value="Dance">Dance</option>
+            <option value="Event Planning">Event Planning</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Film/Video">Film/Video</option>
+            <option value="Graphic Design">Graphic Design</option>
+            <option value="Hair/Make Up">Hair/Make Up</option>
+            <option value="Illustration">Illustration</option>
+            <option value="Interior Design">Interior Design</option>
+            <option value="Music">Music</option>
+            <option value="Photography">Photography</option>
+            <option value="Product Design">Product Design</option>
+            <option value="Web Design">Web Design</option>
+            <option value="Writing">Writing</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div>

@@ -39,6 +39,8 @@ const UserProfile = () => {
   // current user data
   const userData = data.profile.user;
 
+  console.log(userData);
+
   return (
     <>
       <div className="profile-container">
@@ -117,7 +119,7 @@ const UserProfile = () => {
         )}
         {userData.type === "Business" ? (
           <div className="profile-calendly">
-            <Calendly />
+            <Calendly calendly={userData.calendlyUsername} />
           </div>
         ) : (
           <></>

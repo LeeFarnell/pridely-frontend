@@ -60,6 +60,7 @@ const EDIT_BUSINESS_USER = gql`
         id
         username
         businessName
+        calendlyUsername
         createdAt
         pronouns
       }
