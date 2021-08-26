@@ -47,9 +47,9 @@ const ReviewForm = () => {
           className="review-input"
           {...register("serviceUsed", { required: true })}
         >
-          <option value="Service One">Service One</option>
-          <option value="Service Two">Service Two</option>
-          <option value="Service Three">Service Three</option>
+          <option value="Service One">Professionalism</option>
+          <option value="Service Two">Quality of Service</option>
+          <option value="Service Three">Punctuality</option>
         </select>
         <select
           className="review-input"

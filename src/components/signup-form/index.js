@@ -30,6 +30,7 @@ const SignUpForm = (props) => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
     control,
   } = useForm();
   console.log(errors);
@@ -62,17 +63,29 @@ const SignUpForm = (props) => {
   // function to be run on submission of the form
   const onSubmit = async ({ confirmPassword, ...rest }) => {
     try {
-      console.log(imageUrl);
-      await signup({
-        variables: {
-          signupInput: { ...rest, profilePicture: imageUrl },
-        },
-      });
-      //if user type is business, the user will be prompted with a form to add his business details
-      if (rest.type === "Business") {
-        window.location.replace("/business-signup");
+      if (!country) {
+        setError("country", {
+          type: "manual",
+          message: "Please select a country",
+        });
+      } else if (!imageUrl) {
+        setError("profilePicture", {
+          type: "manual",
+          message: "Please upload a profile picture",
+        });
       } else {
-        window.location.replace("/dashboard");
+        console.log(imageUrl);
+        await signup({
+          variables: {
+            signupInput: { ...rest, profilePicture: imageUrl },
+          },
+        });
+        //if user type is business, the user will be prompted with a form to add his business details
+        if (rest.type === "Business") {
+          window.location.replace("/business-signup");
+        } else {
+          window.location.replace("/dashboard");
+        }
       }
     } catch (error) {
       console.error(error.message);
