@@ -36,10 +36,10 @@ const UserProfile = () => {
     return <div>error</div>;
   }
 
-  console.log(data.profile.user.calendlyUsername);
-
   // current user data
   const userData = data.profile.user;
+
+  console.log(userData);
 
   return (
     <>
@@ -119,7 +119,7 @@ const UserProfile = () => {
         )}
         {userData.type === "Business" ? (
           <div className="profile-calendly">
-            <Calendly />
+            <Calendly calendly={userData.calendlyUsername} />
           </div>
         ) : (
           <></>

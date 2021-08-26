@@ -16,13 +16,14 @@ class Calendly extends Component {
   componentWillUnmount() {
     // whatever you need to cleanup the widgets code
   }
-  render() {
+  render(props) {
+    console.log(this.props);
     return (
       <div>
         <div id="schedule_form">
           <div
             className="calendly-inline-widget"
-            data-url="https://calendly.com/mcratesy/"
+            data-url={`https://calendly.com/${this.props.calendly}`}
             style={{ minWidth: "300px", maxWidth: "400px", height: "500px" }}
           />
         </div>

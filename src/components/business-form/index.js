@@ -27,6 +27,7 @@ const BusinessForm = (props) => {
           editBusinessUserInput: formData,
         },
       });
+      console.log(formData);
       window.location.replace("/dashboard");
     } catch (error) {
       console.error(error.message);
