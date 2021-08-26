@@ -47,8 +47,6 @@ const SimpleModal = (props) => {
 
   const { followersData } = props;
 
-  console.log("here", followersData);
-
   const renderBody = () => {
     if (props.name === "Followers") {
       return followersData.length > 0 ? (

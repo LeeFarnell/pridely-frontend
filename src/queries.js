@@ -5,31 +5,53 @@ const DASHBOARD = gql`
     dashboard {
       currentUser {
         id
+        name
         username
+        type
+        email
         profilePicture
+        businessType
+        businessDescription
+        averageRating
       }
       followers {
         id
         username
-        posts {
-          postedBy
-          title
-          subtitle
-          mainText
-          image
-          badges
-          url
-          createdAt
+        name
+        profilePicture
+        businessType
+        businessDescription
+        averageRating
+      }
+      posts {
+        _id
+        postedBy {
+          username
+          name
+        }
+        title
+        subtitle
+        mainText
+        image
+        likes {
+          name
+          username
+          email
+        }
+        url
+        createdAt
+        comments {
           _id
-          likes {
+          commentPostedBy {
             id
             name
             username
+            type
           }
+          postId
+          commentText
+          createdAt
         }
-        profilePicture
-        businessType
-        ratings
       }
     }
   }
@@ -51,25 +73,39 @@ const PROFILE = gql`
         businessType
         businessDescription
         ratings
+
         createdAt
         age
         gender
         identifyAs
         pronouns
+        averageRating
         posts {
           _id
-          postedBy
           title
           subtitle
           mainText
           image
-          badges
           likes {
             id
             name
             username
           }
           createdAt
+          comments {
+            _id
+            postId
+            commentText
+            createdAt
+            commentPostedBy {
+              name
+              username
+              type
+              email
+              profilePicture
+              id
+            }
+          }
         }
       }
       myFollowers {
@@ -80,12 +116,16 @@ const PROFILE = gql`
         businessName
         businessType
         ratings
+        averageRating
       }
       comments {
         _id
+        commentPostedBy {
+          name
+          username
+        }
         postId
         commentText
-        commentPostedBy
         createdAt
       }
     }
@@ -111,6 +151,7 @@ const BUSINESS_SEARCH = gql`
       businessType
       businessDescription
       ratings
+      averageRating
     }
   }
 `;
