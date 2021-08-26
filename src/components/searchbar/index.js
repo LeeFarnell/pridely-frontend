@@ -79,13 +79,13 @@ const SearchBar = (props) => {
               />
             )}
           />
-
           <Controller
             control={control}
             name="region"
             render={({ field: { onChange, onBlur, value, name, ref } }) => (
               <RegionDropdown
                 className="searchbar-input"
+                disableWhenEmpty={true}
                 country={country}
                 value={region}
                 onChange={(data) => {
