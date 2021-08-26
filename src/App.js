@@ -16,7 +16,7 @@ import "./App.css";
 
 const httpLink = createHttpLink({
   // uri: process.env.GRAPHQL_URL || "http://localhost:4000/graphql",
-  uri: "/graphql",
+  uri: "https://calm-dusk-10998.herokuapp.com/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
