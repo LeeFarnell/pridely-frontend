@@ -73,7 +73,7 @@ const PROFILE = gql`
         businessType
         businessDescription
         ratings
-
+        calendlyUsername
         createdAt
         age
         gender

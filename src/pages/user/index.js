@@ -36,6 +36,8 @@ const UserProfile = () => {
     return <div>error</div>;
   }
 
+  console.log(data.profile.user.calendlyUsername);
+
   // current user data
   const userData = data.profile.user;
 
