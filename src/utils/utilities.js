@@ -1,9 +1,9 @@
-const average = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length;
+const truncateString = (str, num) => {
+  if (str.length > num) {
+    return str.slice(0, num) + "...";
+  } else {
+    return str;
+  }
+};
 
-// const average = (arr) => {
-//   arr.reduce((number) => {
-//     number+= / length;
-//   });
-// };
-
-export { average };
+export { truncateString };

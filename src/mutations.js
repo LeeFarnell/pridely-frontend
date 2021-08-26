@@ -103,7 +103,10 @@ const SEND_MESSAGE = gql`
 const CREATE_POST = gql`
   mutation Mutation($createNewPostInput: CreatePostInput) {
     createNewPost(input: $createNewPostInput) {
-      postedBy
+      postedBy {
+        username
+        name
+      }
       title
       subtitle
       mainText
@@ -130,18 +133,35 @@ const LIKE_POST = gql`
   mutation Mutation($likeAPostPostId: ID!) {
     likeAPost(postId: $likeAPostPostId) {
       _id
-      postedBy
+      postedBy {
+        id
+        username
+        name
+      }
       title
       likes {
         id
         name
         username
-        posts {
-          _id
-          postedBy
-          title
-        }
+        # posts {
+        #   _id
+        #   postedBy {
+        #     username
+        #     name
+        #   }
+        #   title
+        # }
       }
+    }
+  }
+`;
+
+const FOLLOW_USER = gql`
+  mutation Mutation($followUserUserId: ID!) {
+    followUser(userId: $followUserUserId) {
+      id
+      followerId
+      businessId
     }
   }
 `;
@@ -154,4 +174,5 @@ export {
   CREATE_POST,
   LEAVE_REVIEW,
   LIKE_POST,
+  FOLLOW_USER,
 };

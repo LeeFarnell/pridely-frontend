@@ -28,56 +28,49 @@ const Dashboard = () => {
   }
 
   // current user data
-  const userData = data.dashboard;
-
-  // console.log(userData.followers[0].posts[0].likes);
-
-  const followerData = userData.followers;
+  const userData = data.dashboard.currentUser;
+  const followersData = data.dashboard.followers;
+  const postsData = data.dashboard.posts;
 
   return (
     <div className="dashboard-container">
-      <div className="dashboard-header">
-        <h1>Welcome {userData.currentUser.username}</h1>
-        <img
-          src={userData.currentUser.profilePicture}
-          alt={userData.currentUser.username}
-        />
+      <div>
+        <h1>Welcome {userData.username}</h1>
       </div>
-      {followerData.length === 0 ? (
-        <h3>
-          Uh oh! Looks like you don't follow anyone! Do a search and follow some
-          businesses!
-        </h3>
+      {/* if the user follows people, render the careosel with their data, else render a message */}
+      {followersData.length ? (
+        <Carousel followers={followersData} />
       ) : (
-        followerData.length && <Carousel followers={followerData} />
+        <div>
+          Once you follow a few users you will see a carousel of cards
+          containing data, here
+        </div>
       )}
-
       <div>
         <h3>Recent post from people you follow</h3>
-        {followerData.map((follower) => {
-          return follower.posts.map((post) => {
-            const postTitle = post.title;
-            const postBody = post.mainText;
-            const postLikes = post.likes;
-            const postPostedBy = follower.username;
+        {/* map through array of posts and render a newsfeed card with desired data for every post */}
+        {postsData.map((post) => {
+          const postTitle = post.title;
+          const postBody = post.mainText;
+          const postLikes = post.likes.length;
+          const postPostedBy = post.postedBy.username;
 
-            console.log(post.likes);
+          const isLikedByUser = post.likes.findIndex(
+            (like) => like.email === state.user.email
+          );
 
-            const isLiked = post.likes.findIndex(
-              (like) => like._id === state.user._id
-            );
-
-            return (
-              <NewsFeedCard
-                postId={post._id}
-                title={postTitle}
-                body={postBody}
-                likes={postLikes.length}
-                postedBy={postPostedBy}
-                isLiked={isLiked}
-              />
-            );
-          });
+          return (
+            <NewsFeedCard
+              key={post._id}
+              postId={post._id}
+              title={postTitle}
+              body={postBody}
+              likes={postLikes}
+              postedBy={postPostedBy}
+              isLiked={isLikedByUser}
+              comments={post.comments}
+            />
+          );
         })}
       </div>
     </div>

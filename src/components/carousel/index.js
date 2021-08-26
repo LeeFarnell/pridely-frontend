@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import Avatar from "../avatar";
 import Button from "../button";
-import { average } from "../../utils/utilities";
+import { truncateString } from "../../utils/utilities";
 
 import SwiperCore, {
   Autoplay,
@@ -25,7 +25,6 @@ const Carousel = (props) => {
 
   // map through followers array and render a component
   const followMap = followers.map((follower) => {
-    // console.log(average(follower.ratings));
     return (
       <SwiperSlide key={follower.id}>
         {follower && (
@@ -33,14 +32,24 @@ const Carousel = (props) => {
             <div className="avatar-carousel">
               <Avatar URL={follower.profilePicture} />
             </div>
-            <div className="user-card-info">{follower.username}</div>
-            <div className="user-card-info">
-              Category: {follower.businessType}
-            </div>
-            <div className="user-card-info">{follower.businessDescription}</div>
-            {isNaN(follower.ratings) ? (
+            <div className="user-card-info">{follower.name}</div>
+            {follower.businessType ? (
+              <div className="user-card-info">
+                Category: {follower.businessType}
+              </div>
+            ) : (
+              <div>No category available</div>
+            )}
+            {follower.businessDescription ? (
+              <div className="user-card-info">
+                {truncateString(follower.businessDescription, 100)}
+              </div>
+            ) : (
+              <div>No business description available</div>
+            )}
+            {follower.ratings ? (
               <div className="user-card-bottom">
-                Rating: {average(follower.ratings).toFixed(1)}
+                Rating: {follower.averageRating}
               </div>
             ) : (
               <div>No rating to display</div>

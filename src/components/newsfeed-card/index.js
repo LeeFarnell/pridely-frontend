@@ -1,22 +1,26 @@
 import { useMutation } from "@apollo/client";
 
-import { useUserContext } from "../../contexts/UserProvider";
 import NewsFeedComment from "../newsfeed-comments";
 import LikeButton from "../like-button";
 
 import "./index.css";
 import { LIKE_POST } from "../../mutations";
 
-const NewsFeedCard = ({ postId, title, body, likes, postedBy, isLiked }) => {
+const NewsFeedCard = ({
+  postId,
+  title,
+  body,
+  likes,
+  postedBy,
+  isLiked,
+  comments,
+}) => {
   const [likeAPost] = useMutation(LIKE_POST, {
     onCompleted: () => {},
     onerror: () => {
       throw new Error("something went wrong");
     },
   });
-
-  console.log(isLiked);
-
   return (
     <div className="news-feed-card">
       <div className="news-feed-title">
@@ -33,18 +37,36 @@ const NewsFeedCard = ({ postId, title, body, likes, postedBy, isLiked }) => {
             <LikeButton
               name="Like"
               onClick={async () => {
-                await likeAPost({
-                  variables: {
-                    likeAPostPostId: postId,
-                  },
-                });
+                try {
+                  await likeAPost({
+                    variables: {
+                      likeAPostPostId: postId,
+                    },
+                  });
+                } catch (error) {
+                  console.error(error.message);
+                }
               }}
             />
           )}
         </span>
       </div>
 
-      {/* <NewsFeedComment username="bobsmith101" comment="This looks great!" /> */}
+      {/* if there are comments for post display them, else display a message */}
+      {comments ? (
+        comments.map((comment) => {
+          return (
+            <div>
+              <NewsFeedComment
+                username={comment.commentPostedBy.username}
+                comment={comment.commentText}
+              />
+            </div>
+          );
+        })
+      ) : (
+        <div>No comments to display</div>
+      )}
     </div>
   );
 };

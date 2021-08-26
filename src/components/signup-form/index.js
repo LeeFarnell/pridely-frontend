@@ -15,7 +15,10 @@ import "./index.css";
 const SignUpForm = (props) => {
   // hooks
   let history = useHistory();
-  const [currentType, setCurrentType] = useState("standard");
+  // const [currentType, setCurrentType] = useState("standard");
+  // const [genderChoice, setGenderChoice] = useState();
+  // const [identifyAs, setIdentifyAs] = useState();
+  // const [pronounChoice, setPronounChoice] = useState();
   const [country, setCountry] = useState();
   const [region, setRegion] = useState();
   const [images, setImages] = useState([]);
@@ -87,8 +90,8 @@ const SignUpForm = (props) => {
           Please select your user type:
           <select
             className="signup-input"
-            defaultValue={currentType}
-            onChange={setCurrentType}
+            // defaultValue={currentType}
+            // onChange={setCurrentType}
             {...register("type", { required: true })}
           >
             <option value="Standard">Standard</option>
@@ -171,25 +174,55 @@ const SignUpForm = (props) => {
           ></input>
         </div>
         <div>
-          <input
-            className="signup-input"
+          <select
             placeholder="Gender"
+            className="signup-input"
+            // defaultValue={genderChoice}
+            // onChange={setGenderChoice}
             {...register("gender", { required: false })}
-          ></input>
+          >
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Non-Binary">Non-Binary</option>
+            <option value="Genderqueer">Genderqueer</option>
+            <option value="Genderfluid">Genderfluid</option>
+            <option value="Omigender">Omigender</option>
+            <option value="Agender">Agender</option>
+          </select>
         </div>
         <div>
-          <input
-            className="signup-input"
+          <select
             placeholder="Identify As"
+            className="signup-input"
+            // defaultValue={identifyAs}
+            // onChange={setIdentifyAs}
             {...register("identifyAs", { required: false })}
-          ></input>
+          >
+            <option value="Lesbian">Lesbian</option>
+            <option value="Gay">Gay</option>
+            <option value="Bisexual">Bisexual</option>
+            <option value="Trans">Trans</option>
+            <option value="Queer">Queer</option>
+            <option value="Intersex">Intersex</option>
+            <option value="Asexual">Asexual</option>
+            <option value="Pansexual">Pansexual</option>
+            <option value="Straight">Straight</option>
+          </select>
         </div>
         <div>
-          <input
-            className="signup-input"
+          <select
             placeholder="Pronouns"
+            className="signup-input"
+            // defaultValue={pronounChoice}
+            // onChange={setPronounChoice}
             {...register("pronouns", { required: false })}
-          ></input>
+          >
+            <option value="He/Him">He/Him</option>
+            <option value="She/Her">She/Her</option>
+            <option value="They/Them">They/Them</option>
+            <option value="Xe/Xim">Xe/Xim</option>
+            <option value="Zi/Zir">Zi/Zir</option>
+          </select>
         </div>
         <div>
           <ImageUpload
