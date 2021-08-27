@@ -15,6 +15,7 @@
   border-radius: 10px;
   width: 60vw;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .news-feed-title {
@@ -61,6 +62,11 @@
   line-height: 1.4em;
   padding: 5px 8px;
   transition: background-color 0.2s ease 0s;
+}
+
+.add-comment-btn {
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (max-width: 500px) {

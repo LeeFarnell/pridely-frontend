@@ -6,6 +6,7 @@ import { LIKE_POST, CREATE_COMMENT } from "../../mutations";
 import NewsFeedComment from "../newsfeed-comments";
 import LikeButton from "../like-button";
 import Button from "../button";
+import SimpleAccordion from "../comments-accordion";
 
 import "./index.css";
 
@@ -88,31 +89,18 @@ const NewsFeedCard = ({
       </div>
 
       <div>
-        {" "}
-        {/* if there are comments for post display them, else display a message */}
-        {comments ? (
-          comments.map((comment) => {
-            if (comment.postId === postId) {
-              return (
-                <NewsFeedComment
-                  username={comment.commentPostedBy.username}
-                  comment={comment.commentText}
-                />
-              );
-            }
-          })
-        ) : (
-          <div>No comments to display</div>
-        )}
+        <SimpleAccordion comments={comments} postId={postId} />
       </div>
-      {/* <CommentButton name="Add a Comment" /> */}
+
       {!showCommentInput && (
-        <Button
-          name="Add comment"
-          onClick={() => {
-            setShowCommentInput(true);
-          }}
-        />
+        <div className="add-comment-btn">
+          <Button
+            name="Add comment"
+            onClick={() => {
+              setShowCommentInput(true);
+            }}
+          />
+        </div>
       )}
       <div>
         {showCommentInput && (
