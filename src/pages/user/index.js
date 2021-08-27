@@ -74,12 +74,12 @@ const UserProfile = () => {
             <div className="profile-left">{userData.businessDescription}</div>
             <div className="review-card-container">
               <div className="review-card-rating">
-                <h3>Rating:{userData.averageRating}/5</h3>
+                <h3>Rating:{5}/5</h3>
                 <div>
                   <ReactStars
                     count={5}
                     edit={false}
-                    value={userData.averageRating}
+                    value={5}
                     size={25}
                     activeColor="#f2b5d4"
                     isHalf={true}
