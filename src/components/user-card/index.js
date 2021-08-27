@@ -15,7 +15,10 @@ const UserCard = ({ result }) => {
   return (
     <div className="user-card-container">
       <div>
-        <Avatar URL={`${result.profilePicture}`} />
+        <Avatar
+          URL={`${result.profilePicture}`}
+          alt={`avatar image of ${result.businessName}`}
+        />
       </div>
       <div className="user-card-info">{result.businessName}</div>
       <div className="user-card-info">Category: {result.businessType}</div>

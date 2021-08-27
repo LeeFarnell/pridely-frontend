@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../../contexts/UserProvider";
+import { useHistory } from "react-router-dom";
 
 import Button from "../button";
 import SearchBar from "../searchbar";
@@ -10,11 +11,13 @@ import "./index.css";
 const Navbar = (props) => {
   const { state, dispatch } = useUserContext();
 
+  const history = useHistory();
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("id_token");
     dispatch({ type: "LOGOUT" });
-    window.location.replace("/");
+    history.push(`/`);
   };
 
   return (

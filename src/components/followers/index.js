@@ -8,7 +8,10 @@ const Followers = (props) => {
   return (
     <div className="followers-container">
       <div className="follower">
-        <Avatar URL={props.profilePicture} />
+        <Avatar
+          URL={props.profilePicture}
+          alt={`avatar image of ${props.username}`}
+        />
         <div>{props.username}</div>
       </div>
     </div>

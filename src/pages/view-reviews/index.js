@@ -27,17 +27,20 @@ const ViewReviews = () => {
   }
 
   return (
-    <div className="review-page-cards">
-      {data.getReviews.map((review) => {
-        return (
-          <ReviewCard
-            comment={review.commentBox}
-            serviceUsed={review.serviceUsed}
-            rating={review.rating}
-            writtenBy={review.username.username}
-          />
-        );
-      })}
+    <div className="reviews-page-container">
+      <h1>Reviews</h1>
+      <div className="review-page-cards">
+        {data.getReviews.map((review) => {
+          return (
+            <ReviewCard
+              comment={review.commentBox}
+              serviceUsed={review.serviceUsed}
+              rating={review.rating}
+              writtenBy={review.username.username}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -14,7 +14,7 @@ import "./index.css";
 
 const SignUpForm = (props) => {
   // hooks
-  let history = useHistory();
+  const history = useHistory();
 
   const [country, setCountry] = useState();
   const [region, setRegion] = useState();
@@ -49,7 +49,7 @@ const SignUpForm = (props) => {
         payload,
       });
 
-      const { token, user } = data.signup;
+      const { token } = data.signup;
       Auth.login(token);
     },
     onError: () => {
@@ -71,7 +71,6 @@ const SignUpForm = (props) => {
           message: "Please upload a profile picture",
         });
       } else {
-        console.log(imageUrl);
         await signup({
           variables: {
             signupInput: { ...rest, profilePicture: imageUrl },
@@ -79,9 +78,9 @@ const SignUpForm = (props) => {
         });
         //if user type is business, the user will be prompted with a form to add his business details
         if (rest.type === "Business") {
-          window.location.replace("/business-signup");
+          history.push("/business-signup");
         } else {
-          window.location.replace("/dashboard");
+          history.push("/dashboard");
         }
       }
     } catch (error) {

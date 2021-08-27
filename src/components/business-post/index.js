@@ -12,11 +12,7 @@ import "./index.css";
 const BusinessPost = () => {
   const { state } = useUserContext();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const history = useHistory();
 

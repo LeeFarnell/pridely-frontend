@@ -21,7 +21,6 @@ SwiperCore.use([Autoplay, Navigation, Pagination, EffectCoverflow]);
 const Carousel = (props) => {
   // destructuring followers array from props
   const { followers } = props;
-  console.log(followers);
 
   // map through followers array and render a component
   const followMap = followers.map((follower) => {
@@ -30,7 +29,10 @@ const Carousel = (props) => {
         {follower && (
           <div className="slide-containter" key={follower.id}>
             <div className="avatar-carousel">
-              <Avatar URL={follower.profilePicture} />
+              <Avatar
+                URL={follower.profilePicture}
+                alt={`avatar image of ${follower.username}`}
+              />
             </div>
             <div className="user-card-info">{follower.name}</div>
             {follower.businessType ? (

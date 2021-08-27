@@ -49,7 +49,10 @@ const UserProfile = () => {
           </h1>
 
           <div className="profile-left">
-            <Avatar URL={userData.profilePicture} />
+            <Avatar
+              URL={userData.profilePicture}
+              alt={`avatar image of ${userData.username}`}
+            />
             <div className="profile-review">
               {/* render the chat button only if you're viewing other users profile */}
               {state.user.id !== userData.id && (
