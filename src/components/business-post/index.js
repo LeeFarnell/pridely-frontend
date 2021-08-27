@@ -9,14 +9,13 @@ import { useUserContext } from "../../contexts/UserProvider";
 
 import "./index.css";
 
-const BusinessPost = (props) => {
+const BusinessPost = () => {
   const { state } = useUserContext();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    control,
   } = useForm();
 
   const history = useHistory();

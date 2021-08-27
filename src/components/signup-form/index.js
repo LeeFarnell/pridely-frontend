@@ -15,10 +15,7 @@ import "./index.css";
 const SignUpForm = (props) => {
   // hooks
   let history = useHistory();
-  // const [currentType, setCurrentType] = useState("standard");
-  // const [genderChoice, setGenderChoice] = useState();
-  // const [identifyAs, setIdentifyAs] = useState();
-  // const [pronounChoice, setPronounChoice] = useState();
+
   const [country, setCountry] = useState();
   const [region, setRegion] = useState();
   const [images, setImages] = useState([]);
