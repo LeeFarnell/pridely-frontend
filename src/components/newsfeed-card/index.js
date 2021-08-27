@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { LIKE_POST, CREATE_COMMENT } from "../../mutations";
-import NewsFeedComment from "../newsfeed-comments";
 import LikeButton from "../like-button";
 import Button from "../button";
 import SimpleAccordion from "../comments-accordion";

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useUserContext } from "../../contexts/UserProvider";
 import { truncateString } from "../../utils/utilities";
 import Avatar from "../avatar";
 import Button from "../button";
@@ -10,8 +9,6 @@ import FollowButton from "../follow-button";
 import "./index.css";
 
 const UserCard = ({ result, isFollowing }) => {
-  const { state } = useUserContext();
-
   return (
     <div className="user-card-container">
       <div>

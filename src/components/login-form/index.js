@@ -40,7 +40,7 @@ const LoginForm = (props) => {
 
       history.push("/dashboard");
 
-      const { token, user } = data.login;
+      const { token } = data.login;
       Auth.login(token);
     },
     onerror: (error) => {

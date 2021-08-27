@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 
 import CircularIndeterminate from "../../components/loading";
 import UserCard from "../../components/user-card";
@@ -10,7 +9,7 @@ import { BUSINESS_SEARCH } from "../../queries";
 import "./index.css";
 
 const Search = (props) => {
-  const { state, dispatch } = useUserContext();
+  const { state } = useUserContext();
 
   const { data, error, loading } = useQuery(BUSINESS_SEARCH, {
     variables: {

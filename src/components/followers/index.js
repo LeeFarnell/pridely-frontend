@@ -1,8 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
-import Avatar from "../avatar";
-import Button from "../button";
 import ChatIcon from "@material-ui/icons/Chat";
 
 import "./index.css";

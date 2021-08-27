@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import { useHistory } from "react-router-dom";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 import { useUserContext } from "../../contexts/UserProvider";
@@ -14,7 +13,6 @@ import "./index.css";
 
 const SignUpForm = (props) => {
   // hooks
-  const history = useHistory();
 
   const [country, setCountry] = useState();
   const [region, setRegion] = useState();
