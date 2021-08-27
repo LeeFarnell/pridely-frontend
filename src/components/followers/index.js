@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import Avatar from "../avatar";
 import Button from "../button";
+import ChatIcon from "@material-ui/icons/Chat";
 
 import "./index.css";
 
@@ -14,18 +15,22 @@ const Followers = (props) => {
   };
 
   return (
-    <div className="followers-container">
-      <div className="follower">
-        <div>
-          <img
-            src={props.profilePicture}
-            className="follower-img"
-            alt={`avatar of ${props.username}`}
-          />
+    <div className="scrollable-list">
+      <div className="followers-container">
+        <div className="follower">
+          <div>
+            <img
+              src={props.profilePicture}
+              className="follower-img"
+              alt={`avatar of ${props.username}`}
+            />
+          </div>
+        </div>
+        <h3>{props.username}</h3>
+        <div className="chat-icon">
+          <ChatIcon name="Message" onClick={() => sendAMessage()} />
         </div>
       </div>
-      <h3>{props.username}</h3>
-      <Button name="Message" onClick={() => sendAMessage()} />
     </div>
   );
 };
