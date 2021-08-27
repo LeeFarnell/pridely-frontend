@@ -1,16 +1,15 @@
 import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+
 import CircularIndeterminate from "../../components/loading";
 import UserCard from "../../components/user-card";
-
 import { useUserContext } from "../../contexts/UserProvider";
 import { BUSINESS_SEARCH } from "../../queries";
 
 import "./index.css";
 
 const Search = (props) => {
-  const { state, dispatch } = useUserContext();
+  const { state } = useUserContext();
 
   const { data, error, loading } = useQuery(BUSINESS_SEARCH, {
     variables: {
@@ -33,11 +32,18 @@ const Search = (props) => {
   }
 
   const searchResults = data.businessSearch;
+  const followers = data.allFollowers;
 
   return (
     <div className="search-card-container">
       {searchResults.map((result) => {
-        return <UserCard result={result} key={result.id} />;
+        const isFollowing = followers.findIndex((follower) => {
+          return follower.id === result.id;
+        });
+
+        return (
+          <UserCard result={result} isFollowing={isFollowing} key={result.id} />
+        );
       })}
     </div>
   );

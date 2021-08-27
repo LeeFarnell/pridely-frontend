@@ -1,19 +1,24 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 
 import Button from "../button";
 import { EDIT_BUSINESS_USER } from "../../mutations";
 
 import "./index.css";
 
-const BusinessForm = (props) => {
+const BusinessForm = () => {
   // hooks
   const { register, handleSubmit } = useForm();
 
+  const history = useHistory();
+
   // destructure input from mutation. if error throws new error
   const [editBusinessUser] = useMutation(EDIT_BUSINESS_USER, {
-    onCompleted: () => {},
+    onCompleted: () => {
+      history.push(`/dashboard`);
+    },
     onerror: () => {
       throw new Error("something went wrong!");
     },
@@ -27,8 +32,6 @@ const BusinessForm = (props) => {
           editBusinessUserInput: formData,
         },
       });
-      console.log(formData);
-      window.location.replace("/dashboard");
     } catch (error) {
       console.error(error.message);
     }

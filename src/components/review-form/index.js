@@ -1,9 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
-import Button from "../button";
 import { LEAVE_REVIEW } from "../../mutations";
 
 import "./index.css";
@@ -12,6 +11,8 @@ const ReviewForm = () => {
   // hooks
   const { register, handleSubmit } = useForm();
   const { id } = useParams();
+
+  const history = useHistory();
 
   // destructure input from mutation. if error throws new error
   const [createReview] = useMutation(LEAVE_REVIEW, {
@@ -24,7 +25,6 @@ const ReviewForm = () => {
   // this will be run at the submit of the form
   const onSubmit = async (reviewData) => {
     try {
-      console.log(reviewData);
       await createReview({
         variables: {
           createReviewInput: {
@@ -34,7 +34,7 @@ const ReviewForm = () => {
           },
         },
       });
-      window.location.replace(`/user-profile/${id}`);
+      history.push(`/reviews/${id}`);
     } catch (error) {
       console.error(error.message);
     }

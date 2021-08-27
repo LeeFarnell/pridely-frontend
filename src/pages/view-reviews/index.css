@@ -1,9 +1,18 @@
+.reviews-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .review-page-cards {
+  align-items: center;
   display: flex;
   margin: 1vw;
-  justify-content: left;
+  justify-content: space-around;
   width: 95vw;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 500px) {

@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
-import CircularIndeterminate from "../../components/loading";
 
+import CircularIndeterminate from "../../components/loading";
 import ReviewCard from "../../components/review-card";
 import { GET_REVIEWS } from "../../queries";
 
@@ -27,17 +27,20 @@ const ViewReviews = () => {
   }
 
   return (
-    <div className="review-page-cards">
-      {data.getReviews.map((review) => {
-        return (
-          <ReviewCard
-            comment={review.commentBox}
-            serviceUsed={review.serviceUsed}
-            rating={review.rating}
-            writtenBy={review.username.username}
-          />
-        );
-      })}
+    <div className="reviews-page-container">
+      <h1>Reviews</h1>
+      <div className="review-page-cards">
+        {data.getReviews.map((review) => {
+          return (
+            <ReviewCard
+              comment={review.commentBox}
+              serviceUsed={review.serviceUsed}
+              rating={review.rating}
+              writtenBy={review.username.username}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

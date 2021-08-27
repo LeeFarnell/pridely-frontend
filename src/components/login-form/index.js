@@ -38,15 +38,13 @@ const LoginForm = (props) => {
         payload,
       });
 
-      // TODO: should redirect to dashboard. works but immediately after redirecting to dashboard, redirects back to "/".
       history.push("/dashboard");
 
-      const { token, user } = data.login;
-      console.log(user);
+      const { token } = data.login;
       Auth.login(token);
     },
     onerror: (error) => {
-      console.log(error.message);
+      console.error(error.message);
       throw new Error("something went wrong!");
     },
   });

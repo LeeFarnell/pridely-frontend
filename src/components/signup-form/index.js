@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import { useHistory } from "react-router-dom";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 import { useUserContext } from "../../contexts/UserProvider";
@@ -14,11 +13,7 @@ import "./index.css";
 
 const SignUpForm = (props) => {
   // hooks
-  let history = useHistory();
-  // const [currentType, setCurrentType] = useState("standard");
-  // const [genderChoice, setGenderChoice] = useState();
-  // const [identifyAs, setIdentifyAs] = useState();
-  // const [pronounChoice, setPronounChoice] = useState();
+
   const [country, setCountry] = useState();
   const [region, setRegion] = useState();
   const [images, setImages] = useState([]);
@@ -33,7 +28,6 @@ const SignUpForm = (props) => {
     setError,
     control,
   } = useForm();
-  console.log(errors);
 
   const [signup] = useMutation(SIGNUP, {
     onCompleted: (data) => {
@@ -52,7 +46,7 @@ const SignUpForm = (props) => {
         payload,
       });
 
-      const { token, user } = data.signup;
+      const { token } = data.signup;
       Auth.login(token);
     },
     onError: () => {
@@ -74,12 +68,15 @@ const SignUpForm = (props) => {
           message: "Please upload a profile picture",
         });
       } else {
-        console.log(imageUrl);
-        await signup({
-          variables: {
-            signupInput: { ...rest, profilePicture: imageUrl },
-          },
-        });
+        try {
+          await signup({
+            variables: {
+              signupInput: { ...rest, profilePicture: imageUrl },
+            },
+          });
+        } catch (error) {
+          console.error(error.message);
+        }
         //if user type is business, the user will be prompted with a form to add his business details
         if (rest.type === "Business") {
           window.location.replace("/business-signup");
