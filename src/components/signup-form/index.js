@@ -78,9 +78,9 @@ const SignUpForm = (props) => {
         });
         //if user type is business, the user will be prompted with a form to add his business details
         if (rest.type === "Business") {
-          history.push("/business-signup");
+          window.location.replace("/business-signup");
         } else {
-          history.push("/dashboard");
+          window.location.replace("/dashboard");
         }
       }
     } catch (error) {

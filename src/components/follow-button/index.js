@@ -1,12 +1,17 @@
 import { useMutation } from "@apollo/client";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { FOLLOW_USER } from "../../mutations";
 
 import "./index.css";
 
 const FollowButton = (props) => {
+  const history = useHistory();
+
   const [followUser] = useMutation(FOLLOW_USER, {
-    onCompleted: () => {},
+    onCompleted: () => {
+      history.push(`/user-profile/${props.userId}`);
+    },
     onError: () => {
       throw new Error("Something went wrong!");
     },

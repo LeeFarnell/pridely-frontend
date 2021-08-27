@@ -138,6 +138,10 @@ const BUSINESS_SEARCH = gql`
       ratings
       averageRating
     }
+    allFollowers {
+      id
+      username
+    }
   }
 `;
 

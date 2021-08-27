@@ -9,7 +9,7 @@ import FollowButton from "../follow-button";
 
 import "./index.css";
 
-const UserCard = ({ result }) => {
+const UserCard = ({ result, isFollowing }) => {
   const { state } = useUserContext();
 
   return (
@@ -32,8 +32,10 @@ const UserCard = ({ result }) => {
       <Link to={`/user-profile/${result.id}`}>
         <Button name="View Profile" />
       </Link>
-      {state.user.id !== result.id && (
+      {isFollowing === -1 ? (
         <FollowButton name="Follow" userId={result.id} />
+      ) : (
+        <div>Already Following</div>
       )}
     </div>
   );
