@@ -55,7 +55,8 @@ const SimpleModal = (props) => {
               <Followers
                 username={follower.username}
                 profilePicture={follower.profilePicture}
-                key={follower._id}
+                key={follower.id}
+                followerId={follower.id}
               />
             );
           })}
