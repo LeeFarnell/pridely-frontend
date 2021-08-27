@@ -26,10 +26,6 @@ const Chat = () => {
     },
     pollInterval: 500,
   });
-  console.log(data);
-
-  console.log(state.user.id, "from user");
-  console.log(id, "to user");
 
   const [createMessage] = useMutation(SEND_MESSAGE, {
     onCompleted: () => {},
@@ -51,9 +47,11 @@ const Chat = () => {
   };
 
   if (loading) {
-    return  <div className="dashboard-container">
-    <CircularIndeterminate />
-  </div>;
+    return (
+      <div className="dashboard-container">
+        <CircularIndeterminate />
+      </div>
+    );
   }
 
   if (error) {

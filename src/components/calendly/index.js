@@ -17,7 +17,6 @@ class Calendly extends Component {
     // whatever you need to cleanup the widgets code
   }
   render(props) {
-    console.log(this.props);
     return (
       <div>
         <div id="schedule_form">

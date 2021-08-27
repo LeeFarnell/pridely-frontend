@@ -30,7 +30,6 @@ const SignUpForm = (props) => {
     setError,
     control,
   } = useForm();
-  console.log(errors);
 
   const [signup] = useMutation(SIGNUP, {
     onCompleted: (data) => {
@@ -71,11 +70,15 @@ const SignUpForm = (props) => {
           message: "Please upload a profile picture",
         });
       } else {
-        await signup({
-          variables: {
-            signupInput: { ...rest, profilePicture: imageUrl },
-          },
-        });
+        try {
+          await signup({
+            variables: {
+              signupInput: { ...rest, profilePicture: imageUrl },
+            },
+          });
+        } catch (error) {
+          console.error(error.message);
+        }
         //if user type is business, the user will be prompted with a form to add his business details
         if (rest.type === "Business") {
           window.location.replace("/business-signup");

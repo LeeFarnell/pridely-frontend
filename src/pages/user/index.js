@@ -136,7 +136,7 @@ const UserProfile = () => {
           {/* check if user has already liked the post. if he did, the like button will not appear */}
           {userData.posts.map((post) => {
             const isLiked = post.likes.findIndex(
-              (like) => like._id === state.user._id
+              (like) => like.id === state.user.id
             );
 
             return (
