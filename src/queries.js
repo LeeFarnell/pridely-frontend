@@ -61,9 +61,9 @@ const PROFILE = gql`
   query Query($profileUserId: String) {
     profile(userId: $profileUserId) {
       user {
-        id
         name
         username
+        id
         type
         email
         profilePicture
@@ -72,14 +72,13 @@ const PROFILE = gql`
         businessName
         businessType
         businessDescription
-        ratings
         calendlyUsername
+        ratings
         createdAt
         age
         gender
         identifyAs
         pronouns
-        averageRating
         posts {
           _id
           title
@@ -92,31 +91,7 @@ const PROFILE = gql`
             username
           }
           createdAt
-          comments {
-            _id
-            postId
-            commentText
-            createdAt
-            commentPostedBy {
-              name
-              username
-              type
-              email
-              profilePicture
-              id
-            }
-          }
         }
-      }
-      myFollowers {
-        id
-        name
-        username
-        profilePicture
-        businessName
-        businessType
-        ratings
-        averageRating
       }
       comments {
         _id
@@ -127,6 +102,16 @@ const PROFILE = gql`
         postId
         commentText
         createdAt
+      }
+      myFollowers {
+        id
+        name
+        username
+        profilePicture
+        businessName
+        businessType
+        ratings
+        averageRating
       }
     }
   }

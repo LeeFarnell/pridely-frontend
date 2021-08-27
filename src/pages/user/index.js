@@ -36,10 +36,9 @@ const UserProfile = () => {
     return <div>error</div>;
   }
 
-  // current user data
+  // current user and comments data
   const userData = data.profile.user;
-
-  console.log(userData);
+  const commentsData = data.profile.comments;
 
   return (
     <>
@@ -52,6 +51,7 @@ const UserProfile = () => {
           <div className="profile-left">
             <Avatar URL={userData.profilePicture} />
             <div className="profile-review">
+              {/* render the chat button only if you're viewing other users profile */}
               {state.user.id !== userData.id && (
                 <Link to={`/chat/${userData.id}`}>
                   <Button name="Chat" />
@@ -64,6 +64,7 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
+        {/* only render this section if user type is Business */}
         {userData.type === "Business" ? (
           <div className="profile-middle">
             <h1>{userData.businessName}</h1>
@@ -99,6 +100,7 @@ const UserProfile = () => {
             </div>
           </div>
         ) : (
+          // if the user type is Standard, render this
           <div className="profile-middle">
             <h1> About Me!</h1>
             <div className="profile-middle-standard">
@@ -117,6 +119,7 @@ const UserProfile = () => {
             )}
           </div>
         )}
+        {/* if user type is Business, render a custom calendly link (if user has a Calendly account)  */}
         {userData.type === "Business" ? (
           <div className="profile-calendly">
             <Calendly calendly={userData.calendlyUsername} />
@@ -126,15 +129,12 @@ const UserProfile = () => {
         )}
       </div>
       <div className="profile-post">
-        {/* <NewsFeedCard
-          title="Hello"
-          body="Welcome to my first post!"
-          likes="5"
-        /> */}
+        {/* check if user has already liked the post. if he did, the like button will not appear */}
         {userData.posts.map((post) => {
           const isLiked = post.likes.findIndex(
             (like) => like._id === state.user._id
           );
+
           return (
             <NewsFeedCard
               key={post._id}
@@ -144,7 +144,7 @@ const UserProfile = () => {
               likes={post.likes.length}
               postedBy={userData.username}
               isLiked={isLiked}
-              comments={post.comments}
+              comments={commentsData}
             />
           );
         })}

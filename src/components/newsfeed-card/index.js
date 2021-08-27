@@ -21,6 +21,7 @@ const NewsFeedCard = ({
       throw new Error("something went wrong");
     },
   });
+
   return (
     <div className="news-feed-card">
       <div className="news-feed-title">
@@ -33,7 +34,7 @@ const NewsFeedCard = ({
       <div className="news-feed-like">
         Likes: {likes}
         <span>
-          {isLiked === -1 && (
+          {isLiked === -1 ? (
             <LikeButton
               name="Like"
               onClick={async () => {
@@ -48,6 +49,8 @@ const NewsFeedCard = ({
                 }
               }}
             />
+          ) : (
+            <div>Liked!</div>
           )}
         </span>
       </div>
@@ -55,14 +58,14 @@ const NewsFeedCard = ({
       {/* if there are comments for post display them, else display a message */}
       {comments ? (
         comments.map((comment) => {
-          return (
-            <div>
+          if (comment.postId === postId) {
+            return (
               <NewsFeedComment
                 username={comment.commentPostedBy.username}
                 comment={comment.commentText}
               />
-            </div>
-          );
+            );
+          }
         })
       ) : (
         <div>No comments to display</div>

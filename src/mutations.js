@@ -144,14 +144,6 @@ const LIKE_POST = gql`
         id
         name
         username
-        # posts {
-        #   _id
-        #   postedBy {
-        #     username
-        #     name
-        #   }
-        #   title
-        # }
       }
     }
   }
@@ -167,6 +159,17 @@ const FOLLOW_USER = gql`
   }
 `;
 
+const CREATE_COMMENT = gql`
+  mutation Mutation($createCommentInput: CreateCommentInput) {
+    createComment(input: $createCommentInput) {
+      _id
+      postId
+      commentText
+      createdAt
+    }
+  }
+`;
+
 export {
   SIGNUP,
   LOGIN,
@@ -176,4 +179,5 @@ export {
   LEAVE_REVIEW,
   LIKE_POST,
   FOLLOW_USER,
+  CREATE_COMMENT,
 };
