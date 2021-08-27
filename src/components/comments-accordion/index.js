@@ -22,8 +22,6 @@ const SimpleAccordion = (props) => {
   const classes = useStyles();
   const { comments, postId } = props;
 
-  console.log(comments, postId);
-
   return (
     <div className={classes.root}>
       <Accordion>

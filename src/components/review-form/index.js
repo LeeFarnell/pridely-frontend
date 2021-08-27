@@ -34,7 +34,7 @@ const ReviewForm = () => {
           },
         },
       });
-      history.push(`/user-profile/${id}`);
+      history.push(`/reviews/${id}`);
     } catch (error) {
       console.error(error.message);
     }

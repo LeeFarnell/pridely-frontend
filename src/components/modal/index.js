@@ -79,10 +79,10 @@ const SimpleModal = (props) => {
             If you enjoyed our services, leave us a review!
           </div>
           <ReviewForm />
-          <button onClick={handleClose} className="modal-btn">
+          {/* <button onClick={handleClose} className="modal-btn">
             {" "}
             Close{" "}
-          </button>
+          </button> */}
         </div>
       );
     } else {

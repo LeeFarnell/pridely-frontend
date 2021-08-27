@@ -131,27 +131,31 @@ const UserProfile = () => {
           <></>
         )}
       </div>
-      <div className="profile-post">
-        {/* check if user has already liked the post. if he did, the like button will not appear */}
-        {userData.posts.map((post) => {
-          const isLiked = post.likes.findIndex(
-            (like) => like._id === state.user._id
-          );
+      {userData.posts.length > 0 ? (
+        <div className="profile-post">
+          {/* check if user has already liked the post. if he did, the like button will not appear */}
+          {userData.posts.map((post) => {
+            const isLiked = post.likes.findIndex(
+              (like) => like._id === state.user._id
+            );
 
-          return (
-            <NewsFeedCard
-              key={post._id}
-              postId={post._id}
-              title={post.title}
-              body={post.mainText}
-              likes={post.likes.length}
-              postedBy={userData.username}
-              isLiked={isLiked}
-              comments={commentsData}
-            />
-          );
-        })}
-      </div>
+            return (
+              <NewsFeedCard
+                key={post._id}
+                postId={post._id}
+                title={post.title}
+                body={post.mainText}
+                likes={post.likes.length}
+                postedBy={userData.username}
+                isLiked={isLiked}
+                comments={commentsData}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <h1>Create a Post!</h1>
+      )}
     </>
   );
 };
