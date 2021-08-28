@@ -18,7 +18,7 @@ const UserProfile = () => {
   const { state } = useUserContext();
 
   // query data for current user
-  const { data, error, loading } = useQuery(PROFILE, {
+  const { data, error, loading, refetch } = useQuery(PROFILE, {
     variables: { profileUserId: id },
   });
 
@@ -149,6 +149,7 @@ const UserProfile = () => {
                 postedBy={userData.username}
                 isLiked={isLiked}
                 comments={commentsData}
+                refetch={refetch}
               />
             );
           })}

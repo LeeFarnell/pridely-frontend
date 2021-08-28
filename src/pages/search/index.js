@@ -11,7 +11,7 @@ import "./index.css";
 const Search = (props) => {
   const { state } = useUserContext();
 
-  const { data, error, loading } = useQuery(BUSINESS_SEARCH, {
+  const { data, error, loading, refetch } = useQuery(BUSINESS_SEARCH, {
     variables: {
       businessSearchBusinessType: state.search.type,
       businessSearchCountry: state.search.country,
@@ -42,7 +42,12 @@ const Search = (props) => {
         });
 
         return (
-          <UserCard result={result} isFollowing={isFollowing} key={result.id} />
+          <UserCard
+            result={result}
+            isFollowing={isFollowing}
+            key={result.id}
+            refetch={refetch}
+          />
         );
       })}
     </div>

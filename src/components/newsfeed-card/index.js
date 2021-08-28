@@ -17,13 +17,16 @@ const NewsFeedCard = ({
   postedBy,
   isLiked,
   comments,
+  refetch,
 }) => {
   const [showCommentInput, setShowCommentInput] = useState(false);
   const { register, handleSubmit } = useForm();
 
   // mutation to create a comment
   const [createComment] = useMutation(CREATE_COMMENT, {
-    onCompleted: () => {},
+    onCompleted: () => {
+      refetch();
+    },
     onerror: () => {
       throw new Error("something went wrong!");
     },
