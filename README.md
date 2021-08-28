@@ -184,6 +184,20 @@ Another app we used to plan out our app was AdobeXD. We used this to create temp
 
 ## Screenshots
 
+![screenshot1](./public/assets/images/pridely-1.png)
+![screenshot2](./public/assets/images/pridely-2.png)
+![screenshot3](./public/assets/images/pridely-3.png)
+![screenshot4](./public/assets/images/pridely-4.png)
+![screenshot5](./public/assets/images/pridely-5.png)
+![screenshot6](./public/assets/images/pridely-6.png)
+![screenshot7](./public/assets/images/pridely-7.png)
+![screenshot8](./public/assets/images/pridely-8.png)
+![screenshot9](./public/assets/images/pridely-9.png)
+![screenshot10](./public/assets/images/pridely-10.png)
+![screenshot11](./public/assets/images/pridely-11.png)
+![screenshot12](./public/assets/images/pridely-12.png)
+![screenshot13](./public/assets/images/pridely-13.png)
+
 ## Future Improvements
 
 For the future we have already planned a few features.
