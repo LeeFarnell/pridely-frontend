@@ -60,8 +60,8 @@ const NewsFeedCard = ({
   return (
     <div className="news-feed-card">
       <div className="news-feed-title">
-        <div>{title}</div>
-        <div>
+        <div className="post-title">{title}</div>
+        <div className="posted-by">
           <small>Posted by </small> {postedBy}
         </div>
       </div>
