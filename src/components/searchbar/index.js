@@ -4,9 +4,9 @@ import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import { useHistory } from "react-router-dom";
 
 import Button from "../button";
+import { useUserContext } from "../../contexts/UserProvider";
 
 import "./index.css";
-import { useUserContext } from "../../contexts/UserProvider";
 
 const SearchBar = (props) => {
   const { state, dispatch } = useUserContext();

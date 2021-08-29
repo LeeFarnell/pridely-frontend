@@ -6,6 +6,7 @@ import { useUserContext } from "../../contexts/UserProvider";
 import { BUSINESS_SEARCH } from "../../queries";
 import ErrorMessage from "../../components/error-message";
 import LoadingSpinner from "../../components/loading";
+import NoSearchResults from "../../components/no-search-results";
 
 import "./index.css";
 
@@ -26,6 +27,10 @@ const Search = (props) => {
 
   if (error) {
     return <ErrorMessage returnTo={"/"} />;
+  }
+
+  if (data.businessSearch.length === 0) {
+    return <NoSearchResults returnTo={"/"} />;
   }
 
   const searchResults = data.businessSearch;
