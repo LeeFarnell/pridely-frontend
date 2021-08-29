@@ -13,6 +13,7 @@ const ViewReviews = () => {
 
   const { loading, error, data } = useQuery(GET_REVIEWS, {
     variables: { getReviewsUserId: id },
+    fetchPolicy: "no-cache",
   });
 
   if (loading) {

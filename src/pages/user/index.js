@@ -21,6 +21,7 @@ const UserProfile = () => {
   // query data for current user
   const { data, error, loading, refetch } = useQuery(PROFILE, {
     variables: { profileUserId: id },
+    fetchPolicy: "no-cache",
   });
 
   // if data is loading render this

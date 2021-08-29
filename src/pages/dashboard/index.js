@@ -11,7 +11,9 @@ import "./index.css";
 
 const Dashboard = () => {
   // query data for current user
-  const { data, error, loading, refetch } = useQuery(DASHBOARD);
+  const { data, error, loading, refetch } = useQuery(DASHBOARD, {
+    fetchPolicy: "no-cache",
+  });
   const { state } = useUserContext();
 
   // if data is loading render this
