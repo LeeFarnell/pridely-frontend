@@ -4,7 +4,8 @@ import Carousel from "../../components/carousel";
 import NewsFeedCard from "../../components/newsfeed-card";
 import { useUserContext } from "../../contexts/UserProvider";
 import { DASHBOARD } from "../../queries";
-import CircularIndeterminate from "../../components/loading";
+import LoadingSpinner from "../../components/loading";
+import ErrorMessage from "../../components/error-message";
 
 import "./index.css";
 
@@ -15,16 +16,12 @@ const Dashboard = () => {
 
   // if data is loading render this
   if (loading) {
-    return (
-      <div className="dashboard-container">
-        <CircularIndeterminate />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   // if theres an error render this
   if (error) {
-    return <div>error</div>;
+    return <ErrorMessage returnTo={"/"} />;
   }
 
   // current user data

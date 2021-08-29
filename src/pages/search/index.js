@@ -1,10 +1,11 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 
-import CircularIndeterminate from "../../components/loading";
 import UserCard from "../../components/user-card";
 import { useUserContext } from "../../contexts/UserProvider";
 import { BUSINESS_SEARCH } from "../../queries";
+import ErrorMessage from "../../components/error-message";
+import LoadingSpinner from "../../components/loading";
 
 import "./index.css";
 
@@ -20,15 +21,11 @@ const Search = (props) => {
   });
 
   if (loading) {
-    return (
-      <div className="dashboard-container">
-        <CircularIndeterminate />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (error) {
-    return <div>error</div>;
+    return <ErrorMessage returnTo={"/"} />;
   }
 
   const searchResults = data.businessSearch;
