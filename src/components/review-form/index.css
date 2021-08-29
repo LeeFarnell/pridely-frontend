@@ -18,6 +18,11 @@
   resize: none;
 }
 
+.required-field {
+  color: red;
+  font-size: 13px;
+}
+
 @media screen and (max-width: 800px) {
   .review-input {
     width: 30vw;

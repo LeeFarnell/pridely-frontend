@@ -9,7 +9,11 @@ import "./index.css";
 
 const ReviewForm = () => {
   // hooks
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { id } = useParams();
 
   const history = useHistory();
@@ -51,6 +55,9 @@ const ReviewForm = () => {
           <option value="Service Two">Quality of Service</option>
           <option value="Service Three">Punctuality</option>
         </select>
+        {errors?.serviceUsed && (
+          <p className="required-field">This field is required!</p>
+        )}
         <select
           className="review-input"
           {...register("rating", { required: true })}
@@ -61,13 +68,18 @@ const ReviewForm = () => {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
+        {errors?.rating && (
+          <p className="required-field">This field is required!</p>
+        )}
         <div>
           <textarea
             className="review-input"
-            placeholder="Pleas type in your comment!"
-            required
+            placeholder="Please type in your comment!"
             {...register("commentBox", { required: true })}
           ></textarea>
+          {errors?.commentBox && (
+            <p className="required-field">This field is required!</p>
+          )}
         </div>
         <button className="modal-btn" type="submit">
           Submit

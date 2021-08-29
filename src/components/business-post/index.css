@@ -56,6 +56,11 @@
   font-size: larger;
 }
 
+.required-field {
+  color: red;
+  font-size: 13px;
+}
+
 @media screen and (max-width: 500px) {
   .business-post {
     width: 95vw;
