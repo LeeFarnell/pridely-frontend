@@ -91,6 +91,9 @@ const LoginForm = (props) => {
             placeholder="Email Address*"
             {...register("email", { required: true })}
           ></input>
+          {errors?.email && (
+            <p className="required-field">This field is required!</p>
+          )}
         </div>
         <div>
           <input
@@ -99,6 +102,9 @@ const LoginForm = (props) => {
             placeholder="Password*"
             {...register("password", { required: true })}
           ></input>
+          {errors?.password && (
+            <p className="required-field">This field is required!</p>
+          )}
         </div>
 
         <Button name="Log In" type="submit" />

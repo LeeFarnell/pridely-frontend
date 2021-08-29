@@ -15,12 +15,7 @@ const SearchBar = (props) => {
   const [country, setCountry] = useState(state.search.country);
   const [region, setRegion] = useState(state.search.region);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    control,
-  } = useForm();
+  const { register, handleSubmit, control } = useForm();
 
   const history = useHistory();
 

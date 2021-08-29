@@ -34,7 +34,9 @@ const NewsFeedCard = ({
 
   // mutation to like a post
   const [likeAPost] = useMutation(LIKE_POST, {
-    onCompleted: () => {},
+    onCompleted: () => {
+      refetch();
+    },
     onerror: () => {
       throw new Error("something went wrong");
     },

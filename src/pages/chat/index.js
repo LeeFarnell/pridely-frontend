@@ -15,11 +15,7 @@ const Chat = () => {
   const { id } = useParams();
   const { state } = useUserContext();
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
+  const { handleSubmit, register } = useForm();
 
   const { loading, error, data } = useQuery(GET_CHAT, {
     variables: {
