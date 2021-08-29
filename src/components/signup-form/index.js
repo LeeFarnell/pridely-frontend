@@ -8,12 +8,13 @@ import Button from "../button";
 import { SIGNUP } from "../../mutations";
 import Auth from "../../utils/auth";
 import ImageUpload from "../image-upload";
+import ErrorMessage from "../error-message";
+import LoadingSpinner from "../loading";
 
 import "./index.css";
 
 const SignUpForm = (props) => {
   // hooks
-
   const [country, setCountry] = useState();
   const [region, setRegion] = useState();
   const [images, setImages] = useState([]);
@@ -29,7 +30,8 @@ const SignUpForm = (props) => {
     control,
   } = useForm();
 
-  const [signup] = useMutation(SIGNUP, {
+  const [signup, { loading, error }] = useMutation(SIGNUP, {
+    // execute this block when the mutation is completed
     onCompleted: (data) => {
       const payload = {
         token: data.signup.token,
@@ -39,35 +41,55 @@ const SignUpForm = (props) => {
         id: data.signup.user.id,
       };
 
+      // store the user with data in the local storage
       localStorage.setItem("user", JSON.stringify(payload));
 
+      // perform the login
       dispatch({
         type: "LOGIN",
         payload,
       });
-
       const { token } = data.signup;
       Auth.login(token);
+
+      //if user type is business, the user will be prompted with a form to add his business details
+      if (data.signup.user.type === "Business") {
+        window.location.replace("/business-signup");
+      } else {
+        window.location.replace("/dashboard");
+      }
     },
+    // if there is an error, display an error message in the console
     onError: () => {
-      throw new Error("something went wrong!");
+      throw new Error("something went wrong!", error);
     },
   });
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <ErrorMessage returnTo={"/"} />;
+  }
 
   // function to be run on submission of the form
   const onSubmit = async ({ confirmPassword, ...rest }) => {
     try {
+      // if the country is missing add an error
       if (!country) {
         setError("country", {
           type: "manual",
           message: "Please select a country",
         });
+        // if the image url is missing add an error
       } else if (!imageUrl) {
         setError("profilePicture", {
           type: "manual",
           message: "Please upload a profile picture",
         });
       } else {
+        // try to perform the signup mutation
         try {
           await signup({
             variables: {
@@ -76,12 +98,6 @@ const SignUpForm = (props) => {
           });
         } catch (error) {
           console.error(error.message);
-        }
-        //if user type is business, the user will be prompted with a form to add his business details
-        if (rest.type === "Business") {
-          window.location.replace("/business-signup");
-        } else {
-          window.location.replace("/dashboard");
         }
       }
     } catch (error) {
@@ -101,8 +117,6 @@ const SignUpForm = (props) => {
           Please select your user type:
           <select
             className="signup-input"
-            // defaultValue={currentType}
-            // onChange={setCurrentType}
             {...register("type", { required: true })}
           >
             <option value="Standard">Standard</option>
