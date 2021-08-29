@@ -6,10 +6,13 @@ import { useHistory } from "react-router-dom";
 import Button from "../button";
 import { CREATE_POST } from "../../mutations";
 import { useUserContext } from "../../contexts/UserProvider";
+import LoadingSpinner from "../loading";
+import ErrorMessage from "../error-message";
 
 import "./index.css";
 
 const BusinessPost = () => {
+  // hooks
   const { state } = useUserContext();
 
   const {
@@ -20,7 +23,8 @@ const BusinessPost = () => {
 
   const history = useHistory();
 
-  const [createNewPost] = useMutation(CREATE_POST, {
+  // create post mutation
+  const [createNewPost, { loading, error }] = useMutation(CREATE_POST, {
     onCompleted: () => {
       history.push(`/user-profile/${state.user.id}`);
     },
@@ -30,6 +34,7 @@ const BusinessPost = () => {
     },
   });
 
+  // on submit try to execute the mutation, if it fails, throw an error
   const onSubmit = async (formData) => {
     try {
       await createNewPost({
@@ -41,6 +46,14 @@ const BusinessPost = () => {
       console.error(error.message);
     }
   };
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <ErrorMessage returnTo={"/"} />;
+  }
 
   return (
     <form className="post-form" onSubmit={handleSubmit(onSubmit)}>

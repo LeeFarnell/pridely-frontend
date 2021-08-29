@@ -33,14 +33,6 @@ const BusinessForm = () => {
     }
   );
 
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-
-  if (error) {
-    return <ErrorMessage returnTo={"/"} />;
-  }
-
   // this will be run at the submit of the form
   const onSubmit = async (formData) => {
     try {
@@ -53,6 +45,14 @@ const BusinessForm = () => {
       console.error(error.message);
     }
   };
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <ErrorMessage returnTo={"/"} />;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

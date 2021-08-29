@@ -4,6 +4,8 @@ import { useMutation } from "@apollo/client";
 import { useParams, useHistory } from "react-router-dom";
 
 import { LEAVE_REVIEW } from "../../mutations";
+import LoadingSpinner from "../loading";
+import ErrorMessage from "../error-message";
 
 import "./index.css";
 
@@ -19,7 +21,7 @@ const ReviewForm = () => {
   const history = useHistory();
 
   // destructure input from mutation. if error throws new error
-  const [createReview] = useMutation(LEAVE_REVIEW, {
+  const [createReview, { loading, error }] = useMutation(LEAVE_REVIEW, {
     onCompleted: () => {},
     onerror: () => {
       throw new Error("something went wrong!");
@@ -43,6 +45,14 @@ const ReviewForm = () => {
       console.error(error.message);
     }
   };
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <ErrorMessage returnTo={"/"} />;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

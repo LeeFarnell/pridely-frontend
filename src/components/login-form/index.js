@@ -7,12 +7,13 @@ import Button from "../button";
 import { LOGIN } from "../../mutations";
 import { useUserContext } from "../../contexts/UserProvider";
 import Auth from "../../utils/auth";
-
-import "./index.css";
 import LoadingSpinner from "../loading";
 import ErrorMessage from "../error-message";
 
+import "./index.css";
+
 const LoginForm = (props) => {
+  // hooks
   const { dispatch } = useUserContext();
 
   const {
@@ -23,6 +24,7 @@ const LoginForm = (props) => {
 
   const history = useHistory();
 
+  // dispatch login mutation
   const [login, { loading, error }] = useMutation(LOGIN, {
     onCompleted: (data) => {
       const payload = {
@@ -45,20 +47,14 @@ const LoginForm = (props) => {
       const { token } = data.login;
       Auth.login(token);
     },
+    // if error, throw an error, display it in the console.log
     onerror: (error) => {
       console.error(error.message);
       throw new Error("something went wrong!");
     },
   });
 
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-
-  if (error) {
-    return <ErrorMessage returnTo={"/"} />;
-  }
-
+  // try executing the mutation. if fails, throw error
   const onSubmit = async (formData) => {
     try {
       await login({
@@ -70,6 +66,14 @@ const LoginForm = (props) => {
       console.error(error.message);
     }
   };
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <ErrorMessage returnTo={"/"} />;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
