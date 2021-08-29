@@ -3,26 +3,43 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 
-import Button from "../button";
 import { EDIT_BUSINESS_USER } from "../../mutations";
+import Button from "../button";
+import ErrorMessage from "../error-message";
+import LoadingSpinner from "../loading";
 
 import "./index.css";
 
 const BusinessForm = () => {
   // hooks
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const history = useHistory();
 
   // destructure input from mutation. if error throws new error
-  const [editBusinessUser] = useMutation(EDIT_BUSINESS_USER, {
-    onCompleted: () => {
-      history.push(`/dashboard`);
-    },
-    onerror: () => {
-      throw new Error("something went wrong!");
-    },
-  });
+  const [editBusinessUser, { loading, error }] = useMutation(
+    EDIT_BUSINESS_USER,
+    {
+      onCompleted: () => {
+        history.push(`/dashboard`);
+      },
+      onerror: () => {
+        throw new Error("something went wrong!");
+      },
+    }
+  );
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <ErrorMessage returnTo={"/"} />;
+  }
 
   // this will be run at the submit of the form
   const onSubmit = async (formData) => {
@@ -70,22 +87,29 @@ const BusinessForm = () => {
             <option value="Writing">Writing</option>
             <option value="Other">Other</option>
           </select>
+          {errors?.businessType && (
+            <p className="required-field">Business Type is Required!</p>
+          )}
         </div>
         <div>
           <input
             className="business-input"
             placeholder="Business Name*"
-            required
             {...register("businessName", { required: true })}
           ></input>
+          {errors?.businessName && (
+            <p className="required-field">Business Name is Required!</p>
+          )}
         </div>
         <div>
           <textarea
             className="business-input"
             placeholder="Enter some information about your business*"
-            required
             {...register("businessDescription", { required: true })}
           ></textarea>
+          {errors?.businessDescription && (
+            <p className="required-field">Business Description is Required!</p>
+          )}
         </div>
         <div>
           <input

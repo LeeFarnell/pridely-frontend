@@ -129,7 +129,7 @@ const SignUpForm = (props) => {
             placeholder="Full Name*"
             {...register("name", { required: true })}
           ></input>
-          {errors?.name && <p>Name is Required!</p>}
+          {errors?.name && <p className="required-field">Name is Required!</p>}
         </div>
         <div>
           <input
@@ -137,7 +137,9 @@ const SignUpForm = (props) => {
             placeholder="Username*"
             {...register("username", { required: true })}
           ></input>
-          {errors?.username && <p>Username is Required!</p>}
+          {errors?.username && (
+            <p className="required-field">Username is Required!</p>
+          )}
         </div>
         <div>
           <input
@@ -146,7 +148,9 @@ const SignUpForm = (props) => {
             placeholder="Email Address*"
             {...register("email", { required: true })}
           ></input>
-          {errors?.email && <p>Email is Required!</p>}
+          {errors?.email && (
+            <p className="required-field">Email is Required!</p>
+          )}
         </div>
         <div>
           <input
@@ -155,7 +159,9 @@ const SignUpForm = (props) => {
             placeholder="Password*"
             {...register("password", { required: true })}
           ></input>
-          {errors?.password && <p>Password is Required!</p>}
+          {errors?.password && (
+            <p className="required-field">Password is Required!</p>
+          )}
         </div>
         <div>
           <input
@@ -164,7 +170,9 @@ const SignUpForm = (props) => {
             placeholder="Confirm Password*"
             {...register("confirmPassword", { required: true })}
           ></input>
-          {errors?.confirmPassword && <p>Please confirm your Password!</p>}
+          {errors?.confirmPassword && (
+            <p className="required-field">Please confirm your Password!</p>
+          )}
         </div>
         <Controller
           control={control}
@@ -180,7 +188,9 @@ const SignUpForm = (props) => {
             />
           )}
         />
-        {errors?.country && <p>Country is Required!</p>}
+        {errors?.country && (
+          <p className="required-field">Country is Required!</p>
+        )}
         <Controller
           control={control}
           name="region"
@@ -196,7 +206,9 @@ const SignUpForm = (props) => {
             />
           )}
         />
-        {errors?.region && <p>Region is Required!</p>}
+        {errors?.region && (
+          <p className="required-field">Region is Required!</p>
+        )}
         <div>
           <input
             className="signup-input"
@@ -263,7 +275,9 @@ const SignUpForm = (props) => {
             setImageUrl={setImageUrl}
             setImages={setImages}
           />
-          {errors?.profilePicture && <p>Profile Picture is Required!</p>}
+          {errors?.profilePicture && (
+            <p className="required-field">Profile Picture is Required!</p>
+          )}
         </div>
         <Button name="Sign Up" type="submit" />
       </div>
