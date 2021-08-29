@@ -9,6 +9,8 @@ import { useUserContext } from "../../contexts/UserProvider";
 import Auth from "../../utils/auth";
 
 import "./index.css";
+import LoadingSpinner from "../loading";
+import ErrorMessage from "../error-message";
 
 const LoginForm = (props) => {
   const { dispatch } = useUserContext();
@@ -21,7 +23,7 @@ const LoginForm = (props) => {
 
   const history = useHistory();
 
-  const [login] = useMutation(LOGIN, {
+  const [login, { loading, error }] = useMutation(LOGIN, {
     onCompleted: (data) => {
       const payload = {
         token: data.login.token,
@@ -48,6 +50,14 @@ const LoginForm = (props) => {
       throw new Error("something went wrong!");
     },
   });
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <ErrorMessage returnTo={"/"} />;
+  }
 
   const onSubmit = async (formData) => {
     try {
