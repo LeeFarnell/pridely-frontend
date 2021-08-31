@@ -123,7 +123,7 @@ const BusinessForm = () => {
           <input
             className="business-input"
             type="url"
-            placeholder="Add any Social Media URL*"
+            placeholder="Add any Social Media URL"
             {...register("socialMedia", { required: false })}
           ></input>
         </div>
