@@ -9,7 +9,8 @@ import { PROFILE } from "../../queries";
 import { useUserContext } from "../../contexts/UserProvider";
 import Button from "../../components/button";
 import NewsFeedCard from "../../components/newsfeed-card";
-import CircularIndeterminate from "../../components/loading";
+import LoadingSpinner from "../../components/loading";
+import ErrorMessage from "../../components/error-message";
 
 import "./index.css";
 
@@ -18,22 +19,19 @@ const UserProfile = () => {
   const { state } = useUserContext();
 
   // query data for current user
-  const { data, error, loading } = useQuery(PROFILE, {
+  const { data, error, loading, refetch } = useQuery(PROFILE, {
     variables: { profileUserId: id },
+    fetchPolicy: "no-cache",
   });
 
   // if data is loading render this
   if (loading) {
-    return (
-      <div className="dashboard-container">
-        <CircularIndeterminate />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   // if theres an error render this
   if (error) {
-    return <div>error</div>;
+    return <ErrorMessage returnTo={"/"} />;
   }
 
   // current user and comments data
@@ -149,6 +147,7 @@ const UserProfile = () => {
                 postedBy={userData.username}
                 isLiked={isLiked}
                 comments={commentsData}
+                refetch={refetch}
               />
             );
           })}

@@ -4,18 +4,24 @@ import { useMutation } from "@apollo/client";
 import { useParams, useHistory } from "react-router-dom";
 
 import { LEAVE_REVIEW } from "../../mutations";
+import LoadingSpinner from "../loading";
+import ErrorMessage from "../error-message";
 
 import "./index.css";
 
 const ReviewForm = () => {
   // hooks
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { id } = useParams();
 
   const history = useHistory();
 
   // destructure input from mutation. if error throws new error
-  const [createReview] = useMutation(LEAVE_REVIEW, {
+  const [createReview, { loading, error }] = useMutation(LEAVE_REVIEW, {
     onCompleted: () => {},
     onerror: () => {
       throw new Error("something went wrong!");
@@ -40,6 +46,14 @@ const ReviewForm = () => {
     }
   };
 
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <ErrorMessage returnTo={"/"} />;
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="review-form">
@@ -51,6 +65,9 @@ const ReviewForm = () => {
           <option value="Service Two">Quality of Service</option>
           <option value="Service Three">Punctuality</option>
         </select>
+        {errors?.serviceUsed && (
+          <p className="required-field">This field is required!</p>
+        )}
         <select
           className="review-input"
           {...register("rating", { required: true })}
@@ -61,13 +78,18 @@ const ReviewForm = () => {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
+        {errors?.rating && (
+          <p className="required-field">This field is required!</p>
+        )}
         <div>
           <textarea
             className="review-input"
-            placeholder="Pleas type in your comment!"
-            required
+            placeholder="Please type in your comment!"
             {...register("commentBox", { required: true })}
           ></textarea>
+          {errors?.commentBox && (
+            <p className="required-field">This field is required!</p>
+          )}
         </div>
         <button className="modal-btn" type="submit">
           Submit

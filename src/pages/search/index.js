@@ -1,17 +1,19 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 
-import CircularIndeterminate from "../../components/loading";
 import UserCard from "../../components/user-card";
 import { useUserContext } from "../../contexts/UserProvider";
 import { BUSINESS_SEARCH } from "../../queries";
+import ErrorMessage from "../../components/error-message";
+import LoadingSpinner from "../../components/loading";
+import NoSearchResults from "../../components/no-search-results";
 
 import "./index.css";
 
 const Search = (props) => {
   const { state } = useUserContext();
 
-  const { data, error, loading } = useQuery(BUSINESS_SEARCH, {
+  const { data, error, loading, refetch } = useQuery(BUSINESS_SEARCH, {
     variables: {
       businessSearchBusinessType: state.search.type,
       businessSearchCountry: state.search.country,
@@ -20,15 +22,15 @@ const Search = (props) => {
   });
 
   if (loading) {
-    return (
-      <div className="dashboard-container">
-        <CircularIndeterminate />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (error) {
-    return <div>error</div>;
+    return <ErrorMessage returnTo={"/"} />;
+  }
+
+  if (data.businessSearch.length === 0) {
+    return <NoSearchResults returnTo={"/"} />;
   }
 
   const searchResults = data.businessSearch;
@@ -42,7 +44,12 @@ const Search = (props) => {
         });
 
         return (
-          <UserCard result={result} isFollowing={isFollowing} key={result.id} />
+          <UserCard
+            result={result}
+            isFollowing={isFollowing}
+            key={result.id}
+            refetch={refetch}
+          />
         );
       })}
     </div>

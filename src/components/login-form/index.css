@@ -24,3 +24,8 @@
   color: black;
   text-align: center;
 }
+
+.required-field {
+  color: red;
+  font-size: 13px;
+}

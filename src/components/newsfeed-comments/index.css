@@ -18,6 +18,7 @@
 .username {
   border-bottom: var(--PiggyPink) 2px solid;
   padding-top: 0.5vw;
+  font-weight: 600;
 }
 
 .comment {

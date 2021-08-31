@@ -1,0 +1,23 @@
+.error-container {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 60%;
+  text-align: center;
+  font-size: 16px;
+}
+
+.error-message {
+  color: #756e15;
+  background: #fffbd1;
+  border: 1px solid #87803e;
+  padding: 15px;
+}
+
+.redirect {
+  font-weight: 800;
+  text-decoration: underline;
+  display: inline;
+  cursor: pointer;
+}

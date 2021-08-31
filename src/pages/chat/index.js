@@ -1,23 +1,21 @@
 import { useQuery, useMutation } from "@apollo/client";
 import { useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
 import Button from "../../components/button";
 import { SEND_MESSAGE } from "../../mutations";
 import { GET_CHAT } from "../../queries";
 import { useUserContext } from "../../contexts/UserProvider";
-import { useForm } from "react-hook-form";
+import LoadingSpinner from "../../components/loading";
+import ErrorMessage from "../../components/error-message";
 
 import "./index.css";
-import CircularIndeterminate from "../../components/loading";
 
 const Chat = () => {
   const { id } = useParams();
   const { state } = useUserContext();
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
+  const { handleSubmit, register } = useForm();
 
   const { loading, error, data } = useQuery(GET_CHAT, {
     variables: {
@@ -47,15 +45,11 @@ const Chat = () => {
   };
 
   if (loading) {
-    return (
-      <div className="dashboard-container">
-        <CircularIndeterminate />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (error) {
-    return <div>Error</div>;
+    return <ErrorMessage returnTo={"/"} />;
   }
 
   return (
@@ -64,7 +58,7 @@ const Chat = () => {
         {!data.chat[0] ? (
           <h2>Start a conversation!</h2>
         ) : (
-          <h2>Your conversation with {data.chat[0].toUser.username}</h2>
+          <h2>Your conversation!</h2>
         )}
       </div>
       {data.chat && (

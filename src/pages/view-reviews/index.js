@@ -1,9 +1,10 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 
-import CircularIndeterminate from "../../components/loading";
+import LoadingSpinner from "../../components/loading";
 import ReviewCard from "../../components/review-card";
 import { GET_REVIEWS } from "../../queries";
+import ErrorMessage from "../../components/error-message";
 
 import "./index.css";
 
@@ -12,18 +13,15 @@ const ViewReviews = () => {
 
   const { loading, error, data } = useQuery(GET_REVIEWS, {
     variables: { getReviewsUserId: id },
+    fetchPolicy: "no-cache",
   });
 
-  if (error) {
-    return <div>error</div>;
+  if (loading) {
+    return <LoadingSpinner />;
   }
 
-  if (loading) {
-    return (
-      <div className="dashboard-container">
-        <CircularIndeterminate />
-      </div>
-    );
+  if (error) {
+    return <ErrorMessage returnTo={"/"} />;
   }
 
   return (

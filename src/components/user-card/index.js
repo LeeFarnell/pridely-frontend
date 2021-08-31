@@ -8,7 +8,7 @@ import FollowButton from "../follow-button";
 
 import "./index.css";
 
-const UserCard = ({ result, isFollowing }) => {
+const UserCard = ({ result, isFollowing, refetch }) => {
   return (
     <div className="user-card-container">
       <div>
@@ -30,7 +30,7 @@ const UserCard = ({ result, isFollowing }) => {
         <Button name="View Profile" />
       </Link>
       {isFollowing === -1 ? (
-        <FollowButton name="Follow" userId={result.id} />
+        <FollowButton name="Follow" userId={result.id} refetch={refetch} />
       ) : (
         <div>Already Following</div>
       )}

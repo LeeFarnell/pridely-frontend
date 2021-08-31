@@ -53,7 +53,12 @@
 .business-post h2 {
   color: var(--CottonCandy);
   text-shadow: black 1px 1px 1px;
-  font-size: larger;
+  font-size: 28px;
+}
+
+.required-field {
+  color: red;
+  font-size: 13px;
 }
 
 @media screen and (max-width: 500px) {

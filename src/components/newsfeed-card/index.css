@@ -21,12 +21,26 @@
 .news-feed-title {
   background-color: var(--Celeste);
   border-bottom: var(--PiggyPink) 1px solid;
-  padding: 0.5vw;
+  padding: 0.8vw;
+  text-align: center;
+}
+
+.post-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.posted-by {
+  font-size: 14px;
+  text-decoration: underline;
 }
 
 .news-feed-body {
   padding: 0.5vw;
   border-bottom: var(--PiggyPink) 1px solid;
+  padding: 25px;
+  font-size: 16px;
+  text-align: left;
 }
 
 .news-feed-like {
@@ -34,6 +48,9 @@
   border-bottom: var(--PiggyPink) 1px solid;
   background-color: var(--Celeste);
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .add-comment-field {
@@ -67,6 +84,7 @@
 .add-comment-btn {
   display: flex;
   justify-content: center;
+  padding: 7px;
 }
 
 @media screen and (max-width: 500px) {

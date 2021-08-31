@@ -33,12 +33,12 @@ const SimpleAccordion = (props) => {
           <Typography className={classes.heading}>View Comments</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component={"span"}>
             {comments ? (
               comments.map((comment) => {
                 if (comment.postId === postId) {
                   return (
-                    <div>
+                    <div key={comment._id}>
                       <NewsFeedComment
                         username={comment.commentPostedBy.username}
                         comment={comment.commentText}
