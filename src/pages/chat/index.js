@@ -58,7 +58,7 @@ const Chat = () => {
         {!data.chat[0] ? (
           <h2>Start a conversation!</h2>
         ) : (
-          <h2>Your conversation with {data.chat[0].toUser.username}</h2>
+          <h2>Your conversation!</h2>
         )}
       </div>
       {data.chat && (
